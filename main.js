@@ -47,22 +47,17 @@ function createAssignmentCard(assignment) {
     
     const link = document.createElement('a');
     link.href = assignment.path;
-    link.title = assignment.description || 'Open assignment';
+    link.title = 'Open assignment';
     
     const title = document.createElement('div');
     title.className = 'assignment-title';
     title.textContent = assignment.title;
-    
-    const description = document.createElement('div');
-    description.className = 'assignment-description';
-    description.textContent = assignment.description || '';
     
     const pathElement = document.createElement('div');
     pathElement.className = 'assignment-path';
     pathElement.textContent = assignment.path;
     
     link.appendChild(title);
-    link.appendChild(description);
     link.appendChild(pathElement);
     
     card.appendChild(link);

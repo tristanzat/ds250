@@ -2,17 +2,14 @@
   "assignments": [
     {
       "title": "Unit 0 - P0 Template",
-      "description": "Introductory project template",
       "path": "u0/P0_template.html"
     },
     {
       "title": "Unit 1 - Task 1",
-      "description": "First task of Unit 1",
       "path": "u1/unit1_task1_template.html"
     },
     {
       "title": "Unit 1 - Task 2",
-      "description": "Second task of Unit 1",
       "path": "u1/unit1_task2_template.html"
     }
   ]
