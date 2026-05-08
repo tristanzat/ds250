@@ -5,7 +5,7 @@ async function loadAssignments() {
     const assignmentsContainer = document.getElementById('assignments');
     
     try {
-        const response = await fetch('../manifest.json');
+        const response = await fetch('manifest.json');
         
         if (!response.ok) {
             throw new Error(`Failed to load manifest.json: ${response.statusText}`);
