@@ -99,6 +99,7 @@ Mary was the most popular name by far from 1920-1966. After 1967, the popularity
 
 ```{python}
 # Q3
+# Linear scale
 (
   ggplot(
     df.filter(pl.col("name").is_in(["Mary","Martha", "Peter", "Paul"])),
@@ -109,6 +110,25 @@ Mary was the most popular name by far from 1920-1966. After 1967, the popularity
   + scale_x_continuous(limits=[1920,2000], format=".0f")
   + labs(
     "# of babies with Christian names per year",
+    x="Year",
+    y="# of babies",
+    color="Name"
+  )
+)
+```
+```{python}
+# Logarithmic scale
+(
+  ggplot(
+    df.filter(pl.col("name").is_in(["Mary","Martha", "Peter", "Paul"])),
+    aes("year", "Total")
+  )
+  + geom_point(mapping=aes(color="name"))
+  + geom_line(mapping=aes(color="name"))
+  + scale_x_continuous(limits=[1920,2000], format=".0f")
+  + scale_y_log10()
+  + labs(
+    "# of babies with Christian names per year (log scale)",
     x="Year",
     y="# of babies",
     color="Name"
