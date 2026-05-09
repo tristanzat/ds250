@@ -73,7 +73,7 @@ My name in 2004 has usage pretty similar to the years 1999-2005. It is 3,625 in 
 
 __Think of a unique name from a famous movie. Plot the usage of that name and see how changes line up with the movie release. Does it look like the movie had an effect on usage?__  
 
-I chose Wesley from the Princess Bride. There is a large spike in the name in 1977; the book was published in 1973 and the movie came out in 1987. The movie became available to stream on Disney+ in 2020, but there still does not seem to be any correlation between the movie's release, availability on Disney+, or the book being published and babies being names Wesley.
+I chose Wesley from the Princess Bride. There is a large spike in the name in 1977; the book was published in 1973 and the movie came out in 1987. The movie became available to stream on Disney+ in 2020, but there still does not seem to be any correlation between the movie's release, availability on Disney+, or the book being published and babies being named Wesley.
 
 ```{python}
 # Q2
