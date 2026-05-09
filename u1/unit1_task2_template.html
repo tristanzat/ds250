@@ -2258,7 +2258,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-3" id="toc-question-3">QUESTION 3</a></li>
   </ul>
 </nav>
-<div id="8c99a86c" class="cell" data-execution_count="1">
+<div id="569b62f0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2268,7 +2268,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c6940902" class="cell" data-execution_count="2">
+<div id="b3480647" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -2281,8 +2281,8 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-1">QUESTION 1</h2>
 <!-- Make sure at least one of your charts includes reference marks!! -->
 <p><strong>How does your name at your birth year compare to its use historically? Your must provide a chart. The years labels on your charts should not include a comma.</strong></p>
-<p>My name in 2004 has usage pretty similar to the years 1999-2005. There is a large peak in 1996 and it gets very high usage again from 2006-2009.</p>
-<div id="ae72660a" class="cell" data-execution_count="3">
+<p>My name in 2004 has usage pretty similar to the years 1999-2005. It is 3,625 in 2004. There is a large peak in 1996 and it gets very high usage again from 2006-2009.</p>
+<div id="0952b621" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q1</span></span>
@@ -2291,15 +2291,17 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    df.<span class="bu">filter</span>(name<span class="op">=</span><span class="st">&quot;Tristan&quot;</span>),</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Total&quot;</span>)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_point()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_line()</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> labs(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Tristan per year&quot;</span>,</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Tristan&quot;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_vline(xintercept<span class="op">=</span><span class="dv">2004</span>, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">2004</span>, y<span class="op">=</span><span class="dv">6000</span>, label<span class="op">=</span><span class="st">&quot;Year 2004&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_point()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_line()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> labs(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Tristan per year&quot;</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Tristan&quot;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
@@ -2311,7 +2313,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="dmfw1Q"></div>
+          <div id="fHL7np"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2336,7 +2338,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("dmfw1Q");
+   const containerDiv = document.getElementById("fHL7np");
    let fig = null;
    
    function renderPlot() {
@@ -2532,6 +2534,29 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 "format":".0f"
 }],
 "layers":[{
+"geom":"vline",
+"mapping":{
+},
+"data_meta":{
+},
+"xintercept":2004.0,
+"linetype":"dashed",
+"color":"red",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":2004.0,
+"y":6000.0,
+"label":"Year 2004",
+"color":"red",
+"data":{
+}
+},{
 "geom":"point",
 "mapping":{
 },
@@ -2601,24 +2626,36 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-2">QUESTION 2</h2>
 <p><strong>Think of a unique name from a famous movie. Plot the usage of that name and see how changes line up with the movie release. Does it look like the movie had an effect on usage?</strong></p>
 <p>I chose Wesley from the Princess Bride. There is a large spike in the name in 1977; the book was published in 1973 and the movie came out in 1987. The movie became available to stream on Disney+ in 2020, but there still does not seem to be any correlation between the movie’s release, availability on Disney+, or the book being published and babies being names Wesley.</p>
-<div id="578ca042" class="cell" data-execution_count="4">
+<div id="6b08fdd5" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  ggplot(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    df.<span class="bu">filter</span>(name<span class="op">=</span><span class="st">&quot;Wesley&quot;</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Total&quot;</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_point()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_line()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> labs(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Wesley per year&quot;</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Wesley&quot;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Red for line</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>LINE_RED <span class="op">=</span> <span class="st">&quot;#cc0000&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ggplot(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    df.<span class="bu">filter</span>(name<span class="op">=</span><span class="st">&quot;Wesley&quot;</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Total&quot;</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Book release</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_vline(xintercept<span class="op">=</span><span class="dv">1973</span>, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span>LINE_RED)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">1973</span>, y<span class="op">=</span><span class="dv">1000</span>, label<span class="op">=</span><span class="st">&quot;Book published&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Movie release</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_vline(xintercept<span class="op">=</span><span class="dv">1987</span>, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span>LINE_RED)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">1989</span>, y<span class="op">=</span><span class="dv">4750</span>, label<span class="op">=</span><span class="st">&quot;Movie released&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Movie on Disney+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_vline(xintercept<span class="op">=</span><span class="dv">2020</span>, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span>LINE_RED)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">2020</span>, y<span class="op">=</span><span class="dv">2050</span>, label<span class="op">=</span><span class="st">&quot;On Disney+&quot;</span>, color<span class="op">=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Data</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_point()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> geom_line()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="op">+</span> labs(</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Wesley per year&quot;</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Wesley&quot;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 
@@ -2630,7 +2667,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="ZIQMU3"></div>
+          <div id="fkrxZw"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2655,7 +2692,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("ZIQMU3");
+   const containerDiv = document.getElementById("fkrxZw");
    let fig = null;
    
    function renderPlot() {
@@ -2851,6 +2888,75 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 "format":".0f"
 }],
 "layers":[{
+"geom":"vline",
+"mapping":{
+},
+"data_meta":{
+},
+"xintercept":1973.0,
+"linetype":"dashed",
+"color":"#cc0000",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":1973.0,
+"y":1000.0,
+"label":"Book published",
+"color":"red",
+"data":{
+}
+},{
+"geom":"vline",
+"mapping":{
+},
+"data_meta":{
+},
+"xintercept":1987.0,
+"linetype":"dashed",
+"color":"#cc0000",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":1989.0,
+"y":4750.0,
+"label":"Movie released",
+"color":"red",
+"data":{
+}
+},{
+"geom":"vline",
+"mapping":{
+},
+"data_meta":{
+},
+"xintercept":2020.0,
+"linetype":"dashed",
+"color":"#cc0000",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":2020.0,
+"y":2050.0,
+"label":"On Disney+",
+"color":"red",
+"data":{
+}
+},{
 "geom":"point",
 "mapping":{
 },
@@ -2920,7 +3026,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-3">QUESTION 3</h2>
 <p><strong>Mary, Martha, Peter, and Paul are all Christian names. From 1920 - 2000, compare the name usage of each of the four names in a single chart. What trends do you notice?</strong></p>
 <p>Mary was the most popular name by far from 1920-1966. After 1967, the popularity of Mary and Paul declines and is more in line with the other Biblical names. Martha has the most popularity from 1920-1953, after which its usage greatly falls off. Paul sees an increase from 1937-1957 then falls back down from 1958-2000. By 2000, Mary is the most popular baby name with 6,221; 3,791 babies were named Paul, 3,139 were named Peter, and only 750 were named Martha.</p>
-<div id="1d1dc9b9" class="cell" data-execution_count="5">
+<div id="07819ef1" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3</span></span>
@@ -2951,7 +3057,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="M2aqte"></div>
+          <div id="eLNNCI"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2976,7 +3082,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("M2aqte");
+   const containerDiv = document.getElementById("eLNNCI");
    let fig = null;
    
    function renderPlot() {
@@ -3243,7 +3349,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 
 </div>
 </div>
-<div id="9ace2494" class="cell" data-execution_count="6">
+<div id="e7151aed" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logarithmic scale</span></span>
@@ -3274,7 +3380,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="m56XsN"></div>
+          <div id="ZpTAPb"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -3299,7 +3405,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("m56XsN");
+   const containerDiv = document.getElementById("ZpTAPb");
    let fig = null;
    
    function renderPlot() {

@@ -46,7 +46,7 @@ df = pl.read_csv("https://posit.byui.edu/content/0d43d66f-d3b7-4c43-8c36-52e3ed6
 
 __How does your name at your birth year compare to its use historically? Your must provide a chart. The years labels on your charts should not include a comma.__ 
 
-My name in 2004 has usage pretty similar to the years 1999-2005. There is a large peak in 1996 and it gets very high usage again from 2006-2009.
+My name in 2004 has usage pretty similar to the years 1999-2005. It is 3,625 in 2004. There is a large peak in 1996 and it gets very high usage again from 2006-2009.
 
 ```{python}
 # Q1
@@ -55,6 +55,8 @@ My name in 2004 has usage pretty similar to the years 1999-2005. There is a larg
     df.filter(name="Tristan"),
     aes("year", "Total")
   )
+  + geom_vline(xintercept=2004, linetype="dashed", color="red")
+  + geom_text(x=2004, y=6000, label="Year 2004", color="red")
   + geom_point()
   + geom_line()
   + scale_x_continuous(format=".0f")
@@ -75,11 +77,23 @@ I chose Wesley from the Princess Bride. There is a large spike in the name in 19
 
 ```{python}
 # Q2
+# Red for line
+LINE_RED = "#cc0000"
 (
   ggplot(
     df.filter(name="Wesley"),
     aes("year", "Total")
   )
+  # Book release
+  + geom_vline(xintercept=1973, linetype="dashed", color=LINE_RED)
+  + geom_text(x=1973, y=1000, label="Book published", color="red")
+  # Movie release
+  + geom_vline(xintercept=1987, linetype="dashed", color=LINE_RED)
+  + geom_text(x=1989, y=4750, label="Movie released", color="red")
+  # Movie on Disney+
+  + geom_vline(xintercept=2020, linetype="dashed", color=LINE_RED)
+  + geom_text(x=2020, y=2050, label="On Disney+", color="red")
+  # Data
   + geom_point()
   + geom_line()
   + scale_x_continuous(format=".0f")
