@@ -1,0 +1,154 @@
+---
+title: "Client Report - Famous Names"
+subtitle: "Unit 1 Task 3"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl
+import numpy as np
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+```{python}
+# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+df = pl.read_csv("https://posit.byui.edu/content/0d43d66f-d3b7-4c43-8c36-52e3ed69e7f1/names_year_csv.csv")
+```
+
+
+
+## QUESTION 1
+
+<!-- Make sure at least one of your charts includes reference marks!! -->
+
+__Make a new column that represents the total number of babies with your name for only those states in which you have lived. (If you have only ever lived in one state, pick at least one other state so you get practice summing across columns). Make a graph displaying that total for your name over time.__
+
+The trend of my name usage in the states that I've lived (Arizona, Texas, and Idaho) is very similar to the overall trend across the United States. There are large peaks in 1996 and from 2006-2008.
+
+```{python}
+# Q1
+tristan_df = (
+  df.filter(name="Tristan")
+  .with_columns(
+    states_lived_total = pl.col("AZ") + pl.col("TX") + pl.col("ID")
+  )
+)
+
+(
+ggplot(tristan_df, aes("year", "states_lived_total"))
++ geom_point()
++ geom_line()
++ scale_x_continuous(format=".0f")
++ labs(
+    "# of babies named Tristan per year",
+    "In the states of Arizona, Texas, and Idaho",
+    x="Year",
+    y="# of babies named Tristan"
+  )
+)
+```
+
+
+## QUESTION 2
+
+__Let's look at a name that is special for members of the church: Brigham. For each year, calculate what proportion of babies named Brigham were born in Idaho and Utah? Make a graph displaying the proportion over time.__  
+
+Between 1971 and 1996 but excluding 1992, 100% of all babies named Brigham were born in Idaho and/or Utah. In 1992, 0% of all babies named Brigham were born in Idaho and/or Utah. From 1996-2013, the proportion is roughly 70%; after 2013 the proportion is roughly 50%.
+
+```{python}
+# Q2
+brigham_df = (
+  df.filter(name="Brigham")
+  .with_columns(
+    corridor_total = pl.col("ID") + pl.col("UT")
+  )
+  .with_columns(
+    corridor_proportion = pl.col("corridor_total") / pl.col("Total") * 100
+  )
+)
+
+(
+ggplot(brigham_df, aes("year", "corridor_proportion"))
++ geom_point()
++ geom_line()
++ scale_x_continuous(format=".0f")
++ labs(
+    "Proportion of babies named Brigham",
+    "Between Idaho and Utah and the rest of the US",
+    x="Year",
+    y="Proportion (%)"
+  )
+)
+
+```
+
+<!-- Make sure at least one of your charts includes reference marks!! -->
+
+## QUESTION 3
+
+__Consider doing some data validation. For the name David, calculate a sum of all 50 states and District of Columbia for each year. Now compare that total to the value in the 'Total' column. In which years, if any, do they not agree?__
+
+The calculated totals and the reported totals in the 'Total' column match for every year for the name David. The reported total is correct.
+
+```{python}
+# Q3
+
+from polars import col
+
+david_df = (
+    df.filter(name="David")
+    .with_columns(
+        true_total =
+            col("AK") + col("AL") + col("AR") + col("AZ") + col("CA") + col("CO") + col("CT") + col("DC") + col("DE") + col("FL") + col("GA") + col("HI") + col("IA") + col("ID") + col("IL") + col("IN") + col("KS") + col("KY") + col("LA") + col("MA") + col("MD") + col("ME") + col("MI") + col("MN") + col("MO") + col("MS") + col("MT") + col("NC") + col("ND") + col("NE") + col("NH") + col("NJ") + col("NM") + col("NV") + col("NY") + col("OH") + col("OK") + col("OR") + col("PA") + col("RI") + col("SC") + col("SD") + col("TN") + col("TX") + col("UT") + col("VA") + col("VT") + col("WA") + col("WI") + col("WV") + col("WY")
+    )
+    .with_columns(
+        difference = col("Total") - col("true_total")
+    )
+)
+
+david_df.select(
+    "year", "Total", "true_total", "difference"
+  ).sort(
+    "difference", descending=True
+  ).head()
+
+(
+ggplot(david_df, aes("year", "difference"))
++ geom_line()
++ geom_point()
++ scale_x_continuous(format=".0f")
++ scale_y_continuous(
+  breaks=[-2,-1,0,1,2], limits = [-2, 2], format=".0f"
+  )
++ labs(
+    "David: Reported Total - True Total by Year",
+    x="Year",
+    y="Difference"
+  )
+)
+```
