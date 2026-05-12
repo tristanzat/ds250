@@ -59,8 +59,12 @@ tristan_df = (
   )
 )
 
+name_average = tristan_df["states_lived_total"].mean()
+
 (
 ggplot(tristan_df, aes("year", "states_lived_total"))
++ geom_hline(yintercept=name_average, linetype="dashed", color="#cb2020")
++ geom_text(x=1980, y=name_average+25, label="Average", color="#cb2020")
 + geom_point()
 + geom_line()
 + scale_x_continuous(format=".0f")
@@ -92,8 +96,12 @@ brigham_df = (
   )
 )
 
+proportion_average = brigham_df["corridor_proportion"].mean()
+
 (
 ggplot(brigham_df, aes("year", "corridor_proportion"))
++ geom_hline(yintercept=proportion_average, linetype="dashed", color="#cb2020")
++ geom_text(x=1980, y=proportion_average+4, label="Average", color="#cb2020")
 + geom_point()
 + geom_line()
 + scale_x_continuous(format=".0f")
@@ -140,7 +148,7 @@ ggplot(david_df, aes("year", "difference"))
   breaks=[-2,-1,0,1,2], limits = [-2, 2], format=".0f"
   )
 + labs(
-    "David: Reported Total - True Total by Year",
+    "David: Difference Between Reported Total & True Total by Year",
     x="Year",
     y="Difference"
   )

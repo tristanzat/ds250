@@ -2258,7 +2258,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-3" id="toc-question-3">QUESTION 3</a></li>
   </ul>
 </nav>
-<div id="edc5a37c" class="cell" data-execution_count="1">
+<div id="ed091b9f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2268,7 +2268,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b14ad189" class="cell" data-execution_count="2">
+<div id="e594c371" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -2282,7 +2282,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <!-- Make sure at least one of your charts includes reference marks!! -->
 <p><strong>Make a new column that represents the total number of babies with your name for only those states in which you have lived. (If you have only ever lived in one state, pick at least one other state so you get practice summing across columns). Make a graph displaying that total for your name over time.</strong></p>
 <p>The trend of my name usage in the states that I’ve lived (Arizona, Texas, and Idaho) is very similar to the overall trend across the United States. There are large peaks in 1996 and from 2006-2008.</p>
-<div id="6826290b" class="cell" data-execution_count="3">
+<div id="dc63afa8" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q1</span></span>
@@ -2293,20 +2293,24 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ggplot(tristan_df, aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;states_lived_total&quot;</span>))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_line()</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> labs(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Tristan per year&quot;</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;In the states of Arizona, Texas, and Idaho&quot;</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Tristan&quot;</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>name_average <span class="op">=</span> tristan_df[<span class="st">&quot;states_lived_total&quot;</span>].mean()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ggplot(tristan_df, aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;states_lived_total&quot;</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_hline(yintercept<span class="op">=</span>name_average, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span><span class="st">&quot;#cb2020&quot;</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">1980</span>, y<span class="op">=</span>name_average<span class="op">+</span><span class="dv">25</span>, label<span class="op">=</span><span class="st">&quot;Average&quot;</span>, color<span class="op">=</span><span class="st">&quot;#cb2020&quot;</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_line()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> labs(</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;# of babies named Tristan per year&quot;</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;In the states of Arizona, Texas, and Idaho&quot;</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;# of babies named Tristan&quot;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
    
        <meta charset="UTF-8">
@@ -2316,7 +2320,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="CVl1Bd"></div>
+          <div id="hZn0Hb"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2341,7 +2345,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("CVl1Bd");
+   const containerDiv = document.getElementById("hZn0Hb");
    let fig = null;
    
    function renderPlot() {
@@ -2541,6 +2545,29 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 "format":".0f"
 }],
 "layers":[{
+"geom":"hline",
+"mapping":{
+},
+"data_meta":{
+},
+"yintercept":262.42622950819674,
+"linetype":"dashed",
+"color":"#cb2020",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":1980.0,
+"y":287.42622950819674,
+"label":"Average",
+"color":"#cb2020",
+"data":{
+}
+},{
 "geom":"point",
 "mapping":{
 },
@@ -2558,7 +2585,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 }
 }],
 "metainfo_list":[],
-"spec_id":"4"
+"spec_id":"1"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
@@ -2610,7 +2637,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-2">QUESTION 2</h2>
 <p><strong>Let’s look at a name that is special for members of the church: Brigham. For each year, calculate what proportion of babies named Brigham were born in Idaho and Utah? Make a graph displaying the proportion over time.</strong></p>
 <p>Between 1971 and 1996 but excluding 1992, 100% of all babies named Brigham were born in Idaho and/or Utah. In 1992, 0% of all babies named Brigham were born in Idaho and/or Utah. From 1996-2013, the proportion is roughly 70%; after 2013 the proportion is roughly 50%.</p>
-<div id="2f1bdeaa" class="cell" data-execution_count="4">
+<div id="296edf98" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2</span></span>
@@ -2624,20 +2651,24 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ggplot(brigham_df, aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;corridor_proportion&quot;</span>))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_line()</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> labs(</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Proportion of babies named Brigham&quot;</span>,</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Between Idaho and Utah and the rest of the US&quot;</span>,</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;Proportion (%)&quot;</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>proportion_average <span class="op">=</span> brigham_df[<span class="st">&quot;corridor_proportion&quot;</span>].mean()</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ggplot(brigham_df, aes(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;corridor_proportion&quot;</span>))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_hline(yintercept<span class="op">=</span>proportion_average, linetype<span class="op">=</span><span class="st">&quot;dashed&quot;</span>, color<span class="op">=</span><span class="st">&quot;#cb2020&quot;</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_text(x<span class="op">=</span><span class="dv">1980</span>, y<span class="op">=</span>proportion_average<span class="op">+</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">&quot;Average&quot;</span>, color<span class="op">=</span><span class="st">&quot;#cb2020&quot;</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_point()</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> geom_line()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> labs(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Proportion of babies named Brigham&quot;</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Between Idaho and Utah and the rest of the US&quot;</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;Proportion (%)&quot;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
    
        <meta charset="UTF-8">
@@ -2647,7 +2678,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="gHxkiF"></div>
+          <div id="Ecf4YK"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2672,7 +2703,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("gHxkiF");
+   const containerDiv = document.getElementById("Ecf4YK");
    let fig = null;
    
    function renderPlot() {
@@ -2875,6 +2906,29 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 "format":".0f"
 }],
 "layers":[{
+"geom":"hline",
+"mapping":{
+},
+"data_meta":{
+},
+"yintercept":72.40434264288228,
+"linetype":"dashed",
+"color":"#cb2020",
+"data":{
+}
+},{
+"geom":"text",
+"mapping":{
+},
+"data_meta":{
+},
+"x":1980.0,
+"y":76.40434264288228,
+"label":"Average",
+"color":"#cb2020",
+"data":{
+}
+},{
 "geom":"point",
 "mapping":{
 },
@@ -2892,7 +2946,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 }
 }],
 "metainfo_list":[],
-"spec_id":"5"
+"spec_id":"2"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
@@ -2945,7 +2999,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-3">QUESTION 3</h2>
 <p><strong>Consider doing some data validation. For the name David, calculate a sum of all 50 states and District of Columbia for each year. Now compare that total to the value in the ‘Total’ column. In which years, if any, do they not agree?</strong></p>
 <p>The calculated totals and the reported totals in the ‘Total’ column match for every year for the name David. The reported total is correct.</p>
-<div id="956ee18b" class="cell" data-execution_count="5">
+<div id="e161ab2b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3</span></span>
@@ -2972,13 +3026,13 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  breaks<span class="op">=</span>[<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>], limits <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>], <span class="bu">format</span><span class="op">=</span><span class="st">&quot;.0f&quot;</span></span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="op">+</span> labs(</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;David: Reported Total - True Total by Year&quot;</span>,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;David: Difference Between Reported Total &amp; True Total by Year&quot;</span>,</span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;Year&quot;</span>,</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;Difference&quot;</span></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
    
        <meta charset="UTF-8">
@@ -2988,7 +3042,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="pGBi8K"></div>
+          <div id="OF4Amc"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -3013,7 +3067,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
        };
    }
    
-   const containerDiv = document.getElementById("pGBi8K");
+   const containerDiv = document.getElementById("OF4Amc");
    let fig = null;
    
    function renderPlot() {
@@ -3199,7 +3253,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 }]
 },
 "ggtitle":{
-"text":"David: Reported Total - True Total by Year"
+"text":"David: Difference Between Reported Total & True Total by Year"
 },
 "guides":{
 "x":{
@@ -3237,7 +3291,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 }
 }],
 "metainfo_list":[],
-"spec_id":"6"
+"spec_id":"3"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
