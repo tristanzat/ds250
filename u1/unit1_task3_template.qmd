@@ -131,12 +131,6 @@ david_df = (
     )
 )
 
-david_df.select(
-    "year", "Total", "true_total", "difference"
-  ).sort(
-    "difference", descending=True
-  ).head()
-
 (
 ggplot(david_df, aes("year", "difference"))
 + geom_line()
