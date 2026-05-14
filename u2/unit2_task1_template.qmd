@@ -55,11 +55,21 @@ df = pl.read_json(io.BytesIO(response.content))
     1. Fall for October, November, December
     1. All other rows can be assigned a value of 'Unknown' 
 
-_No discussion needed for this question_
 
 ```{python}
 # Include and execute your code here
-
+df.with_columns(
+  season = pl
+  .when(pl.col("month").is_in(["January", "Febuary", "March"]))
+  .then(pl.lit("Winter"))
+  .when(pl.col("month").is_in(["April", "May", "June"]))
+  .then(pl.lit("Spring"))
+  .when(pl.col("month").is_in(["July", "August", "September"]))
+  .then(pl.lit("Summer"))
+  .when(pl.col("month").is_in(["October", "November", "December"]))
+  .then(pl.lit("Fall"))
+  .otherwise(pl.lit("Unknown"))
+)
 
 ```
 
@@ -67,11 +77,11 @@ _No discussion needed for this question_
 
 1. __Divide all the columns by 1000 whose name starts with num_of.__ Be sure to first filter out rows that contain problematic values for the columns like -999 or 1500+.
 
-_No discussion needed for this question_
-
 ```{python}
 # Include and execute your code here
-
+df.filter(
+  
+)
 
 ```
 
