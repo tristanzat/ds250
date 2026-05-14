@@ -15,6 +15,10 @@
     {
       "title": "Unit 1 - Task 3",
       "path": "u1/unit1_task3_template.html"
+    },
+    {
+      "title": "Unit 1 - Stretch Task",
+      "path": "u1/stretch.qmd"
     }
   ]
 }
