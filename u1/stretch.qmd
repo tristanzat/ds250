@@ -1,0 +1,73 @@
+---
+title: "Stretch Task - Elliot"
+subtitle: "Unit 1 Stretch Task"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl
+import numpy as np
+from lets_plot import *
+from polars import col
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+```{python}
+# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+df = pl.read_csv("https://posit.byui.edu/content/0d43d66f-d3b7-4c43-8c36-52e3ed69e7f1/names_year_csv.csv")
+```
+
+```{python}
+elliot_df = df.filter(name="Elliot")
+
+(
+ggplot(elliot_df, aes("year", "Total"))
++ geom_line(aes(color="name"))
++ scale_color_manual(values={"Elliot": "blue"})
++ scale_x_continuous(format=".0f")
++ scale_y_continuous(format=".0f")
++ ggsize(800, 400)
++ coord_cartesian([1950, 2025])
++ labs("Elliot...What?", x="year", y="")
++ theme_gray()
++ theme(
+    legend_position="right",
+    legend_justification=[1, 1],
+    plot_title=element_text(hjust=-0.05, family="serif", size=25),
+    panel_grid_minor=element_blank(),
+    axis_ticks=element_blank(),
+    axis_text=element_text(family="serif", size=18),
+    axis_title=element_text(family="serif", size=25)
+    )
++ geom_vline(xintercept=1982, linetype="dashed", color="red", size=1.1)
++ geom_text(x=1975, y=3000, label="E.T. Released", size=9)
++ geom_vline(xintercept=1984, linetype="dashed", color="red", size=1.1)
++ geom_text(x=1992, y=3000, label="Second Release", size=9)
++ geom_vline(xintercept=2002, linetype="dashed", color="red", size=1.1)
++ geom_text(x=2009, y=3000, label="Third Release", size=9)
+)
+```
