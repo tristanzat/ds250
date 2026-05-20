@@ -19,6 +19,10 @@
     {
       "title": "Unit 1 - Stretch Task",
       "path": "u1/stretch.qmd"
+    },
+    {
+      "title": "Unit 2 - Task 1",
+      "path": "u2/unit2_task1_template.qmd"
     }
   ]
 }
