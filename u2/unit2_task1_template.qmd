@@ -58,7 +58,7 @@ df = pl.read_json(io.BytesIO(response.content))
 
 ```{python}
 # Include and execute your code here
-df.with_columns(
+new_df = df.with_columns(
   season = pl
   .when(pl.col("month").is_in(["January", "Febuary", "March"]))
   .then(pl.lit("Winter"))
@@ -71,6 +71,8 @@ df.with_columns(
   .otherwise(pl.lit("Unknown"))
 )
 
+new_df
+
 ```
 
 ## QUESTION 2
@@ -79,10 +81,16 @@ df.with_columns(
 
 ```{python}
 # Include and execute your code here
-df.filter(
-  
+import polars.selectors as cs
+divided_df = new_df.with_columns(
+  pl.col("num_of_delays_carrier")
+    .str.replace_all("\\+", "")
+    .cast(pl.Int64)
+).with_columns(
+  (cs.starts_with("num_of_") & cs.numeric()) / 1000
 )
 
+divided_df
 ```
 
 ## QUESTION 3
@@ -93,11 +101,22 @@ df.filter(
     a. 30% of all delayed flights in the "late_aircraft" category are due to weather  
     a. From April through August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%  
 
-_No discussion needed for this question_
-
 ```{python}
 # Include and execute your code here
+weighted_df = divided_df.with_columns(
+  weighted_delay_score = pl
+  .when(pl.col("month").is_in(["April", "May", "June", "July", "August"]))
+  .then(
+    pl.col("num_of_delays_nas") * 0.4
+  )
+  .otherwise(
+    pl.col("num_of_delays_nas") * 0.65 +
+    pl.col("num_of_delays_late_aircraft") * 0.3 +
+    pl.col("num_of_delays_weather")
+  )
+)
 
+weighted_df.head()
 
 ```
 
@@ -105,10 +124,18 @@ _No discussion needed for this question_
 
 1. __Using the new weather variable calculated above, create a boxplot showing the distribution of flights delayed by weather for each season. Describe what you learn from this graph.__    
 
-_Describe your results and analysis here_
+Winter and Fall have the most weather delays. They have the highest medians at 1,060 and 959 respectively. They also have wide boxes, meaning there is more day-to-day variability. Spring has the fewest delays; a median of 150 and a tight box meaning low variance. Summer has the most extreme outliers; its maximum is 2120 but its highest outlier is 4720, likely due to thunderstorms. Every season has outlier days where the weather causes unusually large delays.
 
 ```{python}
 # Include and execute your code here
-
+(
+ggplot(weighted_df, aes("season", "weighted_delay_score"))
++ geom_boxplot()
++ labs(
+  "Distribution of Flights Delayed By Weather By Season",
+  x="Season",
+  y="# of flights delayed by weather (in thousands)"
+  )
+)
 
 ```
