@@ -99,7 +99,7 @@ delays_df
 
 __Create a barplot showing the proportion of all flights that are delayed at each airport. Describe what you learn from this graph.__  
 
-The average proportion of delayed flights acroos the 7 airports measured is 0.202, meaning that roughly 20% of all flights across these airports are delayed. San Francisco has the highest proportion; 26% of its flights are delayed. Next is Chicago O'Hare with 23%; Atlanta, Denver, San Diego, and Dulles are around 19%; and Salt Lake City has the least at only 14% of its flights being delayed.
+The average proportion of delayed flights across the 7 airports measured is 0.202, meaning that roughly 20% of all flights across these airports are delayed. San Francisco has the highest proportion; 26% of its flights are delayed. Next is Chicago O'Hare with 23%; Atlanta, Denver, San Diego, and Dulles are around 19%; and Salt Lake City has the least at only 14% of its flights being delayed.
 
 ```{python}
 # Include and execute your code here
