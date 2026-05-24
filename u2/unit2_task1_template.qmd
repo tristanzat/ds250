@@ -87,6 +87,11 @@ divided_df = new_df.with_columns(
     .str.replace_all("\\+", "")
     .cast(pl.Int64)
 ).with_columns(
+  num_of_delays_late_aircraft = pl
+  .when(pl.col("num_of_delays_late_aircraft") < 0)
+  .then(None)
+  .otherwise(pl.col("num_of_delays_late_aircraft"))
+).with_columns(
   (cs.starts_with("num_of_") & cs.numeric()) / 1000
 )
 
@@ -124,7 +129,7 @@ weighted_df.head()
 
 1. __Using the new weather variable calculated above, create a boxplot showing the distribution of flights delayed by weather for each season. Describe what you learn from this graph.__    
 
-Winter and Fall have the most weather delays. They have the highest medians at 1,060 and 959 respectively. They also have wide boxes, meaning there is more day-to-day variability. Spring has the fewest delays; a median of 150 and a tight box meaning low variance. Summer has the most extreme outliers; its maximum is 2120 but its highest outlier is 4720, likely due to thunderstorms. Every season has outlier days where the weather causes unusually large delays.
+Winter and Fall have the most weather delays. They have the highest medians at 962 and 866 respectively. They also have wide boxes, meaning there is more day-to-day variability. Spring has the fewest delays; a median of 150 and a tight box meaning low variance. Summer has the most extreme outliers; its maximum is 2120 but its highest outlier is 4240, likely due to thunderstorms. Every season has outlier days where the weather causes unusually large delays.
 
 ```{python}
 # Include and execute your code here

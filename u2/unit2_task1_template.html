@@ -2259,7 +2259,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-4" id="toc-question-4">QUESTION 4</a></li>
   </ul>
 </nav>
-<div id="2eef9901" class="cell" data-execution_count="1">
+<div id="7ac75efa" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2271,7 +2271,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a363b6a8" class="cell" data-execution_count="2">
+<div id="8b2900cd" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -2294,7 +2294,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <li>All other rows can be assigned a value of ‘Unknown’</li>
 </ol></li>
 </ol>
-<div id="8df4b311" class="cell" data-execution_count="3">
+<div id="1564da10" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -2597,7 +2597,7 @@ white-space: pre-wrap;
 <ol type="1">
 <li><strong>Divide all the columns by 1000 whose name starts with num_of.</strong> Be sure to first filter out rows that contain problematic values for the columns like -999 or 1500+.</li>
 </ol>
-<div id="b6fc543c" class="cell" data-execution_count="4">
+<div id="1f6f6752" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -2607,10 +2607,15 @@ white-space: pre-wrap;
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">str</span>.replace_all(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">+&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    .cast(pl.Int64)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>).with_columns(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  (cs.starts_with(<span class="st">&quot;num_of_&quot;</span>) <span class="op">&amp;</span> cs.numeric()) <span class="op">/</span> <span class="dv">1000</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>divided_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  num_of_delays_late_aircraft <span class="op">=</span> pl</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  .when(pl.col(<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>) <span class="op">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  .then(<span class="va">None</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  .otherwise(pl.col(<span class="st">&quot;num_of_delays_late_aircraft&quot;</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>).with_columns(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  (cs.starts_with(<span class="st">&quot;num_of_&quot;</span>) <span class="op">&amp;</span> cs.numeric()) <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>divided_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -2672,7 +2677,7 @@ white-space: pre-wrap;
 <td>2005</td>
 <td>35.048</td>
 <td>1.5</td>
-<td>-0.999</td>
+<td>null</td>
 <td>4.598</td>
 <td>0.01</td>
 <td>0.448</td>
@@ -2903,7 +2908,7 @@ white-space: pre-wrap;
 <li>From April through August, 40% of delayed flights in the NAS category are due to weather. The rest of the months, the proportion rises to 65%</li>
 </ol></li>
 </ol>
-<div id="0a7868ee" class="cell" data-execution_count="5">
+<div id="2b1c3077" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -2984,7 +2989,7 @@ white-space: pre-wrap;
 <td>2005</td>
 <td>35.048</td>
 <td>1.5</td>
-<td>-0.999</td>
+<td>null</td>
 <td>4.598</td>
 <td>0.01</td>
 <td>0.448</td>
@@ -2996,7 +3001,7 @@ white-space: pre-wrap;
 <td>36931</td>
 <td>465533</td>
 <td>&quot;Winter&quot;</td>
-<td>3.137</td>
+<td>null</td>
 </tr>
 <tr class="even">
 <td>&quot;DEN&quot;</td>
@@ -3093,8 +3098,8 @@ white-space: pre-wrap;
 <ol type="1">
 <li><strong>Using the new weather variable calculated above, create a boxplot showing the distribution of flights delayed by weather for each season. Describe what you learn from this graph.</strong></li>
 </ol>
-<p>Winter and Fall have the most weather delays. They have the highest medians at 1,060 and 959 respectively. They also have wide boxes, meaning there is more day-to-day variability. Spring has the fewest delays; a median of 150 and a tight box meaning low variance. Summer has the most extreme outliers; its maximum is 2120 but its highest outlier is 4720, likely due to thunderstorms. Every season has outlier days where the weather causes unusually large delays.</p>
-<div id="ebd586fe" class="cell" data-execution_count="6">
+<p>Winter and Fall have the most weather delays. They have the highest medians at 962 and 866 respectively. They also have wide boxes, meaning there is more day-to-day variability. Spring has the fewest delays; a median of 150 and a tight box meaning low variance. Summer has the most extreme outliers; its maximum is 2120 but its highest outlier is 4240, likely due to thunderstorms. Every season has outlier days where the weather causes unusually large delays.</p>
+<div id="9a06d8d3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3118,7 +3123,7 @@ white-space: pre-wrap;
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="XmzVeg"></div>
+          <div id="UxbAut"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -3143,7 +3148,7 @@ white-space: pre-wrap;
        };
    }
    
-   const containerDiv = document.getElementById("XmzVeg");
+   const containerDiv = document.getElementById("UxbAut");
    let fig = null;
    
    function renderPlot() {
@@ -3235,11 +3240,11 @@ white-space: pre-wrap;
 "data_meta":{
 },
 "data":{
-"..middle..":[1.0583,0.4136,0.52375,0.959025,0.6470500000000001],
-"..lower..":[0.469425,0.1496,0.192325,0.4107,0.41305000000000003],
-"..upper..":[1.8600500000000002,0.7716000000000001,0.9714,1.63115,1.7761],
+"..middle..":[0.9624250000000001,0.4136,0.5203000000000001,0.8655,0.6055750000000001],
+"..lower..":[0.45230000000000004,0.1496,0.19175,0.3926,0.41305000000000003],
+"..upper..":[1.7506249999999999,0.7716000000000001,0.9688000000000001,1.5931,1.649175],
 "..ymin..":[0.16275,0.0332,0.046400000000000004,0.08905,0.22880000000000003],
-"..ymax..":[3.9402000000000004,1.6676000000000002,2.1226000000000003,3.393,3.31305],
+"..ymax..":[3.6625000000000005,1.6676000000000002,2.1226000000000003,3.2392000000000003,2.97375],
 "season":["Winter","Spring","Summer","Fall","Unknown"]
 }
 },{
@@ -3251,13 +3256,13 @@ white-space: pre-wrap;
 "data_meta":{
 },
 "data":{
-"..middle..":[1.0583,1.0583,1.0583,1.0583,1.0583,1.0583,0.4136,0.4136,0.4136,0.4136,0.4136,0.4136,0.52375,0.52375,0.52375,0.52375,0.52375,0.52375,0.52375,0.52375,0.52375,0.52375,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.959025,0.6470500000000001],
-"..lower..":[0.469425,0.469425,0.469425,0.469425,0.469425,0.469425,0.1496,0.1496,0.1496,0.1496,0.1496,0.1496,0.192325,0.192325,0.192325,0.192325,0.192325,0.192325,0.192325,0.192325,0.192325,0.192325,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.4107,0.41305000000000003],
-"..upper..":[1.8600500000000002,1.8600500000000002,1.8600500000000002,1.8600500000000002,1.8600500000000002,1.8600500000000002,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.9714,0.9714,0.9714,0.9714,0.9714,0.9714,0.9714,0.9714,0.9714,0.9714,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.63115,1.7761],
-"..ymin..":[0.16275,0.16275,0.16275,0.16275,0.16275,0.16275,0.0332,0.0332,0.0332,0.0332,0.0332,0.0332,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.22880000000000003],
-"..ymax..":[3.9402000000000004,3.9402000000000004,3.9402000000000004,3.9402000000000004,3.9402000000000004,3.9402000000000004,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,3.393,3.393,3.393,3.393,3.393,3.393,3.393,3.393,3.393,3.393,3.393,3.31305],
-"season":["Winter","Winter","Winter","Winter","Winter","Winter","Spring","Spring","Spring","Spring","Spring","Spring","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Unknown"],
-"weighted_delay_score":[4.50225,4.0669,4.5224,4.7687,4.735250000000001,5.363600000000001,2.7568,1.9524000000000001,2.0632,2.6104000000000003,1.7628000000000001,2.2316,3.4816000000000003,3.376,4.720950000000001,4.23815,2.4634,2.53845,2.83265,3.9421,2.3115,2.5877,3.6346000000000007,4.13125,4.795400000000001,4.83225,3.4626500000000004,5.45755,4.09875,3.5953500000000007,4.75985,4.3857,4.4428,5.03795]
+"..middle..":[0.9624250000000001,0.9624250000000001,0.9624250000000001,0.9624250000000001,0.9624250000000001,0.9624250000000001,0.9624250000000001,0.9624250000000001,0.4136,0.4136,0.4136,0.4136,0.4136,0.4136,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.5203000000000001,0.8655,0.8655,0.8655,0.8655,0.8655,0.8655,0.8655,0.8655,0.8655,0.6055750000000001],
+"..lower..":[0.45230000000000004,0.45230000000000004,0.45230000000000004,0.45230000000000004,0.45230000000000004,0.45230000000000004,0.45230000000000004,0.45230000000000004,0.1496,0.1496,0.1496,0.1496,0.1496,0.1496,0.19175,0.19175,0.19175,0.19175,0.19175,0.19175,0.19175,0.19175,0.19175,0.3926,0.3926,0.3926,0.3926,0.3926,0.3926,0.3926,0.3926,0.3926,0.41305000000000003],
+"..upper..":[1.7506249999999999,1.7506249999999999,1.7506249999999999,1.7506249999999999,1.7506249999999999,1.7506249999999999,1.7506249999999999,1.7506249999999999,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.7716000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,0.9688000000000001,1.5931,1.5931,1.5931,1.5931,1.5931,1.5931,1.5931,1.5931,1.5931,1.649175],
+"..ymin..":[0.16275,0.16275,0.16275,0.16275,0.16275,0.16275,0.16275,0.16275,0.0332,0.0332,0.0332,0.0332,0.0332,0.0332,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.046400000000000004,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.08905,0.22880000000000003],
+"..ymax..":[3.6625000000000005,3.6625000000000005,3.6625000000000005,3.6625000000000005,3.6625000000000005,3.6625000000000005,3.6625000000000005,3.6625000000000005,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,1.6676000000000002,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,2.1226000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,3.2392000000000003,2.97375],
+"season":["Winter","Winter","Winter","Winter","Winter","Winter","Winter","Winter","Spring","Spring","Spring","Spring","Spring","Spring","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Summer","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Fall","Unknown"],
+"weighted_delay_score":[4.50225,3.8187499999999996,4.5224,4.7687,4.735250000000001,5.363600000000001,3.9402000000000004,3.8056,2.7568,1.9524000000000001,2.0632,2.6104000000000003,1.7628000000000001,2.2316,3.4816000000000003,3.376,4.23815,2.4634,2.53845,2.83265,3.9421,2.3115,2.5877,3.6346000000000007,4.13125,4.83225,3.4626500000000004,5.45755,3.5953500000000007,4.75985,4.3857,4.4428,5.03795]
 }
 }],
 "metainfo_list":[],
