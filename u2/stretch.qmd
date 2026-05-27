@@ -1,0 +1,175 @@
+---
+title: "Stretch Task — Comparing Delay Types: Pivot"
+subtitle: "Unit 2 Stretch Task"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl
+import requests #new for reading in JSON
+import io       #new for reading in JSON
+import numpy as np
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+url = "https://raw.githubusercontent.com/byuidatascience/data4missing/master/data-raw/flights_missing/flights_missing.json"
+response = requests.get(url)
+df = pl.read_json(io.BytesIO(response.content))
+```
+
+```{python}
+# Include and execute your code here
+import polars.selectors as cs
+
+numeric_cols = df.select(cs.numeric()).columns
+numeric_cols.append("num_of_delays_carrier")
+
+cleaned_df = (df
+  # Cast delays_carrier to i64
+  .with_columns(
+    pl.col("num_of_delays_carrier").cast(pl.Int64, strict=False)
+  )
+  .with_columns([
+    pl.when(pl.col(col) < 0)
+    .then(None)
+    .otherwise(pl.col(col))
+    .alias(col)
+    for col in numeric_cols
+  ])
+  .with_columns(
+    cs.starts_with("minutes_delayed").fill_null(cs.starts_with("minutes_delayed").median())
+  )
+  .with_columns(
+    cs.starts_with("num_of").fill_null(cs.starts_with("num_of").mean())
+  )
+)
+
+cleaned_df.head()
+```
+
+## Which delay is the worst delay?
+
+The worst delay out of delays due to carrier, security, and late aircraft is late aircraft, with a mean proportion of 0.35. Next is carrier with a mean proportion of 0.25. Security is the least with a proportion of 0.002.
+
+```{python}
+
+cleaned_df = cleaned_df.with_columns(
+    proportion_delays_carrier = pl.col("num_of_delays_carrier") / pl.col("num_of_delays_total")
+).with_columns(
+    proportion_delays_security = pl.col("num_of_delays_security") / pl.col("num_of_delays_total")
+).with_columns(
+    proportion_delays_late = pl.col("num_of_delays_late_aircraft") / pl.col("num_of_delays_total")
+)
+
+comparison = (
+  cleaned_df
+  .select(
+    "proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"
+  )
+  .unpivot(
+    on=["proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"],
+    variable_name = "delay_reason",
+    value_name="proportion"
+  )
+  .group_by("delay_reason")
+  .agg(
+    pl.col("proportion").mean().alias("mean_proportion")
+  )
+  .sort("mean_proportion", descending=True)
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
+  )
+)
+```
+
+```{python}
+# Chart
+(
+ggplot(comparison, aes("delay_reason", "mean_proportion"))
++ geom_bar(stat="identity")
++ labs(
+  "Proportion of Flights Delayed by Reason",
+  x="Reason",
+  y="Proportion"
+)
+)
+```
+
+```{python}
+# Table
+comparison
+```
+
+## Delays per reason across each airport
+
+Each airport follows the trend of having the highest proportion being late, the second highest being carrier, and security being very low. San Diego has the highest proportion of delays and Atlanta has the lowest proportion of the 7 airports.
+
+```{python}
+
+airport_comparison = (
+  cleaned_df
+  .select(
+    "airport_code",
+    "proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"
+  )
+  .unpivot(
+    on=["proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"],
+    index="airport_code",
+    variable_name = "delay_reason",
+    value_name="proportion"
+  )
+  .group_by(["airport_code", "delay_reason"])
+  .agg(
+    pl.col("proportion").mean().alias("mean_proportion")
+  )
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
+  )
+  .sort("mean_proportion", descending=True)
+)
+
+(
+ggplot(airport_comparison, aes("airport_code", "mean_proportion", fill="delay_reason"))
++ geom_bar(stat="identity", position="dodge")
++ labs(
+  "Delay Proportions by Airport and Reason",
+  x="Airport Code",
+  y="Mean Proportion",
+  fill="Delay Reason"
+  )
+)
+
+```
