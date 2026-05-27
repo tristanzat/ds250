@@ -50,18 +50,19 @@ df = pl.read_json(io.BytesIO(response.content))
 
 __Calculate the sample size (i.e. number of rows in the dataset) for each airport in each year__. What do you notice?
 
-There are 7 airports in the dataset. Each airport has a sample size of 132 except for Atlanta (ATL), which has a sample size of 109.
+There are 7 airports in the dataset. Each airport has a total sample size of 132. Atlanta has 23 rows where the year is `null`. The average number of entries per year is 12, which corresponds to one entry per month.
 
 ```{python}
 # Include and execute your code here
 sample_size = (df
-  .group_by("airport_code")
+  .group_by(["airport_code", "year"])
   .agg(
-    pl.col("year").count()
+    pl.len().alias("num_rows")
   )
+  .sort(["airport_code", "year"])
 )
 
-sample_size.sort("airport_code")
+sample_size
 ```
 
 ## QUESTION 2
