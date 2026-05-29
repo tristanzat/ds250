@@ -1,0 +1,29 @@
+```{python}
+
+# Read in libraries
+import polars as pl
+import requests
+import io
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+url = "https://github.com/byuidatascience/data4missing/raw/master/data-raw/flights_missing/flights_missing.json"
+response = requests.get(url)
+df = pl.read_json(io.BytesIO(response.content))
+
+```
+
+## Q1
+```{python}
+
+df.filter(pl.col("month") == "n/a")
+
+```
+
+## Q2
+Select columns containing nan
+```{python}
+cols = ["airport_name", "year", "minutes_delayed_carrier", "minutes_delayed_nas"]
+[df.filter(pl.col(col).is_null()).shape[0] for col in cols]
+
+```
