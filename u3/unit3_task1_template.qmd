@@ -64,11 +64,21 @@ __Use the provided code above to read in the batting table. Then, with Python Po
 
 Note: A batting average is meant to measure how often a player puts the ball in play and gets to base safely. For this task, use a simplified version of batting average defined as the sum of hits (labeled 'H') divided by number of at bats (labeled 'AB').
 
-_type your results and analysis here_
+The player with the ID nymanny01 has the highest batting average at 0.643, achieving it in 1974. Next is carsoma01 with 0.636 in 2013, then altizda01 and johnsde01 with 0.6 in 1910 and 1975 respectively, and finally silvech01 rounds out the top 5 with a batting average of 0.571 in 1948.
 
 ```{python}
 # Include and execute your code here
+bat_avg_results = (
+  results
+  .filter(pl.col("AB") >= 10) # At least 10 at bats
+  .with_columns(
+    batting_avg = (pl.col("H") / pl.col("AB")).round(3) # Caulculate batting avg
+  )
+  .select("playerID", "yearID", "AB", "batting_avg")
+  .sort(["batting_avg", "playerID"], descending=[True, False])
+)
 
+bat_avg_results.head(5)
 
 ```
 
@@ -79,11 +89,26 @@ __Use the provided code above to read in the batting table. Then, with Python Po
 
 Note: A batting average is meant to measure how often a player puts the ball in play and gets to base safely. For this task, use a simplified version of batting average defined as the sum of hits (labeled 'H') divided by number of at bats (labeled 'AB').
 
-_type your results and analysis here_
+The player with the ID cobbty01 has the highest career batting average at 0.366. Next is barnero01 with 0.36, then hornsro01 with 0.358, and finally jacksjo01 and meyerle01 with 0.356.
 
 ```{python}
 # Include and execute your code here
+career_bat_avg = (
+  results
+  .group_by("playerID") # Each player over their career
+  .agg(
+    pl.col("AB").sum().alias("Total_AB"), # total AB
+    pl.col("H").sum().alias("Total_H") # total hits
+  ) 
+  .filter(pl.col("Total_AB") >= 100) # At least 100 at bats
+  .with_columns(
+    career_batting_avg = (pl.col("Total_H") / pl.col("Total_AB")).round(3) # Caulculate batting avg
+  )
+  .select("playerID", "career_batting_avg")
+  .sort(["career_batting_avg", "playerID"], descending=[True, False])
+)
 
+career_bat_avg.head(5)
 
 ```
 
