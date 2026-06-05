@@ -74,24 +74,22 @@ cleaned_df.head()
 
 ## Which delay is the worst delay?
 
-The worst delay out of delays due to carrier, security, and late aircraft is late aircraft, with a mean proportion of 0.35. Next is carrier with a mean proportion of 0.25. Security is the least with a proportion of 0.002.
+The worst delay out of delays due to carrier, security, and late aircraft is late aircraft, with a proportion of 0.323. Next is carrier with a proportion of 0.201. Security is the least with a proportion of 0.002. This chart and table is showing the proportion of delays each reason takes up out of all *delayed* flights, not *total* flights.
 
 ```{python}
-
-cleaned_df = cleaned_df.with_columns(
-    proportion_delays_carrier = pl.col("num_of_delays_carrier") / pl.col("num_of_delays_total")
-).with_columns(
-    proportion_delays_security = pl.col("num_of_delays_security") / pl.col("num_of_delays_total")
-).with_columns(
-    proportion_delays_late = pl.col("num_of_delays_late_aircraft") / pl.col("num_of_delays_total")
-)
 
 comparison = (
   cleaned_df
   .select(
-    "proportion_delays_carrier",
-    "proportion_delays_security",
-    "proportion_delays_late"
+    pl.col("num_of_delays_carrier").sum().alias("total_delays_carrier"),
+    pl.col("num_of_delays_security").sum().alias("total_delays_security"),
+    pl.col("num_of_delays_late_aircraft").sum().alias("total_delays_late"),
+    pl.col("num_of_delays_total").sum().alias("num_of_delays_total")
+  )
+  .with_columns(
+    proportion_delays_carrier = pl.col("total_delays_carrier") / pl.col("num_of_delays_total"),
+    proportion_delays_security = pl.col("total_delays_security") / pl.col("num_of_delays_total"),
+    proportion_delays_late = pl.col("total_delays_late") / pl.col("num_of_delays_total")
   )
   .unpivot(
     on=["proportion_delays_carrier",
@@ -100,11 +98,10 @@ comparison = (
     variable_name = "delay_reason",
     value_name="proportion"
   )
-  .group_by("delay_reason")
-  .agg(
-    pl.col("proportion").mean().alias("mean_proportion")
+  .with_columns(
+    pl.col("proportion")
   )
-  .sort("mean_proportion", descending=True)
+  .sort("proportion", descending=True)
   .with_columns(
     pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
   )
@@ -114,7 +111,7 @@ comparison = (
 ```{python}
 # Chart
 (
-ggplot(comparison, aes("delay_reason", "mean_proportion"))
+ggplot(comparison, aes("delay_reason", "proportion"))
 + geom_bar(stat="identity")
 + labs(
   "Proportion of Flights Delayed by Reason",
@@ -129,19 +126,73 @@ ggplot(comparison, aes("delay_reason", "mean_proportion"))
 comparison
 ```
 
+### Secondary view: out of total flights
+
+```{python}
+comparison_total_flights = (
+  cleaned_df
+  .select(
+    pl.col("num_of_delays_carrier").sum().alias("total_delays_carrier"),
+    pl.col("num_of_delays_security").sum().alias("total_delays_security"),
+    pl.col("num_of_delays_late_aircraft").sum().alias("total_delays_late"),
+    pl.col("num_of_flights_total").sum().alias("num_of_flights_total")
+  )
+  .with_columns(
+    proportion_delays_carrier = pl.col("total_delays_carrier") / pl.col("num_of_flights_total"),
+    proportion_delays_security = pl.col("total_delays_security") / pl.col("num_of_flights_total"),
+    proportion_delays_late = pl.col("total_delays_late") / pl.col("num_of_flights_total")
+  )
+  .unpivot(
+    on=["proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"],
+    variable_name = "delay_reason",
+    value_name="proportion"
+  )
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
+  )
+  .sort("proportion", descending=True)
+)
+```
+
+```{python}
+# Chart: denominator is total flights
+(
+ggplot(comparison_total_flights, aes("delay_reason", "proportion"))
++ geom_bar(stat="identity")
++ labs(
+  "Proportion of All Flights Delayed by Reason",
+  x="Reason",
+  y="Proportion of Total Flights"
+)
+)
+```
+
+```{python}
+# Table: denominator is total flights
+comparison_total_flights
+```
+
 ## Delays per reason across each airport
 
-Each airport follows the trend of having the highest proportion being late, the second highest being carrier, and security being very low. San Diego has the highest proportion of delays and Atlanta has the lowest proportion of the 7 airports.
+Each airport follows the trend of having the highest proportion being late, the second highest being carrier, and security being very low. San Francisco has the highest proportion of delayed flights and Salt Lake City has the least.
 
 ```{python}
 
 airport_comparison = (
   cleaned_df
-  .select(
-    "airport_code",
-    "proportion_delays_carrier",
-    "proportion_delays_security",
-    "proportion_delays_late"
+  .group_by("airport_code")
+  .agg(
+    pl.col("num_of_delays_carrier").sum(),
+    pl.col("num_of_delays_security").sum(),
+    pl.col("num_of_delays_late_aircraft").sum(),
+    pl.col("num_of_delays_total").sum()
+  )
+  .with_columns(
+    proportion_delays_carrier = pl.col("num_of_delays_carrier") / pl.col("num_of_delays_total"),
+    proportion_delays_security = pl.col("num_of_delays_security") / pl.col("num_of_delays_total"),
+    proportion_delays_late = pl.col("num_of_delays_late_aircraft") / pl.col("num_of_delays_total")
   )
   .unpivot(
     on=["proportion_delays_carrier",
@@ -151,25 +202,111 @@ airport_comparison = (
     variable_name = "delay_reason",
     value_name="proportion"
   )
-  .group_by(["airport_code", "delay_reason"])
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason"),
+    pl.col("proportion")
+  )
+  .sort("proportion", descending=True)
+)
+
+```
+
+```{python}
+
+airport_comparison = (
+  cleaned_df
+  .group_by("airport_code")
   .agg(
-    pl.col("proportion").mean().alias("mean_proportion")
+    pl.col("num_of_delays_carrier").sum().alias("num_of_delays_carrier"),
+    pl.col("num_of_delays_security").sum().alias("num_of_delays_security"),
+    pl.col("num_of_delays_late_aircraft").sum().alias("num_of_delays_late_aircraft"),
+    pl.col("num_of_delays_total").sum().alias("num_of_delays_total")
   )
   .with_columns(
-    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
+    proportion_delays_carrier = pl.col("num_of_delays_carrier") / pl.col("num_of_delays_total"),
+    proportion_delays_security = pl.col("num_of_delays_security") / pl.col("num_of_delays_total"),
+    proportion_delays_late = pl.col("num_of_delays_late_aircraft") / pl.col("num_of_delays_total")
   )
-  .sort("mean_proportion", descending=True)
+  .unpivot(
+    on=["proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late"],
+    index="airport_code",
+    variable_name = "delay_reason",
+    value_name="proportion"
+  )
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason"),
+    pl.col("proportion")
+  )
+  .sort("proportion", descending=True)
 )
 
 (
-ggplot(airport_comparison, aes("airport_code", "mean_proportion", fill="delay_reason"))
-+ geom_bar(stat="identity", position="dodge")
+ggplot(airport_comparison, aes("airport_code", "proportion", fill="delay_reason"))
++ geom_bar(stat="identity")
 + labs(
   "Delay Proportions by Airport and Reason",
+  "Which delay reasons make up the most delays out of all delay types?",
   x="Airport Code",
-  y="Mean Proportion",
+  y="Proportion",
   fill="Delay Reason"
   )
 )
 
+```
+
+### Secondary view: total proportion of delayed flights separated by reason out of total flights
+
+```{python}
+airport_comparison_total_flights = (
+  cleaned_df
+  .group_by("airport_code")
+  .agg(
+    pl.col("num_of_delays_carrier").sum(),
+    pl.col("num_of_delays_security").sum(),
+    pl.col("num_of_delays_late_aircraft").sum(),
+    pl.col("num_of_delays_total").sum(),
+    pl.col("num_of_flights_total").sum()
+  )
+  .with_columns(
+    proportion_delays_carrier = pl.col("num_of_delays_carrier") / pl.col("num_of_flights_total"),
+    proportion_delays_security = pl.col("num_of_delays_security") / pl.col("num_of_flights_total"),
+    proportion_delays_late = pl.col("num_of_delays_late_aircraft") / pl.col("num_of_flights_total"),
+    proportion_delays_other = (
+      pl.col("num_of_delays_total")
+      - pl.col("num_of_delays_carrier")
+      - pl.col("num_of_delays_security")
+      - pl.col("num_of_delays_late_aircraft")
+    ) / pl.col("num_of_flights_total")
+  )
+  .unpivot(
+    on=["proportion_delays_carrier",
+    "proportion_delays_security",
+    "proportion_delays_late",
+    "proportion_delays_other"],
+    index="airport_code",
+    variable_name = "delay_reason",
+    value_name="proportion"
+  )
+  .with_columns(
+    pl.col("delay_reason").str.replace("proportion_delays_", "").alias("delay_reason")
+  )
+  .sort("proportion", descending=True)
+)
+```
+
+```{python}
+# Chart: denominator is total flights
+(
+ggplot(airport_comparison_total_flights, aes("airport_code", "proportion", fill="delay_reason"))
++ geom_bar(stat="identity")
++ labs(
+  "Delay Proportions by Airport and Reason",
+  "Which delay reasons make up total delayed flights (including other)?",
+  x="Airport Code",
+  y="Proportion of Total Flights",
+  fill="Delay Reason"
+  )
+)
 ```
