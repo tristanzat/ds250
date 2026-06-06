@@ -39,6 +39,10 @@
     {
       "title": "Unit 3 - Task 1",
       "path": "u3/unit3_task1_template.html"
+    },
+    {
+      "title": "Unit 3 - Task 2",
+      "path": "u3/unit3_task2_template.html"
     }
   ]
 }

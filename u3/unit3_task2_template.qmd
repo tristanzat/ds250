@@ -49,7 +49,7 @@ con = sqlite3.connect(sqlite_file)
 
 __Write an SQL query that provides playerID, yearID, and batting average for players with at least 1 at bat that year. Sort the table from highest batting average to lowest, and then by playerid alphabetically. Show the top 5 results in your report.__
 
-__Describe your results and analysis here_
+The players aberal01,abernte02, abramge01, acklefr01, alanirj01 all have a batting average of 1.0. This is because they were at bat once and hit the ball, giving them a perfect average.
 
 ```{python}
 # Include and execute your code here
@@ -58,11 +58,18 @@ __Describe your results and analysis here_
 # SQL code. Put your SQL query in between the triple quotation marks to create the query. The records will be stored in 'results', which is a polars data frame
 
 q = """
-
+    SELECT playerID,
+      yearID,
+      H,
+      AB,
+      ROUND((1.0 * H / AB), 3) as batting_avg
+    FROM batting
+    WHERE AB >= 1
+    ORDER BY batting_avg DESC, playerID ASC
+    LIMIT 5
     """
 results = pl.read_database(q, con)
 results
-
 
 ```
 
@@ -71,11 +78,24 @@ results
 
 __Use the same query as above, but only include players with at least 10 at bats that year. Print the top 5 results.__  
 
-_Describe your results and analysis here_
+The players with the highest batting average who were at bat 10 or more times are nymanny01 with an average of 0..643, carsoma01 with 0.636, both altizda01 and jognsde01 with 0.6, and silvech01 with 0.571. This only includes players with at least 10 at bats that year.
 
 ```{python}
 # Include and execute your code here
 
+q = """
+    SELECT playerID,
+      yearID,
+      H,
+      AB,
+      ROUND((1.0 * H / AB), 3) as batting_avg
+    FROM batting
+    WHERE AB >= 10
+    ORDER BY batting_avg DESC, playerID ASC
+    LIMIT 5
+    """
+results = pl.read_database(q, con)
+results
 
 ```
 
@@ -84,10 +104,23 @@ _Describe your results and analysis here_
 
 __Now modify the SQL query to calculate the batting average for players over their entire careers (all years combined). Only include players with at least 100 at bats over their entire career, and print the top 5 results.__
 
-_Describe your results and analysis here_
+The player with the id cobbty01 has the highest career batting average with 0.366; barnero01 has 0.36, hornsro01 has 0.358, and jacksjo01 and meyerle01 have 0.356. This only includes players who have been at bat at least 100 times across their career.
 
 ```{python}
 # Include and execute your code here
 
+q = """
+    SELECT playerID,
+      SUM(H) as career_H,
+      SUM(AB) as career_AB,
+      ROUND((1.0 * SUM(H) / SUM(AB)), 3) as career_batting_avg
+    FROM batting
+    GROUP BY playerID
+    HAVING SUM(AB) >= 100
+    ORDER BY career_batting_avg DESC, playerID ASC
+    LIMIT 5
+    """
+results = pl.read_database(q, con)
+results
 
 ```
