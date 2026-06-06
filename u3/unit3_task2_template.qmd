@@ -60,8 +60,6 @@ The players aberal01,abernte02, abramge01, acklefr01, alanirj01 all have a batti
 q = """
     SELECT playerID,
       yearID,
-      H,
-      AB,
       ROUND((1.0 * H / AB), 3) as batting_avg
     FROM batting
     WHERE AB >= 1
@@ -86,8 +84,6 @@ The players with the highest batting average who were at bat 10 or more times ar
 q = """
     SELECT playerID,
       yearID,
-      H,
-      AB,
       ROUND((1.0 * H / AB), 3) as batting_avg
     FROM batting
     WHERE AB >= 10
@@ -111,8 +107,6 @@ The player with the id cobbty01 has the highest career batting average with 0.36
 
 q = """
     SELECT playerID,
-      SUM(H) as career_H,
-      SUM(AB) as career_AB,
       ROUND((1.0 * SUM(H) / SUM(AB)), 3) as career_batting_avg
     FROM batting
     GROUP BY playerID

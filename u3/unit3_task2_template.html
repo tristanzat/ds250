@@ -2258,7 +2258,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-3" id="toc-question-3">QUESTION 3</a></li>
   </ul>
 </nav>
-<div id="28d72791" class="cell" data-execution_count="1">
+<div id="4bbbbe17" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2269,7 +2269,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cc4d2376" class="cell" data-execution_count="2">
+<div id="cc7b27d4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -2284,7 +2284,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-1">QUESTION 1</h2>
 <p><strong>Write an SQL query that provides playerID, yearID, and batting average for players with at least 1 at bat that year. Sort the table from highest batting average to lowest, and then by playerid alphabetically. Show the top 5 results in your report.</strong></p>
 <p>The players aberal01,abernte02, abramge01, acklefr01, alanirj01 all have a batting average of 1.0. This is because they were at bat once and hit the ball, giving them a perfect average.</p>
-<div id="b8730360" class="cell" data-execution_count="3">
+<div id="c38ffab8" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -2295,16 +2295,14 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT playerID,</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">      yearID,</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">      H,</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">      AB,</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * H / AB), 3) as batting_avg</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE AB &gt;= 1</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY batting_avg DESC, playerID ASC</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * H / AB), 3) as batting_avg</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE AB &gt;= 1</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY batting_avg DESC, playerID ASC</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div><style>
@@ -2314,20 +2312,16 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 5)</small>
+<small>shape: (5, 3)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">playerID</th>
 <th data-quarto-table-cell-role="th">yearID</th>
-<th data-quarto-table-cell-role="th">H</th>
-<th data-quarto-table-cell-role="th">AB</th>
 <th data-quarto-table-cell-role="th">batting_avg</th>
 </tr>
 <tr class="even">
 <td>str</td>
-<td>i64</td>
-<td>i64</td>
 <td>i64</td>
 <td>f64</td>
 </tr>
@@ -2336,36 +2330,26 @@ white-space: pre-wrap;
 <tr class="odd">
 <td>&quot;aberal01&quot;</td>
 <td>1957</td>
-<td>1</td>
-<td>1</td>
 <td>1.0</td>
 </tr>
 <tr class="even">
 <td>&quot;abernte02&quot;</td>
 <td>1960</td>
-<td>1</td>
-<td>1</td>
 <td>1.0</td>
 </tr>
 <tr class="odd">
 <td>&quot;abramge01&quot;</td>
 <td>1923</td>
-<td>1</td>
-<td>1</td>
 <td>1.0</td>
 </tr>
 <tr class="even">
 <td>&quot;acklefr01&quot;</td>
 <td>1964</td>
-<td>1</td>
-<td>1</td>
 <td>1.0</td>
 </tr>
 <tr class="odd">
 <td>&quot;alanirj01&quot;</td>
 <td>2019</td>
-<td>1</td>
-<td>1</td>
 <td>1.0</td>
 </tr>
 </tbody>
@@ -2378,7 +2362,7 @@ white-space: pre-wrap;
 <h2 class="anchored" data-anchor-id="question-2">QUESTION 2</h2>
 <p><strong>Use the same query as above, but only include players with at least 10 at bats that year. Print the top 5 results.</strong></p>
 <p>The players with the highest batting average who were at bat 10 or more times are nymanny01 with an average of 0..643, carsoma01 with 0.636, both altizda01 and jognsde01 with 0.6, and silvech01 with 0.571. This only includes players with at least 10 at bats that year.</p>
-<div id="077401fc" class="cell" data-execution_count="4">
+<div id="f17d6371" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -2386,16 +2370,14 @@ white-space: pre-wrap;
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT playerID,</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">      yearID,</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">      H,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">      AB,</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * H / AB), 3) as batting_avg</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE AB &gt;= 10</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY batting_avg DESC, playerID ASC</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * H / AB), 3) as batting_avg</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE AB &gt;= 10</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY batting_avg DESC, playerID ASC</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
@@ -2405,20 +2387,16 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 5)</small>
+<small>shape: (5, 3)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">playerID</th>
 <th data-quarto-table-cell-role="th">yearID</th>
-<th data-quarto-table-cell-role="th">H</th>
-<th data-quarto-table-cell-role="th">AB</th>
 <th data-quarto-table-cell-role="th">batting_avg</th>
 </tr>
 <tr class="even">
 <td>str</td>
-<td>i64</td>
-<td>i64</td>
 <td>i64</td>
 <td>f64</td>
 </tr>
@@ -2427,36 +2405,26 @@ white-space: pre-wrap;
 <tr class="odd">
 <td>&quot;nymanny01&quot;</td>
 <td>1974</td>
-<td>9</td>
-<td>14</td>
 <td>0.643</td>
 </tr>
 <tr class="even">
 <td>&quot;carsoma01&quot;</td>
 <td>2013</td>
-<td>7</td>
-<td>11</td>
 <td>0.636</td>
 </tr>
 <tr class="odd">
 <td>&quot;altizda01&quot;</td>
 <td>1910</td>
-<td>6</td>
-<td>10</td>
 <td>0.6</td>
 </tr>
 <tr class="even">
 <td>&quot;johnsde01&quot;</td>
 <td>1975</td>
-<td>6</td>
-<td>10</td>
 <td>0.6</td>
 </tr>
 <tr class="odd">
 <td>&quot;silvech01&quot;</td>
 <td>1948</td>
-<td>8</td>
-<td>14</td>
 <td>0.571</td>
 </tr>
 </tbody>
@@ -2469,24 +2437,22 @@ white-space: pre-wrap;
 <h2 class="anchored" data-anchor-id="question-3">QUESTION 3</h2>
 <p><strong>Now modify the SQL query to calculate the batting average for players over their entire careers (all years combined). Only include players with at least 100 at bats over their entire career, and print the top 5 results.</strong></p>
 <p>The player with the id cobbty01 has the highest career batting average with 0.366; barnero01 has 0.36, hornsro01 has 0.358, and jacksjo01 and meyerle01 have 0.356. This only includes players who have been at bat at least 100 times across their career.</p>
-<div id="7e9c6a3a" class="cell" data-execution_count="5">
+<div id="12658d7e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT playerID,</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">      SUM(H) as career_H,</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">      SUM(AB) as career_AB,</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * SUM(H) / SUM(AB)), 3) as career_batting_avg</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY playerID</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">    HAVING SUM(AB) &gt;= 100</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY career_batting_avg DESC, playerID ASC</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">      ROUND((1.0 * SUM(H) / SUM(AB)), 3) as career_batting_avg</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM batting</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY playerID</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">    HAVING SUM(AB) &gt;= 100</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">    ORDER BY career_batting_avg DESC, playerID ASC</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">    LIMIT 5</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;&quot;&quot;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pl.read_database(q, con)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div><style>
@@ -2496,51 +2462,37 @@ text-align: right;
 white-space: pre-wrap;
 }
 </style>
-<small>shape: (5, 4)</small>
+<small>shape: (5, 2)</small>
 <table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">playerID</th>
-<th data-quarto-table-cell-role="th">career_H</th>
-<th data-quarto-table-cell-role="th">career_AB</th>
 <th data-quarto-table-cell-role="th">career_batting_avg</th>
 </tr>
 <tr class="even">
 <td>str</td>
-<td>i64</td>
-<td>i64</td>
 <td>f64</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>&quot;cobbty01&quot;</td>
-<td>4189</td>
-<td>11436</td>
 <td>0.366</td>
 </tr>
 <tr class="even">
 <td>&quot;barnero01&quot;</td>
-<td>860</td>
-<td>2391</td>
 <td>0.36</td>
 </tr>
 <tr class="odd">
 <td>&quot;hornsro01&quot;</td>
-<td>2930</td>
-<td>8173</td>
 <td>0.358</td>
 </tr>
 <tr class="even">
 <td>&quot;jacksjo01&quot;</td>
-<td>1772</td>
-<td>4981</td>
 <td>0.356</td>
 </tr>
 <tr class="odd">
 <td>&quot;meyerle01&quot;</td>
-<td>513</td>
-<td>1443</td>
 <td>0.356</td>
 </tr>
 </tbody>
