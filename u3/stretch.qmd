@@ -1,0 +1,164 @@
+---
+title: "Stretch Task - Longevity and Highest Paid Positions"
+subtitle: "Unit 3 Stretch Task"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl
+import numpy as np
+import sqlite3
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+# Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html
+
+# Include and execute your code here
+sqlite_file = 'lahmansbaseballdb.sqlite'
+# this file must be in the same location as your .qmd or .py file
+con = sqlite3.connect(sqlite_file)
+```
+
+## Question 1
+
+__Identify the top 10 players with the longest Major League Baseball careers. Include their:__
+
+- __playerID__
+- __first_name__
+- __last_name__
+- __career_length__
+
+I calculated career length as the time difference between a player's debut game and final game in days. Using that metric, here are the top 10:
+
+1. altroni01 - Nick Altrock - 12,862 days (~ 35 years)
+2. orourji01 - Jim O'Rourke - 11,836 days (~ 32 years)
+3. minosmi01 - Minnie Minoso - 11,492 days (~ 31 years)
+4. olearch01 - Charley O'Leary - 11,126 days (~ 30 years)
+5. lathaar01 - Arlie Latham - 10,678 days (~ 29 years)
+6. mcguide01 - Deacon McGuire - 10,192 days (~ 28 years)
+7. jennihu01 - Hughie Jennings - 9,954 days (~ 27 years)
+8. eversjo01 - Johnny Evers - 9,897 days (~ 27 years)
+9. ryanno01 - Nolan Ryan - 9,873 days (~ 27 years)
+10. streega01 - Gabby Street - 9,868 days (~ 27 years)
+
+```{python}
+q = """
+SELECT *
+FROM people
+"""
+
+top_df = pl.read_database(q, con)
+
+top_df = (
+    top_df
+    # Convert debut and finalGame to date
+    .with_columns(
+        pl.col("debut").str.to_date(strict=False),
+        pl.col("finalGame").str.to_date(strict=False),
+    )
+    # New column for career length in days
+    .with_columns(
+        career_length = (pl.col("finalGame") - pl.col("debut")).dt.total_days().fill_null(0)
+    )
+    # Select necessary columns
+    .select("playerID", "nameFirst", "nameLast", "career_length")
+    # Sort by length descending
+    .sort("career_length", descending=True, nulls_last=True)
+)
+# Show top 10
+top_df.head(10)
+
+```
+
+## Question 2
+
+__Write a SQL query that pulls the tables you need into a polars dataframe. Then, use python polars to create a summary table showing the average salary for each position (e.g., pitcher, catcher, outfielder). Position information can be found in the fielding table in the POS column.__
+__Include the following columns:__
+
+- __position__
+- __average_salary__
+- __total_players__
+- __highest_salary__
+
+__The highest_salary column should display the highest salary ever earned by a player in that position.__
+__Additionally, add a new column to the summary table you just created to label the average salary:__
+
+- __If the average salary is above $3 million, categorize it as “High Salary.”__
+- __If the average salary is between $2 million and $3 million, categorize it as “Medium Salary.”__
+- __Otherwise, categorize it as “Low Salary.”__
+
+__Order the table by average salary in descending order.__
+
+The position with the highest average salary is a first baseman, with the average salary being $2.3 million. The position with the lowest average salary is a catcher, being $1.4 million. There are no positions that earned the "High Salary" label for their average salary. The most common position is a pitcher, with a total of 13,365 players being in that position. Pitchers and third basemen hold the record of having the highest salary, being $33 million.
+
+```{python}
+f = """
+SELECT *
+FROM fielding
+"""
+
+fielding = pl.read_database(f, con, infer_schema_length=None)
+
+s = """
+SELECT *
+FROM salaries
+"""
+
+salaries = pl.read_database(s, con, infer_schema_length=None)
+
+# Select needed columns (could do this in the queries)
+fielding = fielding.select("playerID", "yearID", "POS")
+salaries = salaries.select("playerID", "yearID", "salary")
+
+# Inner join fielding and salaries by player and year
+summary_df = fielding.join(salaries, ["playerID", "yearID"])
+
+# Create columns for average salary, total players, and highest salary by position
+summary_df = (
+    summary_df
+    .group_by("POS")
+    .agg(
+        avg_salary = pl.col("salary").mean(),
+        total_players = pl.col("playerID").count(),
+        highest_salary = pl.col("salary").max()
+    )
+)
+
+# Create salary label column
+summary_df = (
+    summary_df
+    .with_columns(
+        salary_label = pl
+        .when(pl.col("avg_salary") > 3_000_000).then(pl.lit("High Salary"))
+        .when(pl.col("avg_salary") > 2_000_000).then(pl.lit("Medium Salary"))
+        .otherwise(pl.lit("Low Salary"))
+    )
+)
+
+summary_df.sort("avg_salary", descending=True)
+```
