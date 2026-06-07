@@ -2257,7 +2257,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-2" id="toc-question-2">Question 2</a></li>
   </ul>
 </nav>
-<div id="9910fdf1" class="cell" data-execution_count="1">
+<div id="11d5aad0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2268,7 +2268,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c0b85841" class="cell" data-execution_count="2">
+<div id="6171aad2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Learn morea about Code Cells: https://quarto.org/docs/reference/cells/cells-jupyter.html</span></span>
@@ -2301,7 +2301,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <li>ryanno01 - Nolan Ryan - 9,873 days (~ 27 years)</li>
 <li>streega01 - Gabby Street - 9,868 days (~ 27 years)</li>
 </ol>
-<div id="113a7942" class="cell" data-execution_count="3">
+<div id="9051105c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
@@ -2330,7 +2330,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Show top 10</span></span>
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>top_df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2437,8 +2437,9 @@ white-space: pre-wrap;
 <li><strong>Otherwise, categorize it as “Low Salary.”</strong></li>
 </ul>
 <p><strong>Order the table by average salary in descending order.</strong></p>
-<p>The position with the highest average salary is a first baseman, with the average salary being $2.3 million. The position with the lowest average salary is a catcher, being $1.4 million. There are no positions that earned the “High Salary” label for their average salary. The most common position is a pitcher, with a total of 13,365 players being in that position. Pitchers and third basemen hold the record of having the highest salary, being $33 million.</p>
-<div id="f6dc8faa" class="cell" data-execution_count="4">
+<p>Hint: Beware, it is common for a player to play multiple positions in a single year. For this analysis, each player’s salary should only be counted toward one position in a given year. You get to determine which position to count it towards. <strong>Explain how you decided which position a player’s salary should be counted toward in those situations, and why that is a good approach.</strong></p>
+<p>To decide which position a player plays in a year, I chose the position that they played the most games in for that year. For example, the player “addybo01” had 25 games in 1871, playing either shortstop or second baseman. Since that player played 22 games as a second baseman, the salary is only counted for being a second baseman. The position with the highest average salary is a first baseman, with the average salary being $3.36 million. The position with the lowest average salary is a catcher, being $1.43 million. The most common position is a pitcher, with a total of 11,854 players being in that position. Pitchers and third basemen hold the record of having the highest salary, being $33 million.</p>
+<div id="c94228ba" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
@@ -2456,37 +2457,45 @@ white-space: pre-wrap;
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>salaries <span class="op">=</span> pl.read_database(s, con, infer_schema_length<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Select needed columns (could do this in the queries)</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>fielding <span class="op">=</span> fielding.select(<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>, <span class="st">&quot;POS&quot;</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>fielding <span class="op">=</span> fielding.select(<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>, <span class="st">&quot;POS&quot;</span>, <span class="st">&quot;G&quot;</span>) <span class="co"># G is games; I will use it to decide on a main position</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>salaries <span class="op">=</span> salaries.select(<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>, <span class="st">&quot;salary&quot;</span>)</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Inner join fielding and salaries by player and year</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> fielding.join(salaries, [<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>])</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create columns for average salary, total players, and highest salary by position</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> (</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    summary_df</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">&quot;POS&quot;</span>)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        avg_salary <span class="op">=</span> pl.col(<span class="st">&quot;salary&quot;</span>).mean(),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        total_players <span class="op">=</span> pl.col(<span class="st">&quot;playerID&quot;</span>).count(),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        highest_salary <span class="op">=</span> pl.col(<span class="st">&quot;salary&quot;</span>).<span class="bu">max</span>()</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create salary label column</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> (</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    summary_df</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        salary_label <span class="op">=</span> pl</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        .when(pl.col(<span class="st">&quot;avg_salary&quot;</span>) <span class="op">&gt;</span> <span class="dv">3_000_000</span>).then(pl.lit(<span class="st">&quot;High Salary&quot;</span>))</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        .when(pl.col(<span class="st">&quot;avg_salary&quot;</span>) <span class="op">&gt;</span> <span class="dv">2_000_000</span>).then(pl.lit(<span class="st">&quot;Medium Salary&quot;</span>))</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        .otherwise(pl.lit(<span class="st">&quot;Low Salary&quot;</span>))</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>summary_df.sort(<span class="st">&quot;avg_salary&quot;</span>, descending<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick the position with most games for that player in that year</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>fielding <span class="op">=</span> (</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    fielding</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    .sort([<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>, <span class="st">&quot;G&quot;</span>], descending<span class="op">=</span>[<span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>])</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    .unique(subset<span class="op">=</span>[<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>], keep<span class="op">=</span><span class="st">&quot;first&quot;</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    .select(<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>, <span class="st">&quot;POS&quot;</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Inner join fielding and salaries by player and year</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> fielding.join(salaries, [<span class="st">&quot;playerID&quot;</span>, <span class="st">&quot;yearID&quot;</span>])</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create columns for average salary, total players, and highest salary by position</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> (</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    summary_df</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    .group_by(<span class="st">&quot;POS&quot;</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    .agg(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        avg_salary <span class="op">=</span> pl.col(<span class="st">&quot;salary&quot;</span>).mean(),</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        total_players <span class="op">=</span> pl.col(<span class="st">&quot;playerID&quot;</span>).count(),</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        highest_salary <span class="op">=</span> pl.col(<span class="st">&quot;salary&quot;</span>).<span class="bu">max</span>()</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Create salary label column</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>summary_df <span class="op">=</span> (</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    summary_df</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    .with_columns(</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        salary_label <span class="op">=</span> pl</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        .when(pl.col(<span class="st">&quot;avg_salary&quot;</span>) <span class="op">&gt;</span> <span class="dv">3_000_000</span>).then(pl.lit(<span class="st">&quot;High Salary&quot;</span>))</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        .when(pl.col(<span class="st">&quot;avg_salary&quot;</span>) <span class="op">&gt;</span> <span class="dv">2_000_000</span>).then(pl.lit(<span class="st">&quot;Medium Salary&quot;</span>))</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        .otherwise(pl.lit(<span class="st">&quot;Low Salary&quot;</span>))</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>summary_df.sort(<span class="st">&quot;avg_salary&quot;</span>, descending<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2515,50 +2524,50 @@ white-space: pre-wrap;
 <tbody>
 <tr class="odd">
 <td>&quot;1B&quot;</td>
-<td>2.3744e6</td>
-<td>4268</td>
+<td>3.3628e6</td>
+<td>1706</td>
 <td>2.8e7</td>
-<td>&quot;Medium Salary&quot;</td>
+<td>&quot;High Salary&quot;</td>
 </tr>
 <tr class="even">
 <td>&quot;OF&quot;</td>
-<td>2.1572e6</td>
-<td>7336</td>
+<td>2.3986e6</td>
+<td>5162</td>
 <td>2.7328046e7</td>
 <td>&quot;Medium Salary&quot;</td>
 </tr>
 <tr class="odd">
-<td>&quot;P&quot;</td>
-<td>1.9400e6</td>
-<td>13365</td>
+<td>&quot;3B&quot;</td>
+<td>2.3202e6</td>
+<td>1604</td>
 <td>3.3e7</td>
-<td>&quot;Low Salary&quot;</td>
+<td>&quot;Medium Salary&quot;</td>
 </tr>
 <tr class="even">
-<td>&quot;3B&quot;</td>
-<td>1.6673e6</td>
-<td>3807</td>
-<td>3.3e7</td>
+<td>&quot;SS&quot;</td>
+<td>1.9927e6</td>
+<td>1456</td>
+<td>2.26e7</td>
 <td>&quot;Low Salary&quot;</td>
 </tr>
 <tr class="odd">
-<td>&quot;SS&quot;</td>
-<td>1.5890e6</td>
-<td>2916</td>
-<td>2.6e7</td>
+<td>&quot;P&quot;</td>
+<td>1.9381e6</td>
+<td>11854</td>
+<td>3.3e7</td>
 <td>&quot;Low Salary&quot;</td>
 </tr>
 <tr class="even">
 <td>&quot;2B&quot;</td>
-<td>1.4679e6</td>
-<td>3365</td>
-<td>2.4642857e7</td>
+<td>1.8131e6</td>
+<td>1560</td>
+<td>2.4e7</td>
 <td>&quot;Low Salary&quot;</td>
 </tr>
 <tr class="odd">
 <td>&quot;C&quot;</td>
-<td>1.4153e6</td>
-<td>2468</td>
+<td>1.4297e6</td>
+<td>2136</td>
 <td>2.3e7</td>
 <td>&quot;Low Salary&quot;</td>
 </tr>

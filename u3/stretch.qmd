@@ -114,7 +114,9 @@ __Additionally, add a new column to the summary table you just created to label 
 
 __Order the table by average salary in descending order.__
 
-The position with the highest average salary is a first baseman, with the average salary being $2.3 million. The position with the lowest average salary is a catcher, being $1.4 million. There are no positions that earned the "High Salary" label for their average salary. The most common position is a pitcher, with a total of 13,365 players being in that position. Pitchers and third basemen hold the record of having the highest salary, being $33 million.
+Hint: Beware, it is common for a player to play multiple positions in a single year. For this analysis, each player’s salary should only be counted toward one position in a given year. You get to determine which position to count it towards. __Explain how you decided which position a player’s salary should be counted toward in those situations, and why that is a good approach.__
+
+To decide which position a player plays in a year, I chose the position that they played the most games in for that year. For example, the player "addybo01" had 25 games in 1871, playing either shortstop or second baseman. Since that player played 22 games as a second baseman, the salary is only counted for being a second baseman. The position with the highest average salary is a first baseman, with the average salary being $3.36 million. The position with the lowest average salary is a catcher, being $1.43 million. The most common position is a pitcher, with a total of 11,854 players being in that position. Pitchers and third basemen hold the record of having the highest salary, being $33 million.
 
 ```{python}
 f = """
@@ -132,8 +134,16 @@ FROM salaries
 salaries = pl.read_database(s, con, infer_schema_length=None)
 
 # Select needed columns (could do this in the queries)
-fielding = fielding.select("playerID", "yearID", "POS")
+fielding = fielding.select("playerID", "yearID", "POS", "G") # G is games; I will use it to decide on a main position
 salaries = salaries.select("playerID", "yearID", "salary")
+
+# Pick the position with most games for that player in that year
+fielding = (
+    fielding
+    .sort(["playerID", "yearID", "G"], descending=[False, False, True])
+    .unique(subset=["playerID", "yearID"], keep="first")
+    .select("playerID", "yearID", "POS")
+)
 
 # Inner join fielding and salaries by player and year
 summary_df = fielding.join(salaries, ["playerID", "yearID"])
