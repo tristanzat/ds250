@@ -1,0 +1,31 @@
+```{python}
+import polars as pl
+import numpy as np
+import sqlite3
+from lets_plot import *
+
+LetsPlot.setup_html(isolated_frame=True)
+
+sqlite_file = 'lahmansbaseballdb.sqlite'
+con = sqlite3.connect(sqlite_file)
+```
+
+```{python}
+q = '''
+SELECT *
+FROM batting
+'''
+qr = pl.read_database(q, con, infer_schema_length=None)
+
+qr.head(2)
+
+ba_df = (
+    qr
+    .with_columns(
+        BA = pl.col("H") / pl.col("AB")
+    )
+)
+
+ba_df[1].select("playerID", "AB", "BA")
+```
+
