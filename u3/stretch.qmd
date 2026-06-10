@@ -79,7 +79,7 @@ top_df = (
     # Convert debut and finalGame to date
     .with_columns(
         pl.col("debut").str.to_date(strict=False),
-        pl.col("finalGame").str.to_date(strict=False),
+        pl.col("finalGame").str.to_date(strict=False)
     )
     # New column for career length in days
     .with_columns(
