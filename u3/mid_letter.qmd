@@ -1,0 +1,74 @@
+---
+title: "Course Goals Letter (Mid)"
+subtitle: "Week 7"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+execute: 
+  warning: false
+    
+---
+
+# Select Your Target Grade Competency
+
+> **Instructions:** Review the grading tier tables below. The first table in each section shows where you should be **right now** (Week 7) to stay on track. The second table shows where you need to be by **Week 14**. 
+> 
+> * **Action Required:** Keep the table pair(s) that match your current performance or future goals, and delete the rest. Feel free to mix and match (e.g., if you are currently performing at a B level but aiming for an A by the end of the semester). Please provide an honest assessment!
+
+## Grading Tiers
+
+### A Tier: Leader
+
+**Where I am right now (Week 7):**
+
+|        | Grade | Tasks Completed | Stretches | DS Community Tasks | Methods & Calculations @ 100% | Coding Challenge | Course Goals Letter (Mid) |
+|:-------|:-----:|:---------------:|:---------:|:------------------:|:----------------------------:|:----------------:|:-------------------------:|
+| Leader |   A   |        7-9        |   >= 1    |        >= 1        |               3              |       N/A        |             1             |
+
+**Where I need to be by Week 14:**
+
+|        | Grade | Tasks (18 Total) | Stretch Tasks (5) | DS Community Tasks | Methods & Calculation Quizzes @ 100% | Coding Challenge | Course Goal Letter (End) |
+|:-------|:-----:|:----------------:|:-----------------:|:------------------:|:------------------------------------:|:----------------:|:------------------------:|
+| Leader |   A   |      17–18       |       >= 3        | >= 3 (incl. Cert)  |                  6                   |       >= 3       |            1             |
+
+---
+
+**Where I am right now (Week 7):**
+
+|          | Grade | Tasks Completed | Stretches | DS Community Tasks | Methods & Calculations @ 100% | Coding Challenge | Course Goals Letter (Mid) |
+|:---------|:-----:|:---------------:|:---------:|:------------------:|:----------------------------:|:----------------:|:-------------------------:|
+| Listener |   C   |       3-4       |   >= 1    |        >= 1        |             1–2              |       N/A        |             1             |
+
+**Where I need to be by Week 14:**
+
+|          | Grade | Tasks (18 Total) | Stretch Tasks (5) | DS Community Tasks | Methods & Calculation Quizzes @ 100% | Coding Challenge | Course Goal Letter (End) |
+|:---------|:-----:|:----------------:|:-----------------:|:------------------:|:------------------------------------:|:----------------:|:------------------------:|
+| Listener |   C   |      13–14       |       >= 1        |        >= 1        |                  3                   |       >= 2       |            1             |
+
+---
+
+## My Letter
+
+### Reflection & Progress Report
+* **Original Goal:** A
+* **Current Status:** I am on track to acheiving this goal. I have completed 2/3 DS community tasks, have completed every task and stretch task so far, and have achieved 100% on every methods & calculations quiz so far.
+
+### Current Standings 
+*(Please verify these numbers against your current gradebook status)*
+* **Tasks Completed:** 9 (not counting U0)
+* **Stretch Tasks Completed:** 3
+* **Methods & Calculations Quizzes (at 100%):** 4
+
+### Community & Activity Description
+So far, the 2 data science community tasks that I have participated in include attending DS society (I was at the second one) and signing up for a data science newsletter. The only thing I have left to do is get my bronze certification from the career center.
+
+### Looking Forward (Action Plan)
+I just need to keep finishing tasks as I have been and I will achieve my goal. I just need to complete my elevator pitch on VMock, which will let me get the career center certification and thus complete my 3 DS community tasks.
