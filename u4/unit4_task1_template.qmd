@@ -1,7 +1,7 @@
 ---
 title: "Client Report - Can You Predict That?"
 subtitle: "Unit 4 Task 1"
-author: "[STUDENT NAME]"
+author: "Tristan Zatylny"
 format:
   html:
     self-contained: true
