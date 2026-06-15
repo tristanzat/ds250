@@ -88,7 +88,7 @@ top_df = (
     # Select necessary columns
     .select("playerID", "nameFirst", "nameLast", "career_length")
     # Sort by length descending
-    .sort("career_length", descending=True, nulls_last=True)
+    .sort("career_length", descending=True)
 )
 # Show top 10
 top_df.head(10)
@@ -141,7 +141,7 @@ salaries = salaries.select("playerID", "yearID", "salary")
 fielding = (
     fielding
     .sort(["playerID", "yearID", "G"], descending=[False, False, True])
-    .unique(subset=["playerID", "yearID"], keep="first")
+    .unique(["playerID", "yearID"], keep="first")
     .select("playerID", "yearID", "POS")
 )
 
