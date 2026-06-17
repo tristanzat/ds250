@@ -30,7 +30,19 @@ import polars as pl
 import numpy as np
 from lets_plot import *
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn import metrics
+import polars.selectors as cs
+from sklearn.metrics import (
+  accuracy_score,
+  precision_score,
+  recall_score,
+  f1_score,
+  confusion_matrix,
+  classification_report,
+  ConfusionMatrixDisplay
+)
 # add the additional libraries you need to import for ML here
 
 LetsPlot.setup_html(isolated_frame=True)
@@ -40,30 +52,249 @@ LetsPlot.setup_html(isolated_frame=True)
 
 ```{python}
 # import your data here using polars and the URL
-
+url = "https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_ml/dwellings_ml.csv"
+df = pl.read_csv(url)
 
 ```
 
-## QUESTION
+## QUESTION 1
 
 1. __Take time to get to know your data.__ Based on some initial exploration, identify 3 variables in the dataset you think will have strong predictive ability for determining if a house was built before 1980. Explain/justify the reasoning behind your guesses (for example with plots).
 
-_type your write-up and analysis here_
+`arcstyle_ONE-STORY` - ~56% of houses built pre-1980 are one story. Only ~6% of houses built after 1980 are one story.
+
+`quality_C` - ~81% of houses built pre-1980 have this attribute and only ~44% of houses built after 1980 have this attribute. I don't know what this means but there is a somewhat significant difference so maybe it will play into the model.
+
+`sprice` - The average house built before 1980 sells for ~250k and the average house built after 1980 sells for ~1m
 
 ```{python}
-# Optional: code you used to get to know your data
+# look for differences between when houses are built
+diff_compare = (
+  df
+  .group_by("before1980")
+  .agg(cs.numeric().mean())
+)
 
+basement = (
+  df
+  .group_by("before1980")
+  .agg(
+    percent_has_basement = pl
+    .when(pl.col("basement") > 0)
+    .then(1)
+    .otherwise(0)
+    .sum() / pl.len() * 100
+  )
+)
+
+one_story = (
+  df
+  .group_by("before1980")
+  .agg(
+    percent_one_story = pl.col("arcstyle_ONE-STORY").sum() / pl.len() * 100
+  )
+)
+
+quality_c = (
+  df
+  .group_by("before1980")
+  .agg(
+    percent_quality_c = pl.col("quality_C").sum() / pl.len() * 100
+  )
+)
+
+condition_avg = (
+  df
+  .group_by("before1980")
+  .agg(
+    percent_avg_condition = pl.col("condition_AVG").sum() / pl.len() * 100
+  )
+)
+
+sell_price = (
+  df
+  .group_by("before1980")
+  .agg(
+    pl.col("sprice").mean().alias("avg_sell_price")
+  )
+)
+
+diff_compare # this shows stats for the average house built before or after 1980
+
+basement # 51% built after have basements, 60% built before have basements. not a very good metric i guess
+
+one_story # 56% built before are one story, after only 6% built are one story
+
+quality_c # 81% built before 1980 have quality C; 44% built after 1980 have quality C
+
+condition_avg # 68% built before 1980 are marked as average condition; 93% built after 1980 are marked as average condition
+
+sell_price # The average house built before 1980 sells for ~250k and the average house built after 1980 sells for ~1m
+
+# print this
+diff_compare
 
 ```
 
-1. __Build a classification model labeling houses as being built “before 1980” or “during or after 1980”.__ Your goal is to reach or exceed 90% accuracy. Report your final model choice and any other model parameters you may have tweaked (train-test split ratio, tuning parameters, etc).  
+```{python}
+# Line graph - number of stories
 
-_type your write-up and analysis here_
+pre_avg = (df.filter(pl.col("before1980") == 1).select("stories").mean()).item()
+post_avg = (df.filter(pl.col("before1980") == 0).select("stories").mean()).item()
+
+x_min = df["yrbuilt"].min()
+x_max = df["yrbuilt"].max()
+
+(
+  ggplot(
+    df.group_by("yrbuilt").agg(avg_stories = pl.col("stories").mean()),
+    aes("yrbuilt", "avg_stories")
+  )
+  + geom_line()
+  # 1980 line
+  + geom_vline(xintercept=1980, color="red", linetype="dashed")
+  + geom_text(x=1985, y=2.05, label="1980", color="red")
+  # Pre 1980 avg
+  + geom_segment(x=x_min, xend=1980, y=pre_avg, yend=pre_avg, color="green", linetype="dashed")
+  + geom_text(x=1890, y=1.25, label="Pre-1980 average", color="green")
+  # Post 1980 avg
+  + geom_segment(x=1980, xend=x_max, y=post_avg, yend=post_avg, color="blue", linetype="dashed")
+  + geom_text(x=1998, y=1.95, label="Post-1980 average", color="blue")
+  # Look better
+  + scale_x_continuous(format="d")
+  + labs(
+    "Average number of stories in houses",
+    x="Year built",
+    y="Average number of stories"
+  )
+)
+```
+
+```{python}
+# Bar chart - quality C
+(
+  ggplot(
+      quality_c,
+      aes("before1980", "percent_quality_c")
+  )
+  + geom_bar(stat="identity")
+  + scale_x_discrete(
+    labels={0: "After 1980", 1: "Before 1980"}
+    )
+  + labs(
+      title="% of Houses with Quality C",
+      x="Era",
+      y="Percent (%)"
+  )
+)
+```
+
+```{python}
+# Line graph - selling price
+pre_avg = (df.filter(pl.col("before1980") == 1).select("sprice").mean()).item()
+post_avg = (df.filter(pl.col("before1980") == 0).select("sprice").mean()).item()
+
+x_min = df["yrbuilt"].min()
+x_max = df["yrbuilt"].max()
+
+(
+  ggplot(
+    df.group_by("yrbuilt").agg(avg_sell_price = pl.col("sprice").mean()),
+    aes("yrbuilt", "avg_sell_price")
+  )
+  + geom_line()
+  # 1980 line
+  + geom_vline(xintercept=1980, color="red", linetype="dashed")
+  + geom_text(x=1985, y=10_000_000, label="1980", color="red")
+  # Pre 1980 avg
+  + geom_segment(x=x_min, xend=1980, y=pre_avg, yend=pre_avg, color="green", linetype="dashed")
+  + geom_text(x=1900, y=500_000, label=f"Pre-1980 ({pre_avg:,.0f})", color="green")
+  # Post 1980 avg
+  + geom_segment(x=1980, xend=x_max, y=post_avg, yend=post_avg, color="blue", linetype="dashed")
+  + geom_text(x=1955, y=post_avg, label=f"Post-1980 ({post_avg:,.0f})", color="blue")
+  # Look better
+  + scale_x_continuous(format="d")
+  + scale_y_log10()
+  + labs(
+    "Average sell price of house",
+    "(Logarithmic scale)",
+    x="Year built",
+    y="Average sell price"
+  )
+)
+```
+
+## QUESTION 2
+
+2. __Build a classification model labeling houses as being built “before 1980” or “during or after 1980”.__ Your goal is to reach or exceed 90% accuracy. Report your final model choice and any other model parameters you may have tweaked (train-test split ratio, tuning parameters, etc).  
+
+I chose to look at both Decision Tree and Random Forest models. It seems that Random Forest was more accurate, with an accuracy of ~92% compared to a Decision Tree at ~90%. I chose my test size to be 20% of the data. Higher values (such as 50%) or lower values (such as 10%) seemed to make the model very slightly less accurate (e.g. random forest was ~91% accurate at both 10% and 50%). The actual values seen here may be different as I didn't seed the randomness.
 
 ```{python}
 # Include and execute your code here
 # Don't forget, you need another import statement to import the desired ML model from sklearn
 
+# Remove useless columns (parcel & abstrprd) and giveaways (yrbuilt and answer)
+x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
 
+# Choose what we want the model to be predicting
+y = df.select("before1980")
+
+# Split training data
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.5)
 ```
 
+```{python}
+# Make decision tree
+dt_classifier = DecisionTreeClassifier()
+dt_classifier.fit(x_train, y_train)
+```
+
+```{python}
+# Make random forest
+rf_classifier = RandomForestClassifier()
+rf_classifier.fit(x_train, y_train)
+```
+
+```{python}
+# DT prediction
+dt_pred = dt_classifier.predict(x_test)
+dt_pred
+```
+
+```{python}
+# RF prediction
+rf_pred = rf_classifier.predict(x_test)
+rf_pred
+```
+
+```{python}
+# See what values were important when making predictions (for fun)
+dt_importances = list(zip(dt_classifier.feature_names_in_, dt_classifier.feature_importances_))
+dt_top = sorted(dt_importances, key=lambda x: x[1], reverse=True)[:3]
+
+rf_importances = list(zip(rf_classifier.feature_names_in_, rf_classifier.feature_importances_))
+rf_top = sorted(rf_importances, key=lambda x: x[1], reverse=True)[:3]
+
+print("Decision tree top 3 importances:")
+for name, importance in dt_top:
+  print(f"{name}: {importance:.5f}")
+
+print("\nRandom forest top 3 importances:")
+for name, importance in rf_top:
+  print(f"{name}: {importance:.5f}")
+```
+
+```{python}
+# Classification report for decision tree
+print("Decision Tree")
+print(f"Accuracy: {accuracy_score(y_test, dt_pred) * 100:.3f}%")
+print(classification_report(y_test, dt_pred))
+```
+
+```{python}
+# Classification report for random forest
+print("Random Forest")
+print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
+print(classification_report(y_test, rf_pred))
+```
