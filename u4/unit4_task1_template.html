@@ -2257,7 +2257,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#question-2" id="toc-question-2">QUESTION 2</a></li>
   </ul>
 </nav>
-<div id="0d670e70" class="cell" data-execution_count="1">
+<div id="6806e57a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -2282,7 +2282,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0ba4148a" class="cell" data-execution_count="2">
+<div id="122a6a0d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import your data here using polars and the URL</span></span>
@@ -2298,7 +2298,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <p><code>arcstyle_ONE-STORY</code> - ~56% of houses built pre-1980 are one story. Only ~6% of houses built after 1980 are one story.</p>
 <p><code>quality_C</code> - ~81% of houses built pre-1980 have this attribute and only ~44% of houses built after 1980 have this attribute. I don’t know what this means but there is a somewhat significant difference so maybe it will play into the model.</p>
 <p><code>sprice</code> - The average house built before 1980 sells for ~250k and the average house built after 1980 sells for ~1m</p>
-<div id="26b6c6b0" class="cell" data-execution_count="3">
+<div id="feb35950" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look for differences between when houses are built</span></span>
@@ -2367,7 +2367,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="co"># print this</span></span>
 <span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>diff_compare</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2485,58 +2485,6 @@ white-space: pre-wrap;
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
-<td>1119.95427</td>
-<td>1878.915173</td>
-<td>300.081219</td>
-<td>570.3229</td>
-<td>2002.97347</td>
-<td>0.999302</td>
-<td>1.76437</td>
-<td>1.566674</td>
-<td>2.630207</td>
-<td>2.981731</td>
-<td>1.0876e6</td>
-<td>1205.479521</td>
-<td>1.0864e6</td>
-<td>1.0909e6</td>
-<td>6.589132</td>
-<td>2011.043402</td>
-<td>0.932395</td>
-<td>0.001978</td>
-<td>0.0</td>
-<td>0.061089</td>
-<td>0.004538</td>
-<td>0.086805</td>
-<td>0.443798</td>
-<td>0.448452</td>
-<td>0.004538</td>
-<td>0.016407</td>
-<td>0.603328</td>
-<td>0.00384</td>
-<td>0.000815</td>
-<td>0.125436</td>
-<td>0.266116</td>
-<td>0.0</td>
-<td>0.000465</td>
-<td>0.009425</td>
-<td>0.0</td>
-<td>0.285548</td>
-<td>0.187689</td>
-<td>0.008262</td>
-<td>0.063533</td>
-<td>0.004189</td>
-<td>0.002676</td>
-<td>0.010472</td>
-<td>0.011287</td>
-<td>0.012101</td>
-<td>0.404817</td>
-<td>0.684198</td>
-<td>0.315802</td>
-<td>0.857459</td>
-<td>0.142541</td>
-</tr>
-<tr class="even">
 <td>1</td>
 <td>1118.395419</td>
 <td>1289.837628</td>
@@ -2588,12 +2536,64 @@ white-space: pre-wrap;
 <td>0.999022</td>
 <td>0.000978</td>
 </tr>
+<tr class="even">
+<td>0</td>
+<td>1119.95427</td>
+<td>1878.915173</td>
+<td>300.081219</td>
+<td>570.3229</td>
+<td>2002.97347</td>
+<td>0.999302</td>
+<td>1.76437</td>
+<td>1.566674</td>
+<td>2.630207</td>
+<td>2.981731</td>
+<td>1.0876e6</td>
+<td>1205.479521</td>
+<td>1.0864e6</td>
+<td>1.0909e6</td>
+<td>6.589132</td>
+<td>2011.043402</td>
+<td>0.932395</td>
+<td>0.001978</td>
+<td>0.0</td>
+<td>0.061089</td>
+<td>0.004538</td>
+<td>0.086805</td>
+<td>0.443798</td>
+<td>0.448452</td>
+<td>0.004538</td>
+<td>0.016407</td>
+<td>0.603328</td>
+<td>0.00384</td>
+<td>0.000815</td>
+<td>0.125436</td>
+<td>0.266116</td>
+<td>0.0</td>
+<td>0.000465</td>
+<td>0.009425</td>
+<td>0.0</td>
+<td>0.285548</td>
+<td>0.187689</td>
+<td>0.008262</td>
+<td>0.063533</td>
+<td>0.004189</td>
+<td>0.002676</td>
+<td>0.010472</td>
+<td>0.011287</td>
+<td>0.012101</td>
+<td>0.404817</td>
+<td>0.684198</td>
+<td>0.315802</td>
+<td>0.857459</td>
+<td>0.142541</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div id="e2e89931" class="cell" data-execution_count="4">
+<div id="7c72995c" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Line graph - number of stories</span></span>
@@ -2628,7 +2628,7 @@ white-space: pre-wrap;
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
    
        <meta charset="UTF-8">
@@ -2638,7 +2638,7 @@ white-space: pre-wrap;
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="c093K2"></div>
+          <div id="tpuEgS"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2663,15 +2663,15 @@ white-space: pre-wrap;
        };
    }
    
-   const containerDiv = document.getElementById("c093K2");
+   const containerDiv = document.getElementById("tpuEgS");
    let fig = null;
    
    function renderPlot() {
        if (fig === null) {
            const plotSpec = {
 "data":{
-"yrbuilt":[1995.0,1974.0,1986.0,1989.0,2001.0,1971.0,1882.0,1879.0,1980.0,2007.0,2004.0,2013.0,1873.0,1998.0,1977.0,1992.0,1983.0,1968.0,2010.0,1897.0,1930.0,1909.0,1891.0,1924.0,1906.0,1915.0,1888.0,1894.0,1900.0,1918.0,1903.0,1885.0,1933.0,1921.0,1912.0,1927.0,1966.0,1981.0,1960.0,1963.0,1939.0,1978.0,1954.0,1957.0,1969.0,1936.0,1948.0,1975.0,1945.0,1951.0,1972.0,1942.0,1987.0,2002.0,1984.0,1996.0,1892.0,1990.0,1889.0,2011.0,1895.0,1880.0,1993.0,1883.0,2008.0,1886.0,2005.0,1999.0,1898.0,1928.0,1946.0,1922.0,1919.0,1901.0,1940.0,1931.0,1949.0,1916.0,1904.0,1934.0,1925.0,1937.0,1913.0,1907.0,1943.0,1910.0,1967.0,1955.0,1976.0,1997.0,1964.0,1973.0,1952.0,1991.0,1961.0,1988.0,1994.0,1970.0,1985.0,1979.0,1982.0,1958.0,1890.0,2003.0,1899.0,1881.0,1887.0,2000.0,1902.0,1917.0,1893.0,2012.0,2006.0,1914.0,1911.0,2009.0,1884.0,1896.0,1908.0,1905.0,1938.0,1920.0,1923.0,1956.0,1926.0,1962.0,1950.0,1929.0,1944.0,1932.0,1941.0,1947.0,1935.0,1953.0,1965.0,1959.0],
-"avg_stories":[1.7959183673469388,1.2352941176470589,1.6428571428571428,1.7777777777777777,1.3674121405750799,1.1101321585903083,1.4285714285714286,2.0,1.21875,2.089635854341737,1.9163636363636363,2.0,2.0,1.653225806451613,1.320754716981132,1.8823529411764706,1.470873786407767,1.2045454545454546,1.9334389857369254,1.4375,1.1515151515151516,1.5909090909090908,1.5384615384615385,1.0932642487046633,1.5483870967741935,1.3870967741935485,1.643835616438356,1.697674418604651,1.6071428571428572,1.2857142857142858,1.5,1.6785714285714286,1.1904761904761905,1.1979166666666667,1.364864864864865,1.1916167664670658,1.1948717948717948,1.2538461538461538,1.0568181818181819,1.0355329949238579,1.1382978723404256,1.2541436464088398,1.0403846153846155,1.0141509433962264,1.157088122605364,1.1774193548387097,1.0695876288659794,1.1076923076923078,1.1,1.061881188118812,1.309608540925267,1.1441048034934498,1.45,1.6986754966887416,1.515527950310559,1.6494845360824741,1.8918918918918919,1.7222222222222223,1.6764705882352942,2.065412186379928,1.5425531914893618,1.4,1.8285714285714285,2.0,1.59375,1.424,1.7700934579439251,1.7040816326530612,1.6744186046511629,1.1965317919075145,1.0535714285714286,1.132596685082873,1.2941176470588236,1.5,1.1719745222929936,1.15,1.0640243902439024,1.3478260869565217,1.7450980392156863,1.1,1.1284722222222223,1.3289473684210527,1.4230769230769231,1.4878048780487805,1.0923076923076922,1.375,1.1076923076923078,1.0333333333333334,1.24,1.5705882352941176,1.0794701986754967,1.2480314960629921,1.0584415584415585,1.6666666666666667,1.0579710144927537,1.9047619047619047,1.8524590163934427,1.1486486486486487,1.5504587155963303,1.1666666666666667,1.3636363636363635,1.0569620253164558,1.6413793103448275,1.7277777777777779,1.4736842105263157,1.6666666666666667,1.5,1.6168478260869565,1.5833333333333333,1.1666666666666667,1.8444444444444446,2.0120336943441637,1.8234234234234235,1.3703703703703705,1.4198473282442747,1.4672364672364673,1.5294117647058822,1.5202312138728324,1.5217391304347827,1.5416666666666667,1.1384615384615384,1.3461538461538463,1.0925925925925926,1.0445859872611465,1.1111111111111112,1.0674846625766872,1.073394495412844,1.1564245810055866,1.303030303030303,1.0769230769230769,1.0922330097087378,1.0774410774410774,1.2258064516129032,1.1002331002331003,1.3412698412698412,1.0454545454545454]
+"yrbuilt":[1980.0,2010.0,1998.0,1983.0,1986.0,2013.0,1873.0,1971.0,1974.0,1995.0,1977.0,2004.0,1882.0,1879.0,2007.0,1989.0,2001.0,1992.0,1968.0,1885.0,1912.0,1933.0,1918.0,1903.0,1909.0,1915.0,1906.0,1891.0,1900.0,1924.0,1888.0,1894.0,1930.0,1897.0,1921.0,1927.0,1954.0,1951.0,1945.0,1969.0,1963.0,1966.0,1936.0,1975.0,1957.0,1942.0,1978.0,1939.0,1972.0,1981.0,1948.0,1960.0,1880.0,1889.0,2008.0,2002.0,1886.0,1996.0,1883.0,1895.0,1987.0,1984.0,2011.0,1898.0,1990.0,1999.0,1993.0,1892.0,2005.0,1931.0,1940.0,1928.0,1907.0,1925.0,1922.0,1901.0,1943.0,1919.0,1937.0,1913.0,1916.0,1949.0,1904.0,1946.0,1910.0,1934.0,1964.0,1997.0,1961.0,1967.0,1970.0,1976.0,1988.0,1952.0,1991.0,1958.0,1979.0,1955.0,1985.0,1973.0,1994.0,1982.0,2000.0,2006.0,1908.0,1899.0,1890.0,2003.0,2009.0,1914.0,2012.0,1881.0,1905.0,1911.0,1896.0,1902.0,1917.0,1884.0,1893.0,1887.0,1923.0,1956.0,1932.0,1950.0,1965.0,1947.0,1926.0,1935.0,1920.0,1938.0,1962.0,1959.0,1944.0,1953.0,1941.0,1929.0],
+"avg_stories":[1.21875,1.9334389857369254,1.653225806451613,1.470873786407767,1.6428571428571428,2.0,2.0,1.1101321585903083,1.2352941176470589,1.7959183673469388,1.320754716981132,1.9163636363636363,1.4285714285714286,2.0,2.089635854341737,1.7777777777777777,1.3674121405750799,1.8823529411764706,1.2045454545454546,1.6785714285714286,1.364864864864865,1.1904761904761905,1.2857142857142858,1.5,1.5909090909090908,1.3870967741935485,1.5483870967741935,1.5384615384615385,1.6071428571428572,1.0932642487046633,1.643835616438356,1.697674418604651,1.1515151515151516,1.4375,1.1979166666666667,1.1916167664670658,1.0403846153846155,1.061881188118812,1.1,1.157088122605364,1.0355329949238579,1.1948717948717948,1.1774193548387097,1.1076923076923078,1.0141509433962264,1.1441048034934498,1.2541436464088398,1.1382978723404256,1.309608540925267,1.2538461538461538,1.0695876288659794,1.0568181818181819,1.4,1.6764705882352942,1.59375,1.6986754966887416,1.424,1.6494845360824741,2.0,1.5425531914893618,1.45,1.515527950310559,2.065412186379928,1.6744186046511629,1.7222222222222223,1.7040816326530612,1.8285714285714285,1.8918918918918919,1.7700934579439251,1.15,1.1719745222929936,1.1965317919075145,1.4878048780487805,1.1284722222222223,1.132596685082873,1.5,1.0923076923076922,1.2941176470588236,1.3289473684210527,1.4230769230769231,1.3478260869565217,1.0640243902439024,1.7450980392156863,1.0535714285714286,1.375,1.1,1.0794701986754967,1.5705882352941176,1.0579710144927537,1.1076923076923078,1.1486486486486487,1.24,1.9047619047619047,1.0584415584415585,1.6666666666666667,1.0569620253164558,1.1666666666666667,1.0333333333333334,1.5504587155963303,1.2480314960629921,1.8524590163934427,1.3636363636363635,1.6168478260869565,1.8234234234234235,1.5217391304347827,1.4736842105263157,1.6413793103448275,1.7277777777777779,1.4672364672364673,1.3703703703703705,2.0120336943441637,1.6666666666666667,1.5416666666666667,1.4198473282442747,1.5202312138728324,1.5833333333333333,1.1666666666666667,1.5294117647058822,1.8444444444444446,1.5,1.0925925925925926,1.0445859872611465,1.0769230769230769,1.073394495412844,1.3412698412698412,1.0774410774410774,1.1111111111111112,1.2258064516129032,1.3461538461538463,1.1384615384615384,1.0674846625766872,1.0454545454545454,1.303030303030303,1.1002331002331003,1.0922330097087378,1.1564245810055866]
 },
 "mapping":{
 "x":"yrbuilt",
@@ -2787,7 +2787,7 @@ white-space: pre-wrap;
 }
 }],
 "metainfo_list":[],
-"spec_id":"4"
+"spec_id":"1"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
@@ -2834,7 +2834,7 @@ white-space: pre-wrap;
 
 </div>
 </div>
-<div id="18bea0f1" class="cell" data-execution_count="5">
+<div id="bd40369c" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart - quality C</span></span>
@@ -2854,7 +2854,7 @@ white-space: pre-wrap;
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
    
        <meta charset="UTF-8">
@@ -2864,7 +2864,7 @@ white-space: pre-wrap;
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="jDUcL7"></div>
+          <div id="GzLdy6"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -2889,7 +2889,7 @@ white-space: pre-wrap;
        };
    }
    
-   const containerDiv = document.getElementById("jDUcL7");
+   const containerDiv = document.getElementById("GzLdy6");
    let fig = null;
    
    function renderPlot() {
@@ -2942,7 +2942,7 @@ white-space: pre-wrap;
 }
 }],
 "metainfo_list":[],
-"spec_id":"5"
+"spec_id":"2"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
@@ -2989,7 +2989,7 @@ white-space: pre-wrap;
 
 </div>
 </div>
-<div id="c24732ca" class="cell" data-execution_count="6">
+<div id="11304180" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Line graph - selling price</span></span>
@@ -3025,7 +3025,7 @@ white-space: pre-wrap;
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
    
        <meta charset="UTF-8">
@@ -3035,7 +3035,7 @@ white-space: pre-wrap;
 //# sourceMappingURL=lets-plot.js.map</script>
    
    
-          <div id="0qfhAm"></div>
+          <div id="IrvqOF"></div>
    <script type="text/javascript" data-lets-plot-script="plot">
    
    (function() {
@@ -3060,15 +3060,15 @@ white-space: pre-wrap;
        };
    }
    
-   const containerDiv = document.getElementById("0qfhAm");
+   const containerDiv = document.getElementById("IrvqOF");
    let fig = null;
    
    function renderPlot() {
        if (fig === null) {
            const plotSpec = {
 "data":{
-"yrbuilt":[1998.0,1977.0,2007.0,1983.0,1873.0,2013.0,1971.0,1989.0,2001.0,1980.0,2004.0,1974.0,1992.0,1882.0,1968.0,1986.0,2010.0,1879.0,1995.0,1918.0,1891.0,1915.0,1897.0,1900.0,1888.0,1921.0,1927.0,1885.0,1924.0,1906.0,1909.0,1912.0,1894.0,1903.0,1930.0,1933.0,1951.0,1975.0,1972.0,1978.0,1981.0,1969.0,1960.0,1966.0,1948.0,1936.0,1945.0,1963.0,1954.0,1939.0,1942.0,1957.0,1993.0,1898.0,1999.0,1880.0,1895.0,1996.0,2008.0,1892.0,1889.0,1984.0,2002.0,1883.0,1990.0,2011.0,1886.0,1987.0,2005.0,1901.0,1943.0,1940.0,1946.0,1913.0,1931.0,1934.0,1925.0,1937.0,1916.0,1949.0,1922.0,1907.0,1919.0,1910.0,1928.0,1904.0,1982.0,1970.0,1988.0,1958.0,1979.0,1997.0,1976.0,1964.0,1961.0,1967.0,1991.0,1985.0,1955.0,1973.0,1994.0,1952.0,2003.0,2009.0,1905.0,1887.0,1884.0,1899.0,1881.0,2012.0,1911.0,1902.0,1917.0,1896.0,2000.0,1914.0,1893.0,1890.0,2006.0,1908.0,1920.0,1938.0,1956.0,1944.0,1959.0,1935.0,1932.0,1947.0,1923.0,1965.0,1962.0,1929.0,1953.0,1950.0,1941.0,1926.0],
-"avg_sell_price":[254859.72177419355,210978.77358490566,625552.1820728291,160829.6941747573,95000.0,1.7113E7,150110.12334801763,442590.55555555556,287802.63897763577,142512.2625,1432072.3272727274,167841.44705882354,346611.76470588235,212442.85714285713,189343.56818181818,209262.8775510204,570380.587955626,329000.0,246203.0612244898,358890.21428571426,263410.4945054945,297216.67741935485,231768.5,289590.4846938776,221965.90410958903,338414.5104166667,331329.1497005988,302413.46428571426,301365.32642487047,305490.6728110599,364301.8409090909,381398.7702702703,254706.76744186046,298325.8333333333,306014.30303030304,513894.04761904763,204346.58415841585,183567.1846153846,114754.92526690391,200365.39779005526,260701.6769230769,153187.60536398468,242636.07954545456,179372.77435897436,232898.2319587629,331820.0967741936,170876.11666666667,187577.82233502538,207165.0403846154,282593.0,275045.903930131,239707.54716981133,405890.0,276058.1395348837,301732.68707482994,343530.0,303732.09574468085,321125.6804123711,4004025.620833333,279983.7837837838,259188.88235294117,180437.3354037267,319409.11589403974,363500.0,548438.8888888889,1449882.7921146953,228743.032,186933.15,439451.0897196262,250569.29,225889.9076923077,288625.7515923567,212931.60119047618,405685.57692307694,291383.5125,229437.76666666666,318351.1875,426370.5,318145.652173913,201910.73475609755,327666.9668508287,364055.9268292683,511764.90196078434,287348.77205882355,385502.1965317919,301467.06862745096,161333.16783216782,134368.66216216216,443842.8095238095,241018.01898734178,214771.26315789475,329090.35294117645,221499.65333333332,181080.4105960265,229573.5652173913,180398.30256410257,520470.0,207150.623853211,236558.25185185185,147158.1811023622,450887.62295081967,205119.3051948052,295744.77222222224,441683.0056980057,318528.0119047619,369954.54545454547,288000.0,241391.84210526315,193666.66666666666,3522911.229843562,343568.5267175573,276461.27777777775,333886.5,250195.4971098266,341659.66576086957,347232.77777777775,363420.1777777778,263927.82413793105,975249.4,303113.89130434784,446364.74358974356,311101.8230769231,243262.24203821656,266828.7878787879,215115.32575757575,283008.8064516129,314788.6153846154,176287.59932659933,299034.86419753084,167019.42857142858,167573.79141104294,417638.74860335194,179923.99067599067,182834.63302752294,259616.81067961166,336288.85185185185]
+"yrbuilt":[1879.0,1995.0,1983.0,1992.0,1998.0,2013.0,2010.0,2007.0,1989.0,1873.0,1971.0,1986.0,1980.0,1882.0,2001.0,1977.0,2004.0,1974.0,1968.0,1906.0,1918.0,1930.0,1912.0,1903.0,1891.0,1900.0,1885.0,1924.0,1933.0,1921.0,1888.0,1927.0,1915.0,1909.0,1894.0,1897.0,1966.0,1954.0,1975.0,1960.0,1969.0,1978.0,1981.0,1957.0,1972.0,1945.0,1951.0,1936.0,1948.0,1939.0,1963.0,1942.0,2011.0,1993.0,1895.0,1892.0,1886.0,1999.0,1898.0,1990.0,2002.0,1984.0,1996.0,2005.0,2008.0,1889.0,1880.0,1883.0,1987.0,1937.0,1928.0,1925.0,1922.0,1919.0,1904.0,1946.0,1934.0,1931.0,1949.0,1901.0,1943.0,1907.0,1940.0,1913.0,1916.0,1910.0,1955.0,1967.0,1994.0,1961.0,1976.0,1988.0,1982.0,1952.0,1973.0,1991.0,1970.0,1964.0,1958.0,1997.0,1979.0,1985.0,1893.0,1884.0,1914.0,2000.0,1899.0,2012.0,1896.0,1890.0,2006.0,1902.0,1887.0,1881.0,2003.0,1911.0,2009.0,1917.0,1908.0,1905.0,1965.0,1959.0,1920.0,1941.0,1935.0,1962.0,1929.0,1944.0,1950.0,1932.0,1923.0,1938.0,1953.0,1956.0,1926.0,1947.0],
+"avg_sell_price":[329000.0,246203.0612244898,160829.6941747573,346611.76470588235,254859.72177419355,1.7113E7,570380.587955626,625552.1820728291,442590.55555555556,95000.0,150110.12334801763,209262.8775510204,142512.2625,212442.85714285713,287802.63897763577,210978.77358490566,1432072.3272727274,167841.44705882354,189343.56818181818,305490.6728110599,358890.21428571426,306014.30303030304,381398.7702702703,298325.8333333333,263410.4945054945,289590.4846938776,302413.46428571426,301365.32642487047,513894.04761904763,338414.5104166667,221965.90410958903,331329.1497005988,297216.67741935485,364301.8409090909,254706.76744186046,231768.5,179372.77435897436,207165.0403846154,183567.1846153846,242636.07954545456,153187.60536398468,200365.39779005526,260701.6769230769,239707.54716981133,114754.92526690391,170876.11666666667,204346.58415841585,331820.0967741936,232898.2319587629,282593.0,187577.82233502538,275045.903930131,1449882.7921146953,405890.0,303732.09574468085,279983.7837837838,228743.032,301732.68707482994,276058.1395348837,548438.8888888889,319409.11589403974,180437.3354037267,321125.6804123711,439451.0897196262,4004025.620833333,259188.88235294117,343530.0,363500.0,186933.15,426370.5,385502.1965317919,318351.1875,327666.9668508287,511764.90196078434,301467.06862745096,212931.60119047618,229437.76666666666,291383.5125,201910.73475609755,250569.29,225889.9076923077,364055.9268292683,288625.7515923567,405685.57692307694,318145.652173913,287348.77205882355,236558.25185185185,180398.30256410257,450887.62295081967,229573.5652173913,221499.65333333332,443842.8095238095,161333.16783216782,205119.3051948052,147158.1811023622,520470.0,134368.66216216216,181080.4105960265,241018.01898734178,329090.35294117645,214771.26315789475,207150.623853211,363420.1777777778,288000.0,347232.77777777775,341659.66576086957,241391.84210526315,3522911.229843562,250195.4971098266,263927.82413793105,975249.4,276461.27777777775,369954.54545454547,193666.66666666666,295744.77222222224,343568.5267175573,441683.0056980057,333886.5,303113.89130434784,318528.0119047619,167019.42857142858,215115.32575757575,446364.74358974356,259616.81067961166,283008.8064516129,167573.79141104294,417638.74860335194,266828.7878787879,182834.63302752294,314788.6153846154,299034.86419753084,311101.8230769231,179923.99067599067,243262.24203821656,336288.85185185185,176287.59932659933]
 },
 "mapping":{
 "x":"yrbuilt",
@@ -3188,7 +3188,7 @@ white-space: pre-wrap;
 }
 }],
 "metainfo_list":[],
-"spec_id":"6"
+"spec_id":"3"
 };
            fig = LetsPlot.buildPlotFromProcessedSpecs(plotSpec, containerDiv, sizing);
        } else {
@@ -3241,8 +3241,8 @@ white-space: pre-wrap;
 <ol start="2" type="1">
 <li><strong>Build a classification model labeling houses as being built “before 1980” or “during or after 1980”.</strong> Your goal is to reach or exceed 90% accuracy. Report your final model choice and any other model parameters you may have tweaked (train-test split ratio, tuning parameters, etc).</li>
 </ol>
-<p>I chose to look at both Decision Tree and Random Forest models. It seems that Random Forest was more accurate, with an accuracy of ~92% compared to a Decision Tree at ~90%. I chose my test size to be 20% of the data. Higher values (such as 50%) or lower values (such as 10%) seemed to make the model very slightly less accurate (e.g. random forest was ~91% accurate at both 10% and 50%). The actual values seen here may be different as I didn’t seed the randomness.</p>
-<div id="355ed47d" class="cell" data-execution_count="7">
+<p>I chose to look at both Decision Tree and Random Forest models. It seems that Random Forest was more accurate, with an accuracy of 92.079% compared to a Decision Tree at 90.007%. I chose my test size to be 20% of the data. Higher values (such as 50%) or lower values (such as 10%) seemed to make the model very slightly less accurate (e.g. random forest was ~91% accurate at both 10% and 50%).</p>
+<div id="0ef9e910" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span>
@@ -3255,17 +3255,17 @@ white-space: pre-wrap;
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df.select(<span class="st">&quot;before1980&quot;</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Split training data</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">12345</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="676ccd09" class="cell" data-execution_count="8">
+<div id="b76fdcd7" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make decision tree</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dt_classifier <span class="op">=</span> DecisionTreeClassifier()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>dt_classifier.fit(x_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <style>.sk-global {
 
 --sklearn-color-text: #000;
@@ -3896,7 +3896,7 @@ a.param-doc-link::before {
   justify-content: center;
   margin-top: 0.5em;
 }
-</style><div id="sk-container-id-3" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>DecisionTreeClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.tree.DecisionTreeClassifier.html">?<span>Documentation for DecisionTreeClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
+</style><div id="sk-container-id-1" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>DecisionTreeClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>DecisionTreeClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.tree.DecisionTreeClassifier.html">?<span>Documentation for DecisionTreeClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -4150,7 +4150,7 @@ Warning: impurity-based feature importances can be misleading for<br>
 high cardinality features (many unique values). See<br>
 :func:`sklearn.inspection.permutation_importance` as an alternative.</span></a></td>
 <td class="fitted-att-type">ndarray[float64](47,)</td>
-<td>[0.1 ,0.02,0.05,...,0.01,0.02,0. ]</td>
+<td>[0.09,0.02,0.05,...,0.01,0.01,0.02]</td>
 </tr>
 <tr class="default even">
 <td class="param"><a href="https://scikit-learn.org/1.9/modules/generated/sklearn.tree.DecisionTreeClassifier.html#:~:text=feature_names_in_,-ndarray%20of%20shape%20%28n_features_in_%2C%29" class="param-doc-link" style="anchor-name: --doc-link-feature_names_in_;" rel="noreferrer" target="_blank">feature_names_in_ <span class="param-doc-description" style="position-anchor: --doc-link-feature_names_in_;"> feature_names_in_: ndarray of shape (`n_features_in_`,)<br>
@@ -4202,7 +4202,7 @@ The underlying Tree object. Please refer to<br>
 :ref:`sphx_glr_auto_examples_tree_plot_unveil_tree_structure.py`<br>
 for basic usage of these attributes.</span></a></td>
 <td class="fitted-att-type">Tree</td>
-<td>&lt;sklearn.tree...001996A3B8B20&gt;</td>
+<td>&lt;sklearn.tree...0028A60212090&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -4379,17 +4379,17 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-3');</script>
+forceTheme('sk-container-id-1');</script>
 </div>
 </div>
-<div id="37555289" class="cell" data-execution_count="9">
+<div id="3cbb0bd4" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make random forest</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rf_classifier <span class="op">=</span> RandomForestClassifier()</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>rf_classifier.fit(x_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <style>.sk-global {
 
 --sklearn-color-text: #000;
@@ -5020,7 +5020,7 @@ a.param-doc-link::before {
   justify-content: center;
   margin-top: 0.5em;
 }
-</style><div id="sk-container-id-4" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-4" type="checkbox" checked><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
+</style><div id="sk-container-id-2" tabindex="0" class="sk-top-container sk-global"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually sk-global" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -5349,7 +5349,7 @@ sub-estimators.<br>
 <br>
 The collection of fitted sub-estimators.</span></a></td>
 <td class="fitted-att-type">list</td>
-<td>[DecisionTreeC...te=1877918112), DecisionTreeC...ate=669165554), DecisionTreeC...te=1844991548), DecisionTreeC...te=1557454640), ...]</td>
+<td>[DecisionTreeC...ate=700229295), DecisionTreeC...te=1808647946), DecisionTreeC...ate=252149306), DecisionTreeC...ate=503972475), ...]</td>
 </tr>
 <tr class="default odd">
 <td class="param"><a href="https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.RandomForestClassifier.html#:~:text=estimators_samples_,-list%20of%20arrays" class="param-doc-link" style="anchor-name: --doc-link-estimators_samples_;" rel="noreferrer" target="_blank">estimators_samples_ <span class="param-doc-description" style="position-anchor: --doc-link-estimators_samples_;"> estimators_samples_: list of arrays<br>
@@ -5359,7 +5359,7 @@ estimator. Each subset is defined by an array of the indices selected.<br>
 <br>
 .. versionadded:: 1.4</span></a></td>
 <td class="fitted-att-type">list</td>
-<td>[array([ 773,..., dtype=int32), array([7754, ..., dtype=int32), array([1562, ..., dtype=int32), array([10454,..., dtype=int32), ...]</td>
+<td>[array([ 1007,..., dtype=int32), array([ 5257,..., dtype=int32), array([16752,..., dtype=int32), array([16475,..., dtype=int32), ...]</td>
 </tr>
 <tr class="default even">
 <td class="param"><a href="https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.RandomForestClassifier.html#:~:text=feature_importances_,-ndarray%20of%20shape%20%28n_features%2C%29" class="param-doc-link" style="anchor-name: --doc-link-feature_importances_;" rel="noreferrer" target="_blank">feature_importances_ <span class="param-doc-description" style="position-anchor: --doc-link-feature_importances_;"> feature_importances_: ndarray of shape (n_features,)<br>
@@ -5374,7 +5374,7 @@ Warning: impurity-based feature importances can be misleading for<br>
 high cardinality features (many unique values). See<br>
 :func:`sklearn.inspection.permutation_importance` as an alternative.</span></a></td>
 <td class="fitted-att-type">ndarray[float64](47,)</td>
-<td>[0.09,0.03,0.04,...,0.01,0.01,0.01]</td>
+<td>[0.09,0.03,0.04,...,0.01,0.02,0.01]</td>
 </tr>
 <tr class="default odd">
 <td class="param"><a href="https://scikit-learn.org/1.9/modules/generated/sklearn.ensemble.RandomForestClassifier.html#:~:text=feature_names_in_,-ndarray%20of%20shape%20%28n_features_in_%2C%29" class="param-doc-link" style="anchor-name: --doc-link-feature_names_in_;" rel="noreferrer" target="_blank">feature_names_in_ <span class="param-doc-description" style="position-anchor: --doc-link-feature_names_in_;"> feature_names_in_: ndarray of shape (`n_features_in_`,)<br>
@@ -5585,32 +5585,32 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-4');</script>
+forceTheme('sk-container-id-2');</script>
 </div>
 </div>
-<div id="5d4892a7" class="cell" data-execution_count="10">
+<div id="20d7644d" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DT prediction</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dt_pred <span class="op">=</span> dt_classifier.predict(x_test)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dt_pred</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<pre><code>array([1, 1, 0, ..., 0, 0, 1], shape=(11457,))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([0, 1, 1, ..., 0, 0, 1], shape=(4583,))</code></pre>
 </div>
 </div>
-<div id="1c6e9eef" class="cell" data-execution_count="11">
+<div id="b64dcf52" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RF prediction</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>rf_pred <span class="op">=</span> rf_classifier.predict(x_test)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>rf_pred</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="25">
-<pre><code>array([0, 1, 0, ..., 0, 0, 1], shape=(11457,))</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([0, 1, 1, ..., 0, 0, 1], shape=(4583,))</code></pre>
 </div>
 </div>
-<div id="f4fcf096" class="cell" data-execution_count="12">
+<div id="661ce8c6" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See what values were important when making predictions (for fun)</span></span>
@@ -5630,17 +5630,17 @@ forceTheme('sk-container-id-4');</script>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Decision tree top 3 importances:
-arcstyle_ONE-STORY: 0.25056
-quality_C: 0.12062
-gartype_Att: 0.11957
+arcstyle_ONE-STORY: 0.24937
+gartype_Att: 0.12710
+quality_C: 0.11749
 
 Random forest top 3 importances:
-livearea: 0.09377
-arcstyle_ONE-STORY: 0.08267
-stories: 0.07038</code></pre>
+livearea: 0.08598
+arcstyle_ONE-STORY: 0.08169
+numbaths: 0.07091</code></pre>
 </div>
 </div>
-<div id="f6b0ae8a" class="cell" data-execution_count="13">
+<div id="34ec0915" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for decision tree</span></span>
@@ -5650,19 +5650,19 @@ stories: 0.07038</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Decision Tree
-Accuracy: 88.409%
+Accuracy: 90.225%
               precision    recall  f1-score   support
 
-           0       0.85      0.84      0.85      4348
-           1       0.91      0.91      0.91      7109
+           0       0.86      0.88      0.87      1696
+           1       0.93      0.92      0.92      2887
 
-    accuracy                           0.88     11457
-   macro avg       0.88      0.88      0.88     11457
-weighted avg       0.88      0.88      0.88     11457
+    accuracy                           0.90      4583
+   macro avg       0.89      0.90      0.90      4583
+weighted avg       0.90      0.90      0.90      4583
 </code></pre>
 </div>
 </div>
-<div id="3724b995" class="cell" data-execution_count="14">
+<div id="74715f2c" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for random forest</span></span>
@@ -5672,15 +5672,15 @@ weighted avg       0.88      0.88      0.88     11457
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Random Forest
-Accuracy: 91.673%
+Accuracy: 92.123%
               precision    recall  f1-score   support
 
-           0       0.90      0.88      0.89      4348
-           1       0.93      0.94      0.93      7109
+           0       0.90      0.89      0.89      1696
+           1       0.93      0.94      0.94      2887
 
-    accuracy                           0.92     11457
-   macro avg       0.91      0.91      0.91     11457
-weighted avg       0.92      0.92      0.92     11457
+    accuracy                           0.92      4583
+   macro avg       0.92      0.91      0.92      4583
+weighted avg       0.92      0.92      0.92      4583
 </code></pre>
 </div>
 </div>

@@ -228,7 +228,7 @@ x_max = df["yrbuilt"].max()
 
 2. __Build a classification model labeling houses as being built “before 1980” or “during or after 1980”.__ Your goal is to reach or exceed 90% accuracy. Report your final model choice and any other model parameters you may have tweaked (train-test split ratio, tuning parameters, etc).  
 
-I chose to look at both Decision Tree and Random Forest models. It seems that Random Forest was more accurate, with an accuracy of ~92% compared to a Decision Tree at ~90%. I chose my test size to be 20% of the data. Higher values (such as 50%) or lower values (such as 10%) seemed to make the model very slightly less accurate (e.g. random forest was ~91% accurate at both 10% and 50%). The actual values seen here may be different as I didn't seed the randomness.
+I chose to look at both Decision Tree and Random Forest models. It seems that Random Forest was more accurate, with an accuracy of 92.079% compared to a Decision Tree at 90.007%. I chose my test size to be 20% of the data. Higher values (such as 50%) or lower values (such as 10%) seemed to make the model very slightly less accurate (e.g. random forest was ~91% accurate at both 10% and 50%).
 
 ```{python}
 # Include and execute your code here
@@ -241,7 +241,7 @@ x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
 y = df.select("before1980")
 
 # Split training data
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.5)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=12345)
 ```
 
 ```{python}
