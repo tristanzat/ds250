@@ -55,6 +55,10 @@
     {
       "title": "Unit 4 - Task 1",
       "path": "u4/unit4_task1_template.html"
+    },
+    {
+      "title": "Unit 4 - Task 2",
+      "path": "u4/unit4_task2_template.html"
     }
   ]
 }
