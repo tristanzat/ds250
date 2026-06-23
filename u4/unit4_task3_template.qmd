@@ -30,7 +30,22 @@ import polars as pl
 import numpy as np
 from lets_plot import *
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import LinearSVC
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
+import polars.selectors as cs
+from sklearn.metrics import (
+  accuracy_score,
+  precision_score,
+  recall_score,
+  f1_score,
+  confusion_matrix,
+  classification_report,
+  ConfusionMatrixDisplay
+)
+from sklearn.inspection import permutation_importance
 # add the additional libraries you need to import for ML here
 
 LetsPlot.setup_html(isolated_frame=True)
@@ -39,7 +54,8 @@ LetsPlot.setup_html(isolated_frame=True)
 
 ```{python}
 # import your data here using polars and the URL
-
+url = "https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_ml/dwellings_ml.csv"
+df = pl.read_csv(url)
 
 ```
 
@@ -47,23 +63,154 @@ LetsPlot.setup_html(isolated_frame=True)
 
 1. __Repeat the classification exercise using 2 different algorithms/models. Explain the differences between the 3 models__ (your original one, and the 2 new ones for this task).
 
-_type your write-up and analysis here_
+The models I chose to use were Random Forest Classifier, Linear Support Vector Machine, and Gradient Boosting Classifier.
+
+- Random Forest combines multiple decision trees to improve its accuracy. Each decision tree is splitting the data into subsets based on a value that it gives each input feature.
+- A Linear Support Vector Machine tries to maximize the distance between the boundary and the closest data points. 
+- Gradient Boosting builds sequential models, with each correcting the errors of the model before it. This algorithm also typically uses decision trees, however instead of taking an average like random forest, it makes each new model build off the previous.
 
 ```{python}
-# Include and execute your code here
+# Split data for training
 
+# Remove useless columns (parcel & abstrprd) and giveaways (yrbuilt and answer)
+x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
+
+# Choose what we want the model to be predicting
+y = df.select("before1980")
+
+# Split training data and seed randomness
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=54321)
+```
+
+```{python}
+# Random forest
+# Make random forest
+rf = RandomForestClassifier(random_state=54321)
+rf.fit(x_train, y_train)
 
 ```
 
+```{python}
+# Support Vector Machine
+# Make SVM
+svm = make_pipeline(StandardScaler(), LinearSVC(dual=False, random_state=54321))
+svm.fit(x_train, y_train)
+
+```
+
+```{python}
+# Gradient Boosting
+# Make gradient boosting
+gb = GradientBoostingClassifier(random_state=54321)
+gb.fit(x_train, y_train)
+
+```
 
 ## QUESTION 2
 
 1. For each model (your original one, and the 2 new ones for this task), display the classification report and the permutation importances for the most important features.  Discuss which model you would recommend to the Client and why.
 
-_type your write-up and analysis here_
+Random Forest had the highest accuracy at 92.341%. Next was Gradient Boosting at 88.937%; SVM was last at 86.515%. Both Random Forest and Gradient Boosting had `gartype_Att` and `arcstyle_ONE-STORY` in their top 2. Random Forest gave these importances of 0.042 and 0.040 respectively. Gradient Boosting gave these importances of 0.043 and 0.069 respectively. SVM had `numbaths` as its top importance value at 0.079; its second most important was `tasp` at 0.031. Because of the high accuracy, I would recommend using a Random Forest Classifier for this dataset.
+
+Random Forest Feature Importances
 
 ```{python}
-# Include and execute your code here
+# RF prediction and perm
+rf_pred = rf.predict(x_test)
 
+rf_perm = permutation_importance(
+  rf,
+  x_test,
+  y_test,
+  n_repeats=15,
+  random_state=54321
+)
+
+rf_perm_df = (
+  pl.DataFrame(
+    {
+      "feature": rf.feature_names_in_,
+      "importances": rf_perm.importances_mean
+    }
+  )
+  .sort("importances", descending=True)
+)
+
+rf_perm_df
+```
+
+Support Vector Machine Feature Importances
+
+```{python}
+# SVM prediction and perm
+svm_pred = svm.predict(x_test)
+
+svm_perm = permutation_importance(
+  svm,
+  x_test,
+  y_test,
+  n_repeats=15,
+  random_state=54321
+)
+
+svm_perm_df = (
+  pl.DataFrame(
+    {
+      "feature": x.columns,
+      "importances": svm_perm.importances_mean
+    }
+  )
+  .sort("importances", descending=True)
+)
+
+svm_perm_df
+```
+
+Gradient Boosting Feature Importances
+
+```{python}
+# GB prediction and perm
+gb_pred = gb.predict(x_test)
+
+gb_perm = permutation_importance(
+  gb,
+  x_test,
+  y_test,
+  n_repeats=15,
+  random_state=54321
+)
+
+gb_perm_df = (
+  pl.DataFrame(
+    {
+      "feature": x.columns,
+      "importances": gb_perm.importances_mean
+    }
+  )
+  .sort("importances", descending=True)
+)
+
+gb_perm_df
+```
+
+```{python}
+
+# RF classification report
+print("Random Forest")
+print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, rf_pred))
+
+# SVM classification report
+print("\nSupport Vector Machine")
+print(f"Accuracy: {accuracy_score(y_test, svm_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, svm_pred))
+
+# GB classification report
+print("\nGradient Boosting")
+print(f"Accuracy: {accuracy_score(y_test, gb_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, gb_pred))
 
 ```
