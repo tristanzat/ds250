@@ -79,13 +79,14 @@ x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
 y = df.select("before1980")
 
 # Split training data and seed randomness
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=54321)
+RANDOM_SEED = 54321
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=RANDOM_SEED)
 ```
 
 ```{python}
 # Random forest
 # Make random forest
-rf = RandomForestClassifier(random_state=54321)
+rf = RandomForestClassifier(random_state=RANDOM_SEED)
 rf.fit(x_train, y_train)
 
 ```
@@ -93,7 +94,7 @@ rf.fit(x_train, y_train)
 ```{python}
 # Support Vector Machine
 # Make SVM
-svm = make_pipeline(StandardScaler(), LinearSVC(dual=False, random_state=54321))
+svm = make_pipeline(StandardScaler(), LinearSVC(dual=False, random_state=RANDOM_SEED))
 svm.fit(x_train, y_train)
 
 ```
@@ -101,7 +102,7 @@ svm.fit(x_train, y_train)
 ```{python}
 # Gradient Boosting
 # Make gradient boosting
-gb = GradientBoostingClassifier(random_state=54321)
+gb = GradientBoostingClassifier(random_state=RANDOM_SEED)
 gb.fit(x_train, y_train)
 
 ```
@@ -123,7 +124,7 @@ rf_perm = permutation_importance(
   x_test,
   y_test,
   n_repeats=15,
-  random_state=54321
+  random_state=RANDOM_SEED
 )
 
 rf_perm_df = (
@@ -150,7 +151,7 @@ svm_perm = permutation_importance(
   x_test,
   y_test,
   n_repeats=15,
-  random_state=54321
+  random_state=RANDOM_SEED
 )
 
 svm_perm_df = (
@@ -177,7 +178,7 @@ gb_perm = permutation_importance(
   x_test,
   y_test,
   n_repeats=15,
-  random_state=54321
+  random_state=RANDOM_SEED
 )
 
 gb_perm_df = (
