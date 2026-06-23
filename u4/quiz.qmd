@@ -1,0 +1,45 @@
+
+```{python}
+# %%
+# Read in libraries
+import polars as pl
+import polars.selectors as cs
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+df = pl.read_csv("https://github.com/byuidatascience/data4dwellings/raw/master/data-raw/dwellings_ml/dwellings_ml.csv")
+```
+
+
+```{python}
+# Clean data
+x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
+y = df.select("before1980")
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.34, random_state=76)
+```
+
+Q1 - What is the average of the first 10 values in your testing y values?
+```{python}
+print(y_test[:10])
+
+sum = 0
+for i in range(10):
+    sum += y_test[i]
+
+print(sum / 10)
+```
+
+Q2 - What is the average of the first 10 values in your training X values for the selling price sprice?
+```{python}
+print(x_train["sprice"][:10])
+
+sum = 0
+for i in range(10):
+    sum += x_train["sprice"][i]
+
+print(f"{sum / 10:,.0f}")
+
+```
