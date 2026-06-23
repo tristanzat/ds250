@@ -1,0 +1,154 @@
+---
+title: "Stretch Task — Regression ML"
+subtitle: "Unit 4 Stretch Task"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl
+import numpy as np
+from lets_plot import *
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble._forest import RandomForestRegressor
+from sklearn import metrics
+import polars.selectors as cs
+from sklearn.metrics import (
+  accuracy_score,
+  precision_score,
+  recall_score,
+  f1_score,
+  confusion_matrix,
+  classification_report,
+  ConfusionMatrixDisplay
+)
+from sklearn.inspection import permutation_importance
+# add the additional libraries you need to import for ML here
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+# import your data here using polars and the URL
+dwellings_url = "https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_ml/dwellings_ml.csv"
+neighborhood_url = "https://raw.githubusercontent.com/byuidatascience/data4dwellings/master/data-raw/dwellings_neighborhoods_ml/dwellings_neighborhoods_ml.csv"
+dwellings = pl.read_csv(dwellings_url)
+neighborhood = pl.read_csv(neighborhood_url)
+
+df = dwellings.join(neighborhood, "parcel")
+
+```
+
+## QUESTION 1
+1. __Join the dwellings_neighborhoods_ml.csv data to the dwelling_ml.csv on the parcel column to create a new dataset. Duplicate the code for the model you recommended in the previous task above and update it to use this data. Explain the differences and if this changes the model you recomend to the Client.__
+
+```{python}
+# Split data for training
+
+# Remove useless columns (parcel & abstrprd) and giveaways (yrbuilt and answer)
+x = df.select(cs.exclude("parcel", "abstrprd", "yrbuilt", "before1980"))
+
+# Choose what we want the model to be predicting
+y = df.select("before1980")
+
+# Split training data and seed randomness
+RANDOM_SEED = 373
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=RANDOM_SEED)
+```
+
+```{python}
+# Make random forest and get permutation importances
+rf = RandomForestClassifier(random_state=RANDOM_SEED)
+rf.fit(x_train, y_train)
+
+rf_pred = rf.predict(x_test)
+rf_pred
+
+```
+
+```{python}
+rf_perm = permutation_importance(
+  rf,
+  x_test,
+  y_test,
+  n_repeats=5,
+  random_state=RANDOM_SEED
+)
+```
+
+```{python}
+# Show top permutations dataframe and classification report
+rf_perm_df = (
+  pl.DataFrame(
+    {
+      "feature": rf.feature_names_in_,
+      "importances": rf_perm.importances_mean
+    }
+  )
+  .sort("importances", descending=True)
+)
+
+rf_perm_df.show()
+
+print("Random Forest")
+print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, rf_pred))
+```
+
+## QUESTION 2
+1. __Can you build a model that predicts the year a house was built? Note this is a regression ML model, not a classifier. Report appropriate evaluation metrics for the model. Explain the model and the evaluation metrics you used to determine if the model is good.__
+
+I used a Random Forest Regressor. There are 3 standard evaluation metrics for regression models, being **Mean Absolute Error** (MAE), **Mean Squared Error** (MSE), and **Root Mean Squared Error** (RMSE). MAE calculates the average of the differences between the predictions and the actual values. This doesn't penalize outliers as much as MSE and RMSE do. MSE (and by extension RMSE) calculates the average of the squared differences. Taking the square root makes it more readable. This penalizes outliers more than MAE does. So, on average, our model was 6 years off on its guesses, which is pretty good for the year range being 140 years.
+
+```{python}
+# Split data for regression training
+
+# We are just changing what we're predicting from the previous split
+y = df.select("yrbuilt")
+
+# Re-split data for the regression model
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=RANDOM_SEED)
+```
+
+
+```{python}
+# Make random forest regressor
+rfr = RandomForestRegressor(random_state=RANDOM_SEED)
+rfr.fit(x_train, y_train)
+```
+
+
+```{python}
+# Predict
+rfr_pred = rfr.predict(x_test)
+
+# Evaluation metrics
+print("Random Forest Regressor")
+print(f"Mean Absolute Error: {metrics.mean_absolute_error(y_test, rfr_pred)}")
+print(f"Mean Squared Error: {metrics.mean_squared_error(y_test, rfr_pred)}")
+print(f"Root Mean Squared Error: {np.sqrt(metrics.mean_squared_error(y_test, rfr_pred))}")
+
+```
