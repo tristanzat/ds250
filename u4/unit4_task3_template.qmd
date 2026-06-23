@@ -113,7 +113,7 @@ gb.fit(x_train, y_train)
 
 Random Forest had the highest accuracy at 92.341%. Next was Gradient Boosting at 88.937%; SVM was last at 86.515%. Both Random Forest and Gradient Boosting had `gartype_Att` and `arcstyle_ONE-STORY` in their top 2. Random Forest gave these importances of 0.042 and 0.040 respectively. Gradient Boosting gave these importances of 0.043 and 0.069 respectively. SVM had `numbaths` as its top importance value at 0.079; its second most important was `tasp` at 0.031. Because of the high accuracy, I would recommend using a Random Forest Classifier for this dataset.
 
-Random Forest Feature Importances
+Random Forest Feature Importances & Classification Report:
 
 ```{python}
 # RF prediction and perm
@@ -140,7 +140,16 @@ rf_perm_df = (
 rf_perm_df
 ```
 
-Support Vector Machine Feature Importances
+```{python}
+# RF classification report
+print("Random Forest")
+print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, rf_pred))
+
+```
+
+Support Vector Machine Feature Importances & Classification Report:
 
 ```{python}
 # SVM prediction and perm
@@ -167,7 +176,16 @@ svm_perm_df = (
 svm_perm_df
 ```
 
-Gradient Boosting Feature Importances
+```{python}
+# SVM classification report
+print("Support Vector Machine")
+print(f"Accuracy: {accuracy_score(y_test, svm_pred) * 100:.3f}%")
+print("Classification Report:")
+print(classification_report(y_test, svm_pred))
+
+```
+
+Gradient Boosting Feature Importances & Classification Report:
 
 ```{python}
 # GB prediction and perm
@@ -195,21 +213,8 @@ gb_perm_df
 ```
 
 ```{python}
-
-# RF classification report
-print("Random Forest")
-print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
-print("Classification Report:")
-print(classification_report(y_test, rf_pred))
-
-# SVM classification report
-print("\nSupport Vector Machine")
-print(f"Accuracy: {accuracy_score(y_test, svm_pred) * 100:.3f}%")
-print("Classification Report:")
-print(classification_report(y_test, svm_pred))
-
 # GB classification report
-print("\nGradient Boosting")
+print("Gradient Boosting")
 print(f"Accuracy: {accuracy_score(y_test, gb_pred) * 100:.3f}%")
 print("Classification Report:")
 print(classification_report(y_test, gb_pred))
