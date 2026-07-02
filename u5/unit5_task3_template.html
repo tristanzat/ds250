@@ -2254,13 +2254,16 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
    
   <ul>
   <li><a href="#executive-summary" id="toc-executive-summary">Executive Summary</a></li>
-  <li><a href="#methods" id="toc-methods">Methods</a></li>
+  <li><a href="#methods" id="toc-methods">Methods</a>
+  <ul>
+  <li><a href="#begin-data-cleaning-for-ml" id="toc-begin-data-cleaning-for-ml">Begin data cleaning for ML</a></li>
+  </ul></li>
   <li><a href="#results" id="toc-results">Results</a></li>
   <li><a href="#results-1" id="toc-results-1">Results</a></li>
   <li><a href="#appendix" id="toc-appendix">Appendix</a></li>
   </ul>
 </nav>
-<div id="74fc5ba1" class="cell" data-execution_count="1">
+<div id="eb4dbc33" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl </span>
@@ -2277,7 +2280,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <!-- The first 10 rows are not part of the datset we need.
 
 The columns headers are split across two rows. We need to clean and simplify the column headers-->
-<div id="daf64507" class="cell" data-execution_count="2">
+<div id="7fd1e2c4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in and tidy up the first row</span></span>
@@ -2313,7 +2316,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 </details>
 </div>
 <!-- Combine series q and a into one series to be used as column names-->
-<div id="0fc5f8d6" class="cell" data-execution_count="3">
+<div id="39e49fbf" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pl.Series(pl.read_csv(data_url, skip_rows <span class="op">=</span> <span class="dv">11</span>, n_rows<span class="op">=</span><span class="dv">1</span>, has_header<span class="op">=</span><span class="va">False</span>, encoding <span class="op">=</span> <span class="st">&#39;utf8-lossy&#39;</span>).row(<span class="dv">0</span>))</span>
@@ -2327,7 +2330,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e79884a8" class="cell" data-execution_count="4">
+<div id="0020fdf5" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now combine the two series, each of which contains part of the desired column header</span></span>
@@ -2352,7 +2355,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <p><em>type your report here, you will likely want multiple code chunks and text intermingled</em></p>
 <p>Retrieving first name, last name, and email domain from the email column.</p>
-<div id="596b85d5" class="cell" data-execution_count="5">
+<div id="05fcd8df" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split off first name, last name, and email domain</span></span>
@@ -2437,7 +2440,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Counting how many times an email domain appears in the dataset.</p>
-<div id="06f272a3" class="cell" data-execution_count="6">
+<div id="da6b4a98" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of times an email domain is in the dataset</span></span>
@@ -2470,16 +2473,2701 @@ white-space: pre-wrap;
 </thead>
 <tbody>
 <tr class="odd">
-<td>&quot;gmail&quot;</td>
-<td>707</td>
-</tr>
-<tr class="even">
 <td>&quot;yahoo&quot;</td>
 <td>193</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>&quot;myorg&quot;</td>
 <td>286</td>
+</tr>
+<tr class="odd">
+<td>&quot;gmail&quot;</td>
+<td>707</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Filter dataset to those who have seen at least one film (shape should be (835, 9))</p>
+<div id="90b8df90" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the seen_Episode_[number] columns instead of the seen_any column</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ml_df <span class="op">=</span> df.<span class="bu">filter</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_I&quot;</span>).is_not_null() <span class="op">|</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_II&quot;</span>).is_not_null() <span class="op">|</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_III&quot;</span>).is_not_null() <span class="op">|</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_IV&quot;</span>).is_not_null() <span class="op">|</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_V&quot;</span>).is_not_null() <span class="op">|</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  pl.col(<span class="st">&quot;seen_Episode_VI&quot;</span>).is_not_null()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ml_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (835, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3292879998</td>
+<td>&quot;atticus.kensington@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>null</td>
+<td>&quot;High school degree&quot;</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292765271</td>
+<td>&quot;carrington54543jack@myorg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;High school degree&quot;</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292763116</td>
+<td>&quot;emma.miller@gmaiL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292731220</td>
+<td>&quot;brielle.ironwood@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292719380</td>
+<td>&quot;harper.ashford@GmAIl &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>&quot;$25,000 - $49,999&quot;</td>
+<td>&quot;Bachelor degree&quot;</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>3288389603</td>
+<td>&quot;bennett_violet@YAHOO&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>&quot;45-60&quot;</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="even">
+<td>3288388730</td>
+<td>&quot;octavius.somerfield@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>&quot;18-29&quot;</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288378779</td>
+<td>&quot;pennington55723cyrus@mYOrg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>&quot;30-44&quot;</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Bachelor degree&quot;</td>
+<td>&quot;Mountain&quot;</td>
+</tr>
+<tr class="even">
+<td>3288373068</td>
+<td>&quot;emily.nightwell@gmail &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>&quot;45-60&quot;</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288372923</td>
+<td>&quot;smith_christian@YAHOO&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>&quot;&gt; 60&quot;</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Graduate degree&quot;</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="begin-data-cleaning-for-ml" class="level3">
+<h3 class="anchored" data-anchor-id="begin-data-cleaning-for-ml">Begin data cleaning for ML</h3>
+<p>Convert age ranges to a number. Number is the lower bound of the range. Null values are dropped.</p>
+<div id="ce2557ea" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>age_col <span class="op">=</span> pl.col(<span class="st">&quot;age&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ml_df <span class="op">=</span> (ml_df</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  .drop_nulls(age_col)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  .with_columns(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> pl</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    .when(age_col.eq(<span class="st">&quot;18-29&quot;</span>)).then(<span class="dv">18</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    .when(age_col.eq(<span class="st">&quot;30-44&quot;</span>)).then(<span class="dv">30</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    .when(age_col.eq(<span class="st">&quot;45-60&quot;</span>)).then(<span class="dv">45</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    .otherwise(<span class="dv">61</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ml_df.tail(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i32</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3288401681</td>
+<td>&quot;garcia55715hannah@myorg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>61</td>
+<td>null</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3288401136</td>
+<td>&quot;amelia.lawrence@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>5</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Graduate degree&quot;</td>
+<td>&quot;West South Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288398062</td>
+<td>&quot;loxley55717madison@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;High school degree&quot;</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3288396374</td>
+<td>&quot;jacob.haverhill@gmail&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>61</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288391812</td>
+<td>&quot;arabella.white@gmail&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3288389603</td>
+<td>&quot;bennett_violet@YAHOO&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288388730</td>
+<td>&quot;octavius.somerfield@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>18</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3288378779</td>
+<td>&quot;pennington55723cyrus@mYOrg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>30</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Bachelor degree&quot;</td>
+<td>&quot;Mountain&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288373068</td>
+<td>&quot;emily.nightwell@gmail &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>&quot;Some college or Associate degr…</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3288372923</td>
+<td>&quot;smith_christian@YAHOO&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>61</td>
+<td>&quot;$50,000 - $99,999&quot;</td>
+<td>&quot;Graduate degree&quot;</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Convert education groupings to a number. Null values are dropped.</p>
+<div id="03da10e0" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu_col <span class="op">=</span> pl.col(<span class="st">&quot;education&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ml_df <span class="op">=</span> (ml_df</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  .drop_nulls(edu_col)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  .with_columns(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    education <span class="op">=</span> pl</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    .when(edu_col.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Less&quot;</span>)).then(<span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    .when(edu_col.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">High&quot;</span>)).then(<span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    .when(edu_col.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Some&quot;</span>)).then(<span class="dv">2</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    .when(edu_col.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Bachelor&quot;</span>)).then(<span class="dv">3</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    .otherwise(<span class="dv">4</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ml_df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i32</td>
+<td>str</td>
+<td>i32</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3292879998</td>
+<td>&quot;atticus.kensington@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>null</td>
+<td>1</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292765271</td>
+<td>&quot;carrington54543jack@myorg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>1</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292763116</td>
+<td>&quot;emma.miller@gmaiL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292731220</td>
+<td>&quot;brielle.ironwood@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$100,000 - $149,999&quot;</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292719380</td>
+<td>&quot;harper.ashford@GmAIl &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$25,000 - $49,999&quot;</td>
+<td>3</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292684787</td>
+<td>&quot;caroline.blackwood@GmaIl&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>null</td>
+<td>1</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292663732</td>
+<td>&quot;rodriguez_harper@yahoo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>null</td>
+<td>1</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292654043</td>
+<td>&quot;carrington54549ryan@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$0 - $24,999&quot;</td>
+<td>2</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292640424</td>
+<td>&quot;fitzroy54550gideon@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$25,000 - $49,999&quot;</td>
+<td>2</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="even">
+<td>3292609214</td>
+<td>&quot;clark54553benjamin@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>&quot;$25,000 - $49,999&quot;</td>
+<td>3</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Convert income ranges to numbers. Number is the lower bound. Null values are dropped.</p>
+<div id="cb38ffc6" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>income <span class="op">=</span> pl.col(<span class="st">&quot;household_income&quot;</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ml_df <span class="op">=</span> (ml_df</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  .drop_nulls(income)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  .with_columns(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    household_income <span class="op">=</span> pl</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    .when(income.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="ch">\$</span><span class="vs">25&quot;</span>)).then(<span class="dv">25_000</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    .when(income.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="ch">\$</span><span class="vs">50&quot;</span>)).then(<span class="dv">50_000</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    .when(income.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="ch">\$</span><span class="vs">100&quot;</span>)).then(<span class="dv">100_000</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    .when(income.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="ch">\$</span><span class="vs">150&quot;</span>)).then(<span class="dv">150_000</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    .otherwise(<span class="dv">0</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>ml_df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3292765271</td>
+<td>&quot;carrington54543jack@myorg&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>1</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292763116</td>
+<td>&quot;emma.miller@gmaiL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292731220</td>
+<td>&quot;brielle.ironwood@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292719380</td>
+<td>&quot;harper.ashford@GmAIl &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>3</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292654043</td>
+<td>&quot;carrington54549ryan@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292640424</td>
+<td>&quot;fitzroy54550gideon@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>2</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292609214</td>
+<td>&quot;clark54553benjamin@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>3</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292596911</td>
+<td>&quot;aurelia.dumont@gmail&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Unfamiliar (N/A)&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>30</td>
+<td>50000</td>
+<td>4</td>
+<td>&quot;Mountain&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292583038</td>
+<td>&quot;samuel.stormwind@GmaIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Very favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;West South Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292580516</td>
+<td>&quot;emma.robinson@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>null</td>
+<td>null</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>6</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat favorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Neither favorably nor unfavora…</td>
+<td>&quot;Somewhat unfavorably&quot;</td>
+<td>&quot;Very unfavorably&quot;</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>50000</td>
+<td>3</td>
+<td>&quot;New England&quot;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Convert favorability ratings to numbers. Unfamiliars are dropped.</p>
+<div id="fb937571" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fav <span class="op">=</span> cs.starts_with(<span class="st">&quot;fav_&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ml_df <span class="op">=</span> (ml_df</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  .with_columns(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    pl</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    .when(fav.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Very un&quot;</span>)).then(<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    .when(fav.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Somewhat un&quot;</span>)).then(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    .when(fav.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Neither&quot;</span>)).then(<span class="dv">0</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    .when(fav.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Somewhat f&quot;</span>)).then(<span class="dv">1</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    .when(fav.<span class="bu">str</span>.contains(<span class="vs">r&quot;</span><span class="dv">^</span><span class="vs">Very f&quot;</span>)).then(<span class="dv">2</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    .otherwise(<span class="va">None</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    .name.keep()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  .drop_nulls(fav)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>ml_df.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3292763116</td>
+<td>&quot;emma.miller@gmaiL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292731220</td>
+<td>&quot;brielle.ironwood@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>-2</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-2</td>
+<td>1</td>
+<td>1</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292719380</td>
+<td>&quot;harper.ashford@GmAIl &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>3</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292654043</td>
+<td>&quot;carrington54549ryan@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>-2</td>
+<td>-1</td>
+<td>1</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292640424</td>
+<td>&quot;fitzroy54550gideon@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>-1</td>
+<td>2</td>
+<td>-1</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>-1</td>
+<td>2</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>2</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="even">
+<td>3292609214</td>
+<td>&quot;clark54553benjamin@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>3</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292583038</td>
+<td>&quot;samuel.stormwind@GmaIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>6</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>-1</td>
+<td>0</td>
+<td>-2</td>
+<td>-2</td>
+<td>1</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;West South Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292580516</td>
+<td>&quot;emma.robinson@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>null</td>
+<td>null</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+<td>6</td>
+<td>0</td>
+<td>1</td>
+<td>-1</td>
+<td>0</td>
+<td>-2</td>
+<td>1</td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+<td>0</td>
+<td>-1</td>
+<td>-2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>50000</td>
+<td>3</td>
+<td>&quot;New England&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292562297</td>
+<td>&quot;josephine.armstrong@gmail&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>-2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>50000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292511801</td>
+<td>&quot;scarlett.thomas@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>-2</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>-2</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>50000</td>
+<td>3</td>
+<td>&quot;South Atlantic&quot;</td>
 </tr>
 </tbody>
 </table>
@@ -2487,13 +5175,14 @@ white-space: pre-wrap;
 </div>
 </div>
 </section>
+</section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p><em>type your report here, you will likely want multiple code chunks and text intermingled</em></p>
-<div id="ed5f196e" class="cell" data-execution_count="7">
+<div id="edb746ff" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -2503,13 +5192,13 @@ white-space: pre-wrap;
 </section>
 <section id="appendix" class="level2">
 <h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
-<p>Initial Dataframe</p>
-<div id="a087f3f6" class="cell" data-execution_count="8">
+<p>Full initial dataframe</p>
+<div id="270ee6a7" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -3054,6 +5743,563 @@ white-space: pre-wrap;
 <td>&quot;$50,000 - $99,999&quot;</td>
 <td>&quot;Graduate degree&quot;</td>
 <td>&quot;Pacific&quot;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Cleaned dataframe for machine learning</p>
+<div id="747d77a0" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ml_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (415, 39)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">respondentid</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">seen_any</th>
+<th data-quarto-table-cell-role="th">star_wars_fan</th>
+<th data-quarto-table-cell-role="th">seen_Episode_I</th>
+<th data-quarto-table-cell-role="th">seen_Episode_II</th>
+<th data-quarto-table-cell-role="th">seen_Episode_III</th>
+<th data-quarto-table-cell-role="th">seen_Episode_IV</th>
+<th data-quarto-table-cell-role="th">seen_Episode_V</th>
+<th data-quarto-table-cell-role="th">seen_Episode_VI</th>
+<th data-quarto-table-cell-role="th">rank_Episode_I</th>
+<th data-quarto-table-cell-role="th">rank_Episode_II</th>
+<th data-quarto-table-cell-role="th">rank_Episode_III</th>
+<th data-quarto-table-cell-role="th">rank_Episode_IV</th>
+<th data-quarto-table-cell-role="th">rank_Episode_V</th>
+<th data-quarto-table-cell-role="th">rank_Episode_VI</th>
+<th data-quarto-table-cell-role="th">fav_Han_Solo</th>
+<th data-quarto-table-cell-role="th">fav_Luke_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Princess_Leia_Organa</th>
+<th data-quarto-table-cell-role="th">fav_Anakin_Skywalker</th>
+<th data-quarto-table-cell-role="th">fav_Obi_Wan_Kenobi</th>
+<th data-quarto-table-cell-role="th">fav_Emperor_Palpatine</th>
+<th data-quarto-table-cell-role="th">fav_Darth_Vader</th>
+<th data-quarto-table-cell-role="th">fav_Lando_Calrissian</th>
+<th data-quarto-table-cell-role="th">fav_Boba_Fett</th>
+<th data-quarto-table-cell-role="th">fav_C-3P0</th>
+<th data-quarto-table-cell-role="th">fav_R2_D2</th>
+<th data-quarto-table-cell-role="th">fav_Jar_Jar_Binks</th>
+<th data-quarto-table-cell-role="th">fav_Padme_Amidala</th>
+<th data-quarto-table-cell-role="th">fav_Yoda</th>
+<th data-quarto-table-cell-role="th">who_shot_first</th>
+<th data-quarto-table-cell-role="th">know_expanded_universe</th>
+<th data-quarto-table-cell-role="th">expanded_universe_fan</th>
+<th data-quarto-table-cell-role="th">star_trek_fan</th>
+<th data-quarto-table-cell-role="th">gender</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">household_income</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">location</th>
+</tr>
+<tr class="even">
+<td>i64</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i32</td>
+<td>i32</td>
+<td>i32</td>
+<td>str</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3292763116</td>
+<td>&quot;emma.miller@gmaiL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="even">
+<td>3292731220</td>
+<td>&quot;brielle.ironwood@GMAIL &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-1</td>
+<td>2</td>
+<td>-2</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>-2</td>
+<td>1</td>
+<td>1</td>
+<td>&quot;Greedo&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292719380</td>
+<td>&quot;harper.ashford@GmAIl &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>3</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3292654043</td>
+<td>&quot;carrington54549ryan@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>-1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>-2</td>
+<td>-1</td>
+<td>1</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;South Atlantic&quot;</td>
+</tr>
+<tr class="odd">
+<td>3292640424</td>
+<td>&quot;fitzroy54550gideon@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>-1</td>
+<td>2</td>
+<td>-1</td>
+<td>-1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>-1</td>
+<td>2</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Male&quot;</td>
+<td>18</td>
+<td>25000</td>
+<td>2</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>3288398062</td>
+<td>&quot;loxley55717madison@MYORG&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>&quot;I don&#39;t understand this questi…</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>0</td>
+<td>1</td>
+<td>&quot;Middle Atlantic&quot;</td>
+</tr>
+<tr class="even">
+<td>3288391812</td>
+<td>&quot;arabella.white@gmail&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;West North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288389603</td>
+<td>&quot;bennett_violet@YAHOO&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;No&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;Pacific&quot;</td>
+</tr>
+<tr class="even">
+<td>3288388730</td>
+<td>&quot;octavius.somerfield@GMAIL&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>5</td>
+<td>4</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>18</td>
+<td>0</td>
+<td>2</td>
+<td>&quot;East North Central&quot;</td>
+</tr>
+<tr class="odd">
+<td>3288373068</td>
+<td>&quot;emily.nightwell@gmail &quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Star Wars: Episode I  The Phan…</td>
+<td>&quot;Star Wars: Episode II  Attack …</td>
+<td>&quot;Star Wars: Episode III  Reveng…</td>
+<td>&quot;Star Wars: Episode IV  A New H…</td>
+<td>&quot;Star Wars: Episode V The Empir…</td>
+<td>&quot;Star Wars: Episode VI Return o…</td>
+<td>4</td>
+<td>3</td>
+<td>6</td>
+<td>5</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>&quot;Han&quot;</td>
+<td>&quot;No&quot;</td>
+<td>null</td>
+<td>&quot;Yes&quot;</td>
+<td>&quot;Female&quot;</td>
+<td>45</td>
+<td>100000</td>
+<td>2</td>
+<td>&quot;East North Central&quot;</td>
 </tr>
 </tbody>
 </table>
