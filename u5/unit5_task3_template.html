@@ -2263,7 +2263,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <li><a href="#appendix" id="toc-appendix">Appendix</a></li>
   </ul>
 </nav>
-<div id="eb4dbc33" class="cell" data-execution_count="1">
+<div id="4aa4c20d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl </span>
@@ -2280,7 +2280,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <!-- The first 10 rows are not part of the datset we need.
 
 The columns headers are split across two rows. We need to clean and simplify the column headers-->
-<div id="7fd1e2c4" class="cell" data-execution_count="2">
+<div id="c262947c" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in and tidy up the first row</span></span>
@@ -2316,7 +2316,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 </details>
 </div>
 <!-- Combine series q and a into one series to be used as column names-->
-<div id="39e49fbf" class="cell" data-execution_count="3">
+<div id="1380b183" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pl.Series(pl.read_csv(data_url, skip_rows <span class="op">=</span> <span class="dv">11</span>, n_rows<span class="op">=</span><span class="dv">1</span>, has_header<span class="op">=</span><span class="va">False</span>, encoding <span class="op">=</span> <span class="st">&#39;utf8-lossy&#39;</span>).row(<span class="dv">0</span>))</span>
@@ -2330,7 +2330,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0020fdf5" class="cell" data-execution_count="4">
+<div id="ddd7588e" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now combine the two series, each of which contains part of the desired column header</span></span>
@@ -2355,7 +2355,7 @@ The columns headers are split across two rows. We need to clean and simplify the
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <p><em>type your report here, you will likely want multiple code chunks and text intermingled</em></p>
 <p>Retrieving first name, last name, and email domain from the email column.</p>
-<div id="05fcd8df" class="cell" data-execution_count="5">
+<div id="2ed1e908" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split off first name, last name, and email domain</span></span>
@@ -2440,7 +2440,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Counting how many times an email domain appears in the dataset.</p>
-<div id="da6b4a98" class="cell" data-execution_count="6">
+<div id="716e1f07" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of times an email domain is in the dataset</span></span>
@@ -2473,24 +2473,24 @@ white-space: pre-wrap;
 </thead>
 <tbody>
 <tr class="odd">
-<td>&quot;yahoo&quot;</td>
-<td>193</td>
+<td>&quot;gmail&quot;</td>
+<td>707</td>
 </tr>
 <tr class="even">
 <td>&quot;myorg&quot;</td>
 <td>286</td>
 </tr>
 <tr class="odd">
-<td>&quot;gmail&quot;</td>
-<td>707</td>
+<td>&quot;yahoo&quot;</td>
+<td>193</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Filter dataset to those who have seen at least one film (shape should be (835, 9))</p>
-<div id="90b8df90" class="cell" data-execution_count="7">
+<p>Filter dataset to those who have seen at least one film (shape should be (835, 39))</p>
+<div id="09ca3930" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the seen_Episode_[number] columns instead of the seen_any column</span></span>
@@ -3059,7 +3059,7 @@ white-space: pre-wrap;
 <section id="begin-data-cleaning-for-ml" class="level3">
 <h3 class="anchored" data-anchor-id="begin-data-cleaning-for-ml">Begin data cleaning for ML</h3>
 <p>Convert age ranges to a number. Number is the lower bound of the range. Null values are dropped.</p>
-<div id="ce2557ea" class="cell" data-execution_count="8">
+<div id="f400435e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>age_col <span class="op">=</span> pl.col(<span class="st">&quot;age&quot;</span>)</span>
@@ -3587,7 +3587,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Convert education groupings to a number. Null values are dropped.</p>
-<div id="03da10e0" class="cell" data-execution_count="9">
+<div id="76fc7b19" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>edu_col <span class="op">=</span> pl.col(<span class="st">&quot;education&quot;</span>)</span>
@@ -4116,7 +4116,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Convert income ranges to numbers. Number is the lower bound. Null values are dropped.</p>
-<div id="cb38ffc6" class="cell" data-execution_count="10">
+<div id="68cc65bf" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>income <span class="op">=</span> pl.col(<span class="st">&quot;household_income&quot;</span>)</span>
@@ -4644,7 +4644,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Convert favorability ratings to numbers. Unfamiliars are dropped.</p>
-<div id="fb937571" class="cell" data-execution_count="11">
+<div id="30f46aa5" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fav <span class="op">=</span> cs.starts_with(<span class="st">&quot;fav_&quot;</span>)</span>
@@ -5179,7 +5179,7 @@ white-space: pre-wrap;
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p><em>type your report here, you will likely want multiple code chunks and text intermingled</em></p>
-<div id="edb746ff" class="cell" data-execution_count="12">
+<div id="2f9abcb9" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Include and execute your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5193,7 +5193,7 @@ white-space: pre-wrap;
 <section id="appendix" class="level2">
 <h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
 <p>Full initial dataframe</p>
-<div id="270ee6a7" class="cell" data-execution_count="13">
+<div id="67062595" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5750,7 +5750,7 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>Cleaned dataframe for machine learning</p>
-<div id="747d77a0" class="cell" data-execution_count="14">
+<div id="dd3cc759" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ml_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

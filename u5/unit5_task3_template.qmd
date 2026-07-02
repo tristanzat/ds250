@@ -155,7 +155,7 @@ domain_df = (email_df
 domain_df
 ```
 
-Filter dataset to those who have seen at least one film (shape should be (835, 9))
+Filter dataset to those who have seen at least one film (shape should be (835, 39))
 
 ```{python}
 # Use the seen_Episode_[number] columns instead of the seen_any column
