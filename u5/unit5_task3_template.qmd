@@ -118,6 +118,7 @@ _type your write-up and analysis here_
 _type your report here, you will likely want multiple code chunks and text intermingled_
 
 Retrieving first name, last name, and email domain from the email column.
+
 ```{python}
 # Split off first name, last name, and email domain
 email_df = ( df
@@ -143,6 +144,7 @@ email_df.select("email", "firstname", "lastname", "email_domain").head()
 ```
 
 Counting how many times an email domain appears in the dataset.
+
 ```{python}
 # Count the number of times an email domain is in the dataset
 domain_df = (email_df
@@ -151,6 +153,100 @@ domain_df = (email_df
 )
 
 domain_df
+```
+
+Filter dataset to those who have seen at least one film (shape should be (835, 9))
+
+```{python}
+# Use the seen_Episode_[number] columns instead of the seen_any column
+ml_df = df.filter(
+  pl.col("seen_Episode_I").is_not_null() |
+  pl.col("seen_Episode_II").is_not_null() |
+  pl.col("seen_Episode_III").is_not_null() |
+  pl.col("seen_Episode_IV").is_not_null() |
+  pl.col("seen_Episode_V").is_not_null() |
+  pl.col("seen_Episode_VI").is_not_null()
+)
+
+ml_df
+```
+
+### Begin data cleaning for ML
+
+Convert age ranges to a number. Number is the lower bound of the range. Null values are dropped.
+
+```{python}
+age_col = pl.col("age")
+ml_df = (ml_df
+  .drop_nulls(age_col)
+  .with_columns(
+    age = pl
+    .when(age_col.eq("18-29")).then(18)
+    .when(age_col.eq("30-44")).then(30)
+    .when(age_col.eq("45-60")).then(45)
+    .otherwise(61)
+  )
+)
+
+ml_df.tail(10)
+```
+
+Convert education groupings to a number. Null values are dropped.
+
+```{python}
+edu_col = pl.col("education")
+ml_df = (ml_df
+  .drop_nulls(edu_col)
+  .with_columns(
+    education = pl
+    .when(edu_col.str.contains(r"^Less")).then(0)
+    .when(edu_col.str.contains(r"^High")).then(1)
+    .when(edu_col.str.contains(r"^Some")).then(2)
+    .when(edu_col.str.contains(r"^Bachelor")).then(3)
+    .otherwise(4)
+  )
+)
+
+ml_df.head(10)
+```
+
+Convert income ranges to numbers. Number is the lower bound. Null values are dropped.
+
+```{python}
+income = pl.col("household_income")
+ml_df = (ml_df
+  .drop_nulls(income)
+  .with_columns(
+    household_income = pl
+    .when(income.str.contains(r"\$25")).then(25_000)
+    .when(income.str.contains(r"\$50")).then(50_000)
+    .when(income.str.contains(r"\$100")).then(100_000)
+    .when(income.str.contains(r"\$150")).then(150_000)
+    .otherwise(0)
+  )
+)
+ml_df.head(10)
+```
+
+Convert favorability ratings to numbers. Unfamiliars are dropped.
+
+```{python}
+fav = cs.starts_with("fav_")
+ml_df = (ml_df
+  .with_columns(
+    pl
+    .when(fav.str.contains(r"^Very un")).then(-2)
+    .when(fav.str.contains(r"^Somewhat un")).then(-1)
+    .when(fav.str.contains(r"^Neither")).then(0)
+    .when(fav.str.contains(r"^Somewhat f")).then(1)
+    .when(fav.str.contains(r"^Very f")).then(2)
+    .otherwise(None)
+    .name.keep()
+  )
+  .drop_nulls(fav)
+)
+
+ml_df.head(10)
 ```
 
 ## Results
@@ -169,8 +265,14 @@ _type your report here_
 
 ## Appendix
 
-Initial Dataframe
+Full initial dataframe
 
 ```{python}
 df
+```
+
+Cleaned dataframe for machine learning
+
+```{python}
+ml_df
 ```
