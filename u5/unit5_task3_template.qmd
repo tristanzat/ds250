@@ -31,6 +31,19 @@ import numpy as np
 from lets_plot import *
 import polars.selectors as cs
 # add the additional libraries you need to import for ML here
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import metrics
+from sklearn.metrics import (
+  accuracy_score,
+  precision_score,
+  recall_score,
+  f1_score,
+  confusion_matrix,
+  classification_report,
+  ConfusionMatrixDisplay
+)
+from sklearn.inspection import permutation_importance
 
 LetsPlot.setup_html(isolated_frame=True)
 
@@ -109,13 +122,29 @@ df = pl.read_csv(data_url, skip_rows=12, has_header=False, new_columns = new_nam
 
 ## Executive Summary
 
-_type your write-up and analysis here_
-
-
+- This report uses survey responses from a Star Wars dataset to predict whether a respondent's household income is at least $50,000.
+- The stretch task was completed. 2 graphs were recreated from the article.
+- After cleaning the data and updating the one-hot encoding approach, a Random Forest Classifier achieved approximately 56.886% accuracy on the test set in the most recent run.
+- Even with seeded randomness, results vary slightly across runs due to non-deterministic behavior in the training and permutation importance steps.
+- Education was consistently in the top 5 feature importances. Other features were more inconsistent across runs, even with seeded randomness.
+- The main takeaway is that the model provides limited predictive value, and results should be treated as directional rather than definitive.
 
 ## Methods
 
-_type your report here, you will likely want multiple code chunks and text intermingled_
+### Client Request
+The client requested that the email field be broken into first name, last name, and email domain. This was completed with regex-based string extraction, and a frequency table was created to show how often each domain appeared in the dataset.
+
+### Data Preparation
+The dataset was first cleaned so that it could be used for machine learning and checked against the original article by recreating two of its charts. For the predictive model, the data was filtered to respondents who had seen at least one Star Wars film, then transformed into numeric features so the classifier could evaluate the responses consistently.
+
+- Columns with ranges (age and household income) are converted to their lower bounds; missing values are filled with 0.
+- Favorability columns are mapped to a -2 to 2 scale; missing values are filled with 0 (neutral). Education is mapped 1–5 (Less than High School to Graduate); missing values are filled with 0.
+- Fan columns are converted to 1 (Yes) or 0 (No/missing), then all remaining non-numeric columns are one-hot encoded with `to_dummies`.
+- RespondentID, email, first name, last name, and email domain are dropped before modeling.
+
+Missing values are handled by filling all gaps with 0, keeping every row in the dataset. This avoids the row loss caused by dropping incomplete records, but it can introduce noise because 0 sometimes means "unknown" and sometimes means a genuine low value.
+
+These choices make the workflow easy to reproduce and interpret, but they also simplify the original survey data. For example, converting ranges to lower bounds removes detail, and turning opinion responses into small numeric scales assumes evenly spaced categories. Specific implementation steps are shown below.
 
 Retrieving first name, last name, and email domain from the email column.
 
@@ -155,67 +184,63 @@ domain_df = (email_df
 domain_df
 ```
 
-Filter dataset to those who have seen at least one film (shape should be (835, 39))
+Filter dataset to those who have seen at least one film (shape should be (835, 42))
 
 ```{python}
 # Use the seen_Episode_[number] columns instead of the seen_any column
-ml_df = df.filter(
-  pl.col("seen_Episode_I").is_not_null() |
-  pl.col("seen_Episode_II").is_not_null() |
-  pl.col("seen_Episode_III").is_not_null() |
-  pl.col("seen_Episode_IV").is_not_null() |
-  pl.col("seen_Episode_V").is_not_null() |
-  pl.col("seen_Episode_VI").is_not_null()
+ml_df = email_df.filter(
+  pl.any_horizontal(cs.starts_with("seen_E").is_not_null())
 )
+
+temp_df = ml_df
 
 ml_df
 ```
 
 ### Begin data cleaning for ML
 
-Convert age ranges to a number. Number is the lower bound of the range. Null values are dropped.
+Convert age ranges to a number. Number is the lower bound of the range. Missing values are filled with 0.
 
 ```{python}
 age_col = pl.col("age")
 ml_df = (ml_df
-  .drop_nulls(age_col)
   .with_columns(
     age = pl
     .when(age_col.eq("18-29")).then(18)
     .when(age_col.eq("30-44")).then(30)
     .when(age_col.eq("45-60")).then(45)
-    .otherwise(61)
+    .when(age_col.eq("60+")).then(61)
+    .otherwise(0)
   )
 )
 
 ml_df.tail(10)
 ```
 
-Convert education groupings to a number. Null values are dropped.
+Convert education groupings to a number (1-5). Missing values are filled with 0.
 
 ```{python}
 edu_col = pl.col("education")
 ml_df = (ml_df
-  .drop_nulls(edu_col)
   .with_columns(
     education = pl
-    .when(edu_col.str.contains(r"^Less")).then(0)
-    .when(edu_col.str.contains(r"^High")).then(1)
-    .when(edu_col.str.contains(r"^Some")).then(2)
-    .when(edu_col.str.contains(r"^Bachelor")).then(3)
-    .otherwise(4)
+    .when(edu_col.str.contains(r"^Less")).then(1)
+    .when(edu_col.str.contains(r"^High")).then(2)
+    .when(edu_col.str.contains(r"^Some")).then(3)
+    .when(edu_col.str.contains(r"^Bachelor")).then(4)
+    .when(edu_col.str.contains(r"^Graduate")).then(5)
+    .otherwise(0)
   )
 )
 
 ml_df.head(10)
 ```
 
-Convert income ranges to numbers. Number is the lower bound. Null values are dropped.
+Convert income ranges to numbers. Number is the lower bound. Missing values are filled as 0.
 
 ```{python}
 income = pl.col("household_income")
 ml_df = (ml_df
-  .drop_nulls(income)
   .with_columns(
     household_income = pl
     .when(income.str.contains(r"\$25")).then(25_000)
@@ -228,7 +253,7 @@ ml_df = (ml_df
 ml_df.head(10)
 ```
 
-Convert favorability ratings to numbers. Unfamiliars are dropped.
+Convert favorability ratings to numbers (-2 to 2). Missing values are filled as 0 (neutral).
 
 ```{python}
 fav = cs.starts_with("fav_")
@@ -236,14 +261,64 @@ ml_df = (ml_df
   .with_columns(
     pl
     .when(fav.str.contains(r"^Very un")).then(-2)
-    .when(fav.str.contains(r"^Somewhat un")).then(-1)
+    .when(fav.str.contains(r"^Somewhat un")).then(1)
     .when(fav.str.contains(r"^Neither")).then(0)
     .when(fav.str.contains(r"^Somewhat f")).then(1)
     .when(fav.str.contains(r"^Very f")).then(2)
-    .otherwise(None)
+    .otherwise(0)
     .name.keep()
   )
-  .drop_nulls(fav)
+)
+
+ml_df.head(10)
+```
+
+Drop the RespondentID column, first and last name columns, email, and email domain columns.
+
+```{python}
+ml_df = (ml_df
+  .drop("respondentid", "firstname", "lastname", "email", "email_domain")
+)
+
+ml_df.head(10)
+```
+
+Fan columns are being one-hot encoded incorrectly. Fix that by making them numeric.
+
+```{python}
+fan_cols = cs.ends_with("_fan")
+
+ml_df = (ml_df
+  .with_columns(
+    pl
+    .when(fan_cols == "Yes").then(1).otherwise(0).name.keep()
+  )
+)
+
+ml_df.head(10)
+
+```
+
+One-hot encode all remaining non-numeric columns
+
+```{python}
+
+ml_df = (
+  ml_df.to_dummies(cs.exclude(cs.numeric()))
+)
+
+ml_df.head(10)
+```
+
+Create target column (household income ≥ $50,000)
+
+```{python}
+ml_df = (
+  ml_df
+  .with_columns(
+    target =
+    pl.when(pl.col("household_income") >= 50_000).then(1).otherwise(0)
+  )
 )
 
 ml_df.head(10)
@@ -251,17 +326,210 @@ ml_df.head(10)
 
 ## Results
 
-_type your report here, you will likely want multiple code chunks and text intermingled_
+Two graphs from the original article were recreated: "Which 'Star Wars' Movies Have You Seen?" and "What's the Best 'Star Wars' Movie?" Reproducing these charts helped confirm that the dataset is consistent with the source article.
+
+The cleaned dataset was then used to train a Random Forest Classifier to predict whether household income was at least $50,000. With the updated encoding and null-handling workflow, the model reached approximately 56.886% accuracy on the test set in the most recent run. Note that even with seeded randomness, results vary slightly across runs, so this figure should be treated as approximate. The classification output shows that the model's ability to separate the two income groups is weak, only marginally better than a majority-class baseline.
+
+Permutation importance identified the top five predictors as `fav_Luke_Skywalker`, `rank_Episode_IV`, `education`, `fav_Jar_Jar_Binks`, and `fav_Anakin_Skywalker`. Education was consistently in the top 5 across runs but other columns varied, showing that education is one of the most important factors in determining household income.
+
+Specific steps can be seen below.
+
+Unpivot data for "Which 'Star Wars' Movies Have You Seen?" 
 
 ```{python}
-# Include and execute your code here
+movie_names = {
+    "percentage_seen_1": "The Phantom Menace",
+    "percentage_seen_2": "Attack of the Clones",
+    "percentage_seen_3": "Revenge of the Sith",
+    "percentage_seen_4": "A New Hope",
+    "percentage_seen_5": "The Empire Strikes Back",
+    "percentage_seen_6": "Return of the Jedi",
+}
 
+seen_df = (
+  temp_df
+  .select(
+    (pl.col("seen_Episode_I").is_not_null().sum() / pl.len()).alias("percentage_seen_1"),
+    (pl.col("seen_Episode_II").is_not_null().sum() / pl.len()).alias("percentage_seen_2"),
+    (pl.col("seen_Episode_III").is_not_null().sum() / pl.len()).alias("percentage_seen_3"),
+    (pl.col("seen_Episode_IV").is_not_null().sum() / pl.len()).alias("percentage_seen_4"),
+    (pl.col("seen_Episode_V").is_not_null().sum() / pl.len()).alias("percentage_seen_5"),
+    (pl.col("seen_Episode_VI").is_not_null().sum() / pl.len()).alias("percentage_seen_6")
+  )
+  .unpivot(
+    on=cs.starts_with("percentage"),
+    variable_name = "movie",
+    value_name="percentage"
+  )
+  .with_columns(
+    movie = pl.col("movie").replace(movie_names),
+    label = (pl.col("percentage") * 100).round(0).cast(pl.Int64).cast(pl.String) + "%"
+  )
+)
+
+seen_df
+```
+
+Create graph using that data
+
+```{python}
+movie_order = list(movie_names.values())[::-1]  # reversed so Phantom Menace ends up on top
+
+(
+ggplot(seen_df, aes("percentage", "movie"))
++ geom_bar(stat="identity", fill="#4E79A7", width=0.7)
++ geom_text(aes(label="label"), size=8)
++ scale_y_discrete(limits=movie_order)
++ labs(
+  title="Which 'Star Wars' Movies Have You Seen?",
+  subtitle="Of 835 respondents who have seen any film",
+  x="",
+  y=""
+)
++ theme_gray()
++ theme(axis_text_x='blank', axis_ticks_x='blank', axis_title_x='blank', panel_grid='blank', plot_title=element_text(hjust=-0.3), plot_subtitle=element_text(hjust=-0.3))
+)
+```
+
+Unpivot data for "What's the Best 'Star Wars' Movie?"
+
+```{python}
+movie_names = {
+    "percentage_favorite_1": "The Phantom Menace",
+    "percentage_favorite_2": "Attack of the Clones",
+    "percentage_favorite_3": "Revenge of the Sith",
+    "percentage_favorite_4": "A New Hope",
+    "percentage_favorite_5": "The Empire Strikes Back",
+    "percentage_favorite_6": "Return of the Jedi",
+}
+
+rank_df = (
+  temp_df
+  .filter(
+    pl.all_horizontal(cs.starts_with("seen_E").is_not_null())
+  )
+  .select(
+    # Compute the fraction of respondents who ranked each film as their favorite (rank = 1)
+    (pl.when(pl.col("rank_Episode_I").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_1"),
+    (pl.when(pl.col("rank_Episode_II").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_2"),
+    (pl.when(pl.col("rank_Episode_III").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_3"),
+    (pl.when(pl.col("rank_Episode_IV").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_4"),
+    (pl.when(pl.col("rank_Episode_V").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_5"),
+    (pl.when(pl.col("rank_Episode_VI").cast(pl.Int64, strict=False).eq(1)).then(1).otherwise(0).sum() / pl.len()).alias("percentage_favorite_6"),
+  )
+  .unpivot(
+    on=cs.starts_with("percentage_"),
+    variable_name = "movie",
+    value_name="percentage"
+  )
+  .with_columns(
+    movie = pl.col("movie").replace(movie_names),
+    label = (pl.col("percentage") * 100).round(0).cast(pl.Int64).cast(pl.String) + "%"
+  )
+)
+
+rank_df
+```
+
+Create graph with that data
+
+```{python}
+movie_order = list(movie_names.values())[::-1]  # reversed so Phantom Menace ends up on top
+
+(
+ggplot(rank_df, aes("percentage", "movie"))
++ geom_bar(stat="identity", fill="#4E79A7", width=0.7)
++ geom_text(aes(label="label"), size=8)
++ scale_y_discrete(limits=movie_order)
++ labs(
+  title="What's the Best 'Star Wars' Movie?",
+  subtitle="Of 471 respondents who have seen all six films",
+  x="",
+  y=""
+)
++ theme_gray()
++ theme(axis_text_x='blank', axis_ticks_x='blank', axis_title_x='blank', panel_grid='blank', plot_title=element_text(hjust=-0.3), plot_subtitle=element_text(hjust=-0.3))
+)
+```
+
+Split data for testing
+
+```{python}
+# Drop target and giveaway
+x = ml_df.select(cs.exclude("household_income", "target"))
+y = ml_df.select("target")
+
+# Split data
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
 ```
 
-## Results
+Make Random forest classifier
 
-_type your report here_
+```{python}
+# Make random forest
+rf_classifier = RandomForestClassifier(random_state=42)
+rf_classifier.fit(x_train, y_train)
+```
+
+Get prediction
+
+```{python}
+# RF prediction
+rf_pred = rf_classifier.predict(x_test)
+rf_pred
+```
+
+Classification report
+
+```{python}
+# Classification report for random forest
+print("Random Forest")
+print(f"Accuracy: {accuracy_score(y_test, rf_pred) * 100:.3f}%")
+print(classification_report(y_test, rf_pred))
+```
+
+Graph of top 5 feature importances
+
+```{python}
+
+perm = permutation_importance(
+  rf_classifier,
+  x_test,
+  y_test,
+  n_repeats=15,
+  random_state=42
+)
+
+perm_df = (
+  pl.DataFrame(
+    {
+      "feature": rf_classifier.feature_names_in_,
+      "importances": perm.importances_mean
+    }
+  )
+  .sort("importances", descending=True)
+)
+
+(
+  ggplot(perm_df.head(5), aes("feature", "importances"))
+  + geom_bar(stat="identity")
+  + labs(
+      title="Top Feature Importances",
+      x="Feature",
+      y="Importance value"
+  )
+)
+
+```
+
+## Conclusion
+
+This analysis shows that a machine learning model has limited ability to predict whether a respondent's household income is at least $50,000 from Star Wars survey responses alone. In the most recent run the model achieved approximately 56.886% accuracy, though results vary slightly across runs even with seeded randomness. The current top predictors include both one demographic feature (`education`) and Star Wars preference features (`fav_Luke_Skywalker`, `rank_Episode_IV`, `fav_Jar_Jar_Binks`, and `fav_Anakin_Skywalker`).
+
+The results should be interpreted with caution. Missing values across all predictor columns are filled with 0, which preserves the full dataset but conflates "no response" with a genuine low or neutral value. Some variables are also simplified into lower bounds or short numeric scales, which removes information that may be relevant to income prediction.
+
+If this analysis were extended, the next steps would be to test additional models and change handling missing values. Based on the current results, the strongest conclusion is that the prediction is distributed across both demographic and fandom-related features, but overall model performance remains modest.
 
 ## Appendix
 
