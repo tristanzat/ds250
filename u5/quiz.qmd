@@ -1,0 +1,42 @@
+```{python}
+# %%
+# Read in libraries
+import polars as pl
+import numpy as np
+from lets_plot import *
+LetsPlot.setup_html(isolated_frame=True)
+url = 'https://github.com/fivethirtyeight/data/raw/master/star-wars-survey/StarWars.csv'
+```
+
+```{python}
+df = pl.read_csv(url)
+
+df
+```
+
+## Q1 - Calculate the percentage of people that have seen at least one of the films (report to four decimal places).
+```{python}
+seen_sw_df = df.filter(
+    pl.col("Have you seen any of the 6 films in the Star Wars franchise?").eq("Yes")
+)
+
+seen_sw_df
+```
+
+```{python}
+print(f"{seen_sw_df.shape[0] / (df.shape[0]-1):.4f}")
+```
+
+## Q2 - What percent of males have seen at least one film (report to four decimal places)?
+
+```{python}
+m_seen_sw_df = seen_sw_df.filter(
+    pl.col("Gender").eq("Male")
+)
+
+m_seen_sw_df
+```
+
+```{python}
+print(f"{m_seen_sw_df.shape[0] / (df.shape[0]-1):.4f}")
+```
