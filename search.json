@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site is built with Quarto and published from the repository root so it can stay close to your current GitHub Pages workflow.\nThe homepage is authored in Quarto, while the assignment deliverables remain the existing rendered HTML files under the unit folders.\nIf you add new assignments later, update the links in index.qmd and _quarto.yml, then run quarto render again.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DS 250",
+    "section": "",
+    "text": "This Quarto homepage replaces the hand-written landing page and links directly to the assignment HTML files already in this repository.\nOpen the GitHub repository"
+  },
+  {
+    "objectID": "index.html#assignment-index",
+    "href": "index.html#assignment-index",
+    "title": "DS 250",
+    "section": "Assignment Index",
+    "text": "Assignment Index\n\n\nUnit 0\n\nP0 Template\n\n\n\nUnit 1\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 2\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 3\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 4\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 5\n\nClient Report"
+  },
+  {
+    "objectID": "index.html#deployment-flow",
+    "href": "index.html#deployment-flow",
+    "title": "DS 250",
+    "section": "Deployment Flow",
+    "text": "Deployment Flow\nRender the site from the repository root, then push the generated files to GitHub Pages.\nquarto render"
+  }
+]

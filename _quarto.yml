@@ -1,0 +1,90 @@
+project:
+  type: website
+  output-dir: .
+  render:
+    - index.qmd
+    - about.qmd
+
+website:
+  title: "Tristan Zatylny - Data Science Portfolio"
+  site-url: https://tristanzat.github.io/ds250/
+  back-to-top-navigation: true
+  repo-url: https://github.com/tristanzat/ds250
+
+  page-footer:
+    border: true
+    left: "Tristan Zatylny 2026©"
+    right:
+      - icon: linkedin
+        href: https://linkedin.com/in/tristan-zatylny
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "About"
+        file: about.qmd
+    right:
+      - text: "GitHub"
+        href: https://github.com/tristanzat/ds250
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Unit 0"
+        contents:
+          - text: "P0 Template"
+            href: u0/P0_template.html
+      - section: "Unit 1"
+        contents:
+          - text: "Task 1"
+            href: u1/unit1_task1_template.html
+          - text: "Task 2"
+            href: u1/unit1_task2_template.html
+          - text: "Task 3"
+            href: u1/unit1_task3_template.html
+          - text: "Stretch Task"
+            href: u1/stretch.html
+      - section: "Unit 2"
+        contents:
+          - text: "Task 1"
+            href: u2/unit2_task1_template.html
+          - text: "Task 2"
+            href: u2/unit2_task2_template.html
+          - text: "Task 3"
+            href: u2/unit2_task3_template.html
+          - text: "Stretch Task"
+            href: u2/stretch.html
+      - section: "Unit 3"
+        contents:
+          - text: "Task 1"
+            href: u3/unit3_task1_template.html
+          - text: "Task 2"
+            href: u3/unit3_task2_template.html
+          - text: "Task 3"
+            href: u3/unit3_task3_template.html
+          - text: "Stretch Task"
+            href: u3/stretch.html
+      - section: "Unit 4"
+        contents:
+          - text: "Task 1"
+            href: u4/unit4_task1_template.html
+          - text: "Task 2"
+            href: u4/unit4_task2_template.html
+          - text: "Task 3"
+            href: u4/unit4_task3_template.html
+          - text: "Stretch Task"
+            href: u4/stretch.html
+      - section: "Unit 5"
+        contents:
+          - text: "Client Report"
+            href: u5/unit5_task3_template.html
+
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: false

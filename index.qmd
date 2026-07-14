@@ -1,0 +1,71 @@
+---
+title: "DS 250"
+---
+
+::: {.hero}
+# DS 250 Data Science Programming
+
+This Quarto homepage replaces the hand-written landing page and links directly to the assignment HTML files already in this repository.
+
+[Open the GitHub repository](https://github.com/tristanzat/ds250){.btn .btn-primary}
+:::
+
+## Assignment Index
+
+::: {.assignment-grid}
+::: {.assignment-card}
+### Unit 0
+
+- [P0 Template](u0/P0_template.html)
+:::
+
+::: {.assignment-card}
+### Unit 1
+
+- [Task 1](u1/unit1_task1_template.html)
+- [Task 2](u1/unit1_task2_template.html)
+- [Task 3](u1/unit1_task3_template.html)
+- [Stretch Task](u1/stretch.html)
+:::
+
+::: {.assignment-card}
+### Unit 2
+
+- [Task 1](u2/unit2_task1_template.html)
+- [Task 2](u2/unit2_task2_template.html)
+- [Task 3](u2/unit2_task3_template.html)
+- [Stretch Task](u2/stretch.html)
+:::
+
+::: {.assignment-card}
+### Unit 3
+
+- [Task 1](u3/unit3_task1_template.html)
+- [Task 2](u3/unit3_task2_template.html)
+- [Task 3](u3/unit3_task3_template.html)
+- [Stretch Task](u3/stretch.html)
+:::
+
+::: {.assignment-card}
+### Unit 4
+
+- [Task 1](u4/unit4_task1_template.html)
+- [Task 2](u4/unit4_task2_template.html)
+- [Task 3](u4/unit4_task3_template.html)
+- [Stretch Task](u4/stretch.html)
+:::
+
+::: {.assignment-card}
+### Unit 5
+
+- [Client Report](u5/unit5_task3_template.html)
+:::
+:::
+
+## Deployment Flow
+
+Render the site from the repository root, then push the generated files to GitHub Pages.
+
+```powershell
+quarto render
+```
