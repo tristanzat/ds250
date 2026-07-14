@@ -1,0 +1,76 @@
+---
+layout: cv
+title: Tristan Zatylny's Resume
+---
+# Tristan Zatylny
+Software Engineer and Computer Science Student.
+
+<div id="webaddress">
+<a href="mailto:tristanzatylny@gmail.com">tristanzatylny@gmail.com</a>
+| <a href="https://linkedin.com/in/tristan-zatylny">linkedin.com/in/tristan-zatylny</a>
+| <a href="https://github.com/tristanzat">github.com/tristanzat</a>
+| (512) 745-5286
+| <a href="https://tristanzat.github.io/ds250/resume.pdf">Download PDF</a>
+</div>
+
+
+## Currently
+
+Software Engineer Intern at Portnox, building experience with day-to-day ticket resolution, local testing, code review workflows, and AI-assisted development inside Visual Studio and Azure DevOps.
+
+### Focus Areas
+
+Software engineering, AI-assisted development, collaborative product work, and practical full-stack problem solving.
+
+
+## Experience
+
+`Jun. 2025 - Current`
+__Software Engineer Intern__, Portnox, Austin, TX
+
+- Resolved assigned tickets in a timely manner.
+- Leveraged AI-assisted development tools within Visual Studio to accelerate ticket resolution and improve code efficiency.
+- Tested code changes locally before creating pull requests to verify expected behavior.
+- Managed end-to-end development work using Azure DevOps for version control, code reviews, and pull request integration.
+- Completed security training modules required for software development and operations.
+- Worked with automated AI code review systems to maintain code quality and align with best practices.
+- Collaborated remotely with coworkers in Europe to learn the product's design and code standards.
+
+
+## Projects
+
+### Terms and Conditions AI Summarizer Chrome Extension
+
+- Used agile scrum methodology to develop the product with a team.
+- Gathered user feedback and implemented it into the product.
+- Used integrated AI tools to refine summarizer prompts.
+- Utilized GitHub for version control and Firebase for backend AI limiting.
+
+### Python Video Game
+
+- Coordinated team efforts in developing a Python game for the i-Hack 2025: Hack the Norm hackathon, placing first in the entertainment category.
+- Managed user interface and logic design.
+- Utilized AI agent tools to optimize game performance and implement pathfinding logic.
+- Used GitHub for version control.
+
+## Skills
+
+- Languages: Java, Python, C#, C++, SQL, HTML, CSS, JavaScript
+- Tools and Platforms: Visual Studio, VS Code, Azure DevOps, GitHub
+
+
+## Education
+
+`Current`
+__Brigham Young University-Idaho__
+
+- Bachelor of Science in Computer Science in progress.
+
+
+## Other
+
+- Served a 2-year full-time mission for the Church of Jesus Christ of Latter-day Saints in Pocatello, Idaho.
+
+<!-- ### Footer
+
+Last updated: July 2026 -->

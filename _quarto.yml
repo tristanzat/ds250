@@ -3,7 +3,7 @@ project:
   output-dir: .
   render:
     - index.qmd
-    - about.qmd
+    - resume.qmd
 
 website:
   title: "Tristan Zatylny - Data Science Portfolio"
@@ -24,8 +24,8 @@ website:
     left:
       - text: "Home"
         file: index.qmd
-      - text: "About"
-        file: about.qmd
+      - text: "Resume"
+        file: resume.qmd
     right:
       - text: "GitHub"
         href: https://github.com/tristanzat/ds250

@@ -5,8 +5,6 @@ title: "DS 250"
 ::: {.hero}
 # DS 250 Data Science Programming
 
-This Quarto homepage replaces the hand-written landing page and links directly to the assignment HTML files already in this repository.
-
 [Open the GitHub repository](https://github.com/tristanzat/ds250){.btn .btn-primary}
 :::
 
@@ -61,11 +59,3 @@ This Quarto homepage replaces the hand-written landing page and links directly t
 - [Client Report](u5/unit5_task3_template.html)
 :::
 :::
-
-## Deployment Flow
-
-Render the site from the repository root, then push the generated files to GitHub Pages.
-
-```powershell
-quarto render
-```

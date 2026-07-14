@@ -1,17 +1,59 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Tristan Zatylny’s Resume",
     "section": "",
-    "text": "This site is built with Quarto and published from the repository root so it can stay close to your current GitHub Pages workflow.\nThe homepage is authored in Quarto, while the assignment deliverables remain the existing rendered HTML files under the unit folders.\nIf you add new assignments later, update the links in index.qmd and _quarto.yml, then run quarto render again.\n\n\n\n Back to top"
+    "text": "Software Engineer and Computer Science Student.\n\ntristanzatylny@gmail.com | linkedin.com/in/tristan-zatylny | github.com/tristanzat | (512) 745-5286 | Download PDF\n\n\n\nSoftware Engineer Intern at Portnox, building experience with day-to-day ticket resolution, local testing, code review workflows, and AI-assisted development inside Visual Studio and Azure DevOps.\n\n\nSoftware engineering, AI-assisted development, collaborative product work, and practical full-stack problem solving.\n\n\n\n\nJun. 2025 - Current Software Engineer Intern, Portnox, Austin, TX\n\nResolved assigned tickets in a timely manner.\nLeveraged AI-assisted development tools within Visual Studio to accelerate ticket resolution and improve code efficiency.\nTested code changes locally before creating pull requests to verify expected behavior.\nManaged end-to-end development work using Azure DevOps for version control, code reviews, and pull request integration.\nCompleted security training modules required for software development and operations.\nWorked with automated AI code review systems to maintain code quality and align with best practices.\nCollaborated remotely with coworkers in Europe to learn the product’s design and code standards.\n\n\n\n\n\n\n\nUsed agile scrum methodology to develop the product with a team.\nGathered user feedback and implemented it into the product.\nUsed integrated AI tools to refine summarizer prompts.\nUtilized GitHub for version control and Firebase for backend AI limiting.\n\n\n\n\n\nCoordinated team efforts in developing a Python game for the i-Hack 2025: Hack the Norm hackathon, placing first in the entertainment category.\nManaged user interface and logic design.\nUtilized AI agent tools to optimize game performance and implement pathfinding logic.\nUsed GitHub for version control.\n\n\n\n\n\n\nLanguages: Java, Python, C#, C++, SQL, HTML, CSS, JavaScript\nTools and Platforms: Visual Studio, VS Code, Azure DevOps, GitHub\n\n\n\n\nCurrent Brigham Young University-Idaho\n\nBachelor of Science in Computer Science in progress.\n\n\n\n\n\nServed a 2-year full-time mission for the Church of Jesus Christ of Latter-day Saints in Pocatello, Idaho."
+  },
+  {
+    "objectID": "resume.html#currently",
+    "href": "resume.html#currently",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Software Engineer Intern at Portnox, building experience with day-to-day ticket resolution, local testing, code review workflows, and AI-assisted development inside Visual Studio and Azure DevOps.\n\n\nSoftware engineering, AI-assisted development, collaborative product work, and practical full-stack problem solving."
+  },
+  {
+    "objectID": "resume.html#experience",
+    "href": "resume.html#experience",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Jun. 2025 - Current Software Engineer Intern, Portnox, Austin, TX\n\nResolved assigned tickets in a timely manner.\nLeveraged AI-assisted development tools within Visual Studio to accelerate ticket resolution and improve code efficiency.\nTested code changes locally before creating pull requests to verify expected behavior.\nManaged end-to-end development work using Azure DevOps for version control, code reviews, and pull request integration.\nCompleted security training modules required for software development and operations.\nWorked with automated AI code review systems to maintain code quality and align with best practices.\nCollaborated remotely with coworkers in Europe to learn the product’s design and code standards."
+  },
+  {
+    "objectID": "resume.html#projects",
+    "href": "resume.html#projects",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Used agile scrum methodology to develop the product with a team.\nGathered user feedback and implemented it into the product.\nUsed integrated AI tools to refine summarizer prompts.\nUtilized GitHub for version control and Firebase for backend AI limiting.\n\n\n\n\n\nCoordinated team efforts in developing a Python game for the i-Hack 2025: Hack the Norm hackathon, placing first in the entertainment category.\nManaged user interface and logic design.\nUtilized AI agent tools to optimize game performance and implement pathfinding logic.\nUsed GitHub for version control."
+  },
+  {
+    "objectID": "resume.html#skills",
+    "href": "resume.html#skills",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Languages: Java, Python, C#, C++, SQL, HTML, CSS, JavaScript\nTools and Platforms: Visual Studio, VS Code, Azure DevOps, GitHub"
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Current Brigham Young University-Idaho\n\nBachelor of Science in Computer Science in progress."
+  },
+  {
+    "objectID": "resume.html#other",
+    "href": "resume.html#other",
+    "title": "Tristan Zatylny’s Resume",
+    "section": "",
+    "text": "Served a 2-year full-time mission for the Church of Jesus Christ of Latter-day Saints in Pocatello, Idaho."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "DS 250",
     "section": "",
-    "text": "This Quarto homepage replaces the hand-written landing page and links directly to the assignment HTML files already in this repository.\nOpen the GitHub repository"
+    "text": "Open the GitHub repository"
   },
   {
     "objectID": "index.html#assignment-index",
@@ -19,12 +61,5 @@
     "title": "DS 250",
     "section": "Assignment Index",
     "text": "Assignment Index\n\n\nUnit 0\n\nP0 Template\n\n\n\nUnit 1\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 2\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 3\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 4\n\nTask 1\nTask 2\nTask 3\nStretch Task\n\n\n\nUnit 5\n\nClient Report"
-  },
-  {
-    "objectID": "index.html#deployment-flow",
-    "href": "index.html#deployment-flow",
-    "title": "DS 250",
-    "section": "Deployment Flow",
-    "text": "Deployment Flow\nRender the site from the repository root, then push the generated files to GitHub Pages.\nquarto render"
   }
 ]

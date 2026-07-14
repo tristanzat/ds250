@@ -1,9 +1,0 @@
----
-title: "About"
----
-
-This site is built with Quarto and published from the repository root so it can stay close to your current GitHub Pages workflow.
-
-The homepage is authored in Quarto, while the assignment deliverables remain the existing rendered HTML files under the unit folders.
-
-If you add new assignments later, update the links in index.qmd and _quarto.yml, then run `quarto render` again.
