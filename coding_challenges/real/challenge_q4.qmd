@@ -1,0 +1,135 @@
+---
+title: "Coding Challenge"
+subtitle: "Course DS 250"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+    
+---
+
+```{python}
+# Read in libraries
+import polars as pl
+import numpy as np
+import requests
+import io
+from lets_plot import *
+import polars.selectors as cs
+# add the additional libraries you need to import for ML here
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn import metrics
+from sklearn.metrics import (
+  accuracy_score,
+  precision_score,
+  recall_score,
+  f1_score,
+  confusion_matrix,
+  classification_report,
+  ConfusionMatrixDisplay
+)
+from sklearn.inspection import permutation_importance
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+```{python}
+# Read in the flight data
+url = "https://raw.githubusercontent.com/byuidatascience/data4missing/master/data-raw/flights_missing/flights_missing.json"
+response = requests.get(url)
+flights = pl.read_json(io.BytesIO(response.content))
+```
+
+## Question 4:
+
+### Using the flight data, complete the following:
+
+- Create training and test data using `train_test_split` with the following arguments; `test_size = .33` and `random_state = 1936`.
+- Use `GradientBoostingClassifier()` to build a machine learning model.
+- Report your accuracy score and confusion matrix.
+
+```{python}
+# Question 4 Code
+
+flights
+
+# Clean data
+numeric_cols = flights.select(cs.numeric()).columns
+numeric_cols.append("num_of_delays_carrier")
+
+# Cast delays_carrier to i64 and fill nulls with median or mean
+cleaned_df = (flights
+  .with_columns(
+    pl.col("num_of_delays_carrier").cast(pl.Int64, strict=False)
+  )
+  .with_columns([
+    pl.when(pl.col(col) < 0)
+    .then(None)
+    .otherwise(pl.col(col))
+    .alias(col)
+    for col in numeric_cols
+  ])
+  # Fill minutes with median, num of with mean, and year with median
+  .with_columns(
+    cs.starts_with("minutes_delayed").fill_null(cs.starts_with("minutes_delayed").median())
+  )
+  .with_columns(
+    cs.starts_with("num_of").fill_null(cs.starts_with("num_of").mean())
+  )
+  .with_columns(
+    pl.col("year").fill_null(pl.col("year").median())
+  )
+)
+
+cleaned_df
+```
+
+```{python}
+# Remove bad columns
+x = cleaned_df.select(cs.exclude("airport_name", "month", "airport_code"))
+
+# What are we supposed to be predicting? I have no clue so I will say airport_code
+y = cleaned_df.select("airport_code")
+
+# Split training data and seed randomness
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=1936)
+
+
+```
+
+```{python}
+# Make gradient boosting
+gb = GradientBoostingClassifier()
+gb.fit(x_train, y_train)
+```
+
+```{python}
+# GB prediction
+gb_pred = gb.predict(x_test)
+
+# GB classification report
+print("Gradient Boosting")
+print(f"Accuracy: {accuracy_score(y_test, gb_pred) * 100:.3f}%")
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, gb_pred))
+print("Classification Report:")
+print(classification_report(y_test, gb_pred))
+```
+
+When done with a question, render it to a `.html` file and upload it for the question. Either re-downolad this template or file -> save as -> a new file name and then replace the text in the question with the new question text.
