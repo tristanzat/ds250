@@ -1,0 +1,52 @@
+---
+title: "Course Goals Letter (Final)"
+subtitle: "Week 14"
+author: "Tristan Zatylny"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+execute: 
+  warning: false
+    
+---
+
+# Select Your Target Grade Competency
+
+> **Instructions:** Review the grading tier tables below. The first table in each section shows where you should be **right now** (Week 7) to stay on track. The second table shows where you need to be by **Week 14**. 
+> 
+> * **Action Required:** Keep the table pair(s) that match your current performance or future goals, and delete the rest. Feel free to mix and match (e.g., if you are currently performing at a B level but aiming for an A by the end of the semester). Please provide an honest assessment!
+
+## Grading Tiers
+
+### A Tier: Leader
+
+**Where I am right now (Week 14):**
+
+|        | Grade | Tasks (18 Total) | Stretch Tasks (5) | DS Community Tasks | Methods & Calculation Quizzes @ 100% | Coding Challenge | Course Goal Letter (End) |
+|:-------|:-----:|:----------------:|:-----------------:|:------------------:|:------------------------------------:|:----------------:|:------------------------:|
+| Leader |   A   |      17–18       |       >= 3        | >= 3 (incl. Cert)  |                  6                   |       >= 3       |            1             |
+
+---
+
+## My Letter
+
+### Reflection & Progress Report
+* **Original Goal:** A
+* **Current Status:** I should get an A. I have completed 3/3 DS community tasks, have completed every task and stretch task, and have achieved 100% on every methods & calculations quiz except for Unit 5; I don't know what I was doing wrong but I think my code should have been giving me the correct answer.
+
+### Current Standings 
+*(Please verify these numbers against your current gradebook status)*
+* **Tasks Completed:** 18
+* **Stretch Tasks Completed:** 5
+* **Methods & Calculations Quizzes (at 100%):** 6
+* **Coding Challenges:** 4?
+
+### Community & Activity Description
+The 3 data science community tasks that I have participated in include attending DS society, signing up for a data science newsletter, and getting my bronze certification from the career center.
