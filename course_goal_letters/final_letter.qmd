@@ -27,7 +27,13 @@ execute:
 
 ### A Tier: Leader
 
-**Where I am right now (Week 14):**
+**What I have done:**
+
+|        | Grade | Tasks Completed | Stretches | DS Community Tasks | Methods & Calculations @ 100% | Coding Challenge | Course Goal Letter (End) |
+|:-------|:-----:|:---------------:|:---------:|:------------------:|:----------------------------:|:----------------:|:-------------------------:|
+| Leader |   A   |       18        |    5      |          3         |              6               |         4        |            1              |
+
+**What I need to have done:**
 
 |        | Grade | Tasks (18 Total) | Stretch Tasks (5) | DS Community Tasks | Methods & Calculation Quizzes @ 100% | Coding Challenge | Course Goal Letter (End) |
 |:-------|:-----:|:----------------:|:-----------------:|:------------------:|:------------------------------------:|:----------------:|:------------------------:|
@@ -37,16 +43,18 @@ execute:
 
 ## My Letter
 
+### What I have learned
+I have learned a lot about analyzing and cleaning data when given a client request. I also learned about different machine learning models and how they can be used directly with data using python.
+
 ### Reflection & Progress Report
 * **Original Goal:** A
-* **Current Status:** I should get an A. I have completed 3/3 DS community tasks, have completed every task and stretch task, and have achieved 100% on every methods & calculations quiz except for Unit 5; I don't know what I was doing wrong but I think my code should have been giving me the correct answer.
+* **Reasoning:** I think that I should get an A for this class. I have completed all of the work in the course, including all tasks, stretch tasks, quizzes, and the coding challenge. I did not get 100% on one of the coding quizzes and I don't have feedback for the coding challenge yet so I'm not sure what my standing is for that either. I think if this class were graded normally, I would get an A.
 
-### Current Standings 
-*(Please verify these numbers against your current gradebook status)*
+### Current Standings
 * **Tasks Completed:** 18
 * **Stretch Tasks Completed:** 5
 * **Methods & Calculations Quizzes (at 100%):** 6
-* **Coding Challenges:** 4?
+* **Coding Challenges:** 4
 
 ### Community & Activity Description
 The 3 data science community tasks that I have participated in include attending DS society, signing up for a data science newsletter, and getting my bronze certification from the career center.
