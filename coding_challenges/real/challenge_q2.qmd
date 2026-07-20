@@ -81,6 +81,24 @@ clean_flights = (flights
 clean_flights.null_count()
 ```
 
+Standard deviation function (probably correct)
+
+```{python}
+cols = ["minutes_delayed_carrier", "minutes_delayed_nas"]
+
+flights_dev = (clean_flights
+  .with_columns([
+    pl.col(col).std()
+    .alias("std_dev_" + col)
+    for col in cols
+  ])
+)
+
+flights_dev
+```
+
+Manual standard deviation (incorrect)
+
 ```{python}
 # Standard deviation -
 # get mean

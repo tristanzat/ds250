@@ -2259,7 +2259,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   </ul></li>
   </ul>
 </nav>
-<div id="cd2749d7" class="cell" data-execution_count="1">
+<div id="1be0b56a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in libraries</span></span>
@@ -2287,7 +2287,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(isolated_frame<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="61e84fb6" class="cell" data-execution_count="2">
+<div id="1308605d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the names data</span></span>
@@ -2300,7 +2300,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="question-2">Question 2:</h2>
 <section id="two-of-the-minutes-columns-in-the-flight-data-have-missing-values.-calculate-the-standard-deviation-after-replacing-the-missing-values-with-the-median.-report-the-larger-standard-deviation-2-decimal-places." class="level3">
 <h3 class="anchored" data-anchor-id="two-of-the-minutes-columns-in-the-flight-data-have-missing-values.-calculate-the-standard-deviation-after-replacing-the-missing-values-with-the-median.-report-the-larger-standard-deviation-2-decimal-places.">Two of the <code>minutes</code> columns in the flight data have missing values. Calculate the standard deviation after replacing the missing values with the median. Report the larger standard deviation (2 decimal places).</h3>
-<div id="25de6250" class="cell" data-execution_count="3">
+<div id="4e860ac2" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Question 2 Code</span></span>
@@ -2360,7 +2360,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 └────────────┴────────────┴──────────┴──────┴───┴────────────┴────────────┴────────────┴───────────┘
 Schema({&#39;airport_code&#39;: String, &#39;airport_name&#39;: String, &#39;month&#39;: String, &#39;year&#39;: Int64, &#39;num_of_flights_total&#39;: Int64, &#39;num_of_delays_carrier&#39;: String, &#39;num_of_delays_late_aircraft&#39;: Int64, &#39;num_of_delays_nas&#39;: Int64, &#39;num_of_delays_security&#39;: Int64, &#39;num_of_delays_weather&#39;: Int64, &#39;num_of_delays_total&#39;: Int64, &#39;minutes_delayed_carrier&#39;: Int64, &#39;minutes_delayed_late_aircraft&#39;: Int64, &#39;minutes_delayed_nas&#39;: Int64, &#39;minutes_delayed_security&#39;: Int64, &#39;minutes_delayed_weather&#39;: Int64, &#39;minutes_delayed_total&#39;: Int64})</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2435,7 +2435,7 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div id="66cfd061" class="cell" data-execution_count="4">
+<div id="bfca59e0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace missing values with median</span></span>
@@ -2448,7 +2448,7 @@ white-space: pre-wrap;
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>clean_flights.null_count()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2523,30 +2523,338 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div id="dbe128dc" class="cell" data-execution_count="5">
+<p>Standard deviation function (probably correct)</p>
+<div id="e0568e2f" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation -</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get mean</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># subtract mean from main</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># square that</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get average</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sqrt that</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>delay_cols <span class="op">=</span> clean_flights.select(cs.starts_with(<span class="st">&quot;minutes_delayed_&quot;</span>)).columns</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get mean</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> (clean_flights</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    pl.col(col).mean()</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;mean_&quot;</span> <span class="op">+</span> col)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> delay_cols</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>means</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">&quot;minutes_delayed_carrier&quot;</span>, <span class="st">&quot;minutes_delayed_nas&quot;</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>flights_dev <span class="op">=</span> (clean_flights</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    pl.col(col).std()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;std_dev_&quot;</span> <span class="op">+</span> col)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> cols</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>flights_dev</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (924, 19)</small>
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">airport_code</th>
+<th data-quarto-table-cell-role="th">airport_name</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">num_of_flights_total</th>
+<th data-quarto-table-cell-role="th">num_of_delays_carrier</th>
+<th data-quarto-table-cell-role="th">num_of_delays_late_aircraft</th>
+<th data-quarto-table-cell-role="th">num_of_delays_nas</th>
+<th data-quarto-table-cell-role="th">num_of_delays_security</th>
+<th data-quarto-table-cell-role="th">num_of_delays_weather</th>
+<th data-quarto-table-cell-role="th">num_of_delays_total</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_carrier</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_late_aircraft</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_nas</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_security</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_weather</th>
+<th data-quarto-table-cell-role="th">minutes_delayed_total</th>
+<th data-quarto-table-cell-role="th">std_dev_minutes_delayed_carrier</th>
+<th data-quarto-table-cell-role="th">std_dev_minutes_delayed_nas</th>
+</tr>
+<tr class="even">
+<td>str</td>
+<td>str</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>i64</td>
+<td>f64</td>
+<td>f64</td>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&quot;ATL&quot;</td>
+<td>&quot;Atlanta, GA: Hartsfield-Jackso…</td>
+<td>&quot;January&quot;</td>
+<td>2005</td>
+<td>35048</td>
+<td>&quot;1500+&quot;</td>
+<td>-999</td>
+<td>4598</td>
+<td>10</td>
+<td>448</td>
+<td>8355</td>
+<td>116423.0</td>
+<td>104415</td>
+<td>207467.0</td>
+<td>297</td>
+<td>36931</td>
+<td>465533</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="even">
+<td>&quot;DEN&quot;</td>
+<td>&quot;Denver, CO: Denver Internation…</td>
+<td>&quot;January&quot;</td>
+<td>2005</td>
+<td>12687</td>
+<td>&quot;1041&quot;</td>
+<td>928</td>
+<td>935</td>
+<td>11</td>
+<td>233</td>
+<td>3153</td>
+<td>53537.0</td>
+<td>70301</td>
+<td>36817.0</td>
+<td>363</td>
+<td>21779</td>
+<td>182797</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="odd">
+<td>&quot;IAD&quot;</td>
+<td>&quot;&quot;</td>
+<td>&quot;January&quot;</td>
+<td>2005</td>
+<td>12381</td>
+<td>&quot;414&quot;</td>
+<td>1058</td>
+<td>895</td>
+<td>4</td>
+<td>61</td>
+<td>2430</td>
+<td>38784.5</td>
+<td>70919</td>
+<td>35660.0</td>
+<td>208</td>
+<td>4497</td>
+<td>134881</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="even">
+<td>&quot;ORD&quot;</td>
+<td>&quot;Chicago, IL: Chicago O&#39;Hare In…</td>
+<td>&quot;January&quot;</td>
+<td>2005</td>
+<td>28194</td>
+<td>&quot;1197&quot;</td>
+<td>2255</td>
+<td>5415</td>
+<td>5</td>
+<td>306</td>
+<td>9178</td>
+<td>88691.0</td>
+<td>160811</td>
+<td>364382.0</td>
+<td>151</td>
+<td>24859</td>
+<td>638894</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="odd">
+<td>&quot;SAN&quot;</td>
+<td>&quot;San Diego, CA: San Diego Inter…</td>
+<td>&quot;January&quot;</td>
+<td>2005</td>
+<td>7283</td>
+<td>&quot;572&quot;</td>
+<td>680</td>
+<td>638</td>
+<td>7</td>
+<td>56</td>
+<td>1952</td>
+<td>27436.0</td>
+<td>38445</td>
+<td>21127.0</td>
+<td>218</td>
+<td>4326</td>
+<td>91552</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>&quot;IAD&quot;</td>
+<td>&quot;Washington, DC: Washington Dul…</td>
+<td>&quot;December&quot;</td>
+<td>2015</td>
+<td>2799</td>
+<td>&quot;182&quot;</td>
+<td>183</td>
+<td>61</td>
+<td>0</td>
+<td>17</td>
+<td>443</td>
+<td>38784.5</td>
+<td>15438</td>
+<td>2826.0</td>
+<td>0</td>
+<td>1825</td>
+<td>31164</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="even">
+<td>&quot;ORD&quot;</td>
+<td>&quot;Chicago, IL: Chicago O&#39;Hare In…</td>
+<td>&quot;December&quot;</td>
+<td>2015</td>
+<td>25568</td>
+<td>&quot;923&quot;</td>
+<td>1755</td>
+<td>1364</td>
+<td>11</td>
+<td>180</td>
+<td>4233</td>
+<td>80962.0</td>
+<td>132055</td>
+<td>72045.0</td>
+<td>435</td>
+<td>22459</td>
+<td>307956</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="odd">
+<td>&quot;SAN&quot;</td>
+<td>&quot;San Diego, CA: San Diego Inter…</td>
+<td>&quot;n/a&quot;</td>
+<td>2015</td>
+<td>6231</td>
+<td>&quot;480&quot;</td>
+<td>606</td>
+<td>256</td>
+<td>5</td>
+<td>37</td>
+<td>1383</td>
+<td>25402.0</td>
+<td>35796</td>
+<td>9038.0</td>
+<td>161</td>
+<td>2742</td>
+<td>73139</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="even">
+<td>&quot;SFO&quot;</td>
+<td>&quot;San Francisco, CA: San Francis…</td>
+<td>&quot;December&quot;</td>
+<td>2015</td>
+<td>13833</td>
+<td>&quot;757&quot;</td>
+<td>1180</td>
+<td>2372</td>
+<td>9</td>
+<td>147</td>
+<td>4465</td>
+<td>55283.0</td>
+<td>96703</td>
+<td>193525.0</td>
+<td>285</td>
+<td>13788</td>
+<td>359584</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+<tr class="odd">
+<td>&quot;SLC&quot;</td>
+<td>&quot;Salt Lake City, UT: Salt Lake …</td>
+<td>&quot;December&quot;</td>
+<td>2015</td>
+<td>8804</td>
+<td>&quot;483&quot;</td>
+<td>796</td>
+<td>404</td>
+<td>5</td>
+<td>56</td>
+<td>1745</td>
+<td>37354.0</td>
+<td>49549</td>
+<td>13515.0</td>
+<td>158</td>
+<td>6693</td>
+<td>107269</td>
+<td>36152.005776</td>
+<td>84708.795789</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Manual standard deviation (incorrect)</p>
+<div id="3a03789f" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation -</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># get mean</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># subtract mean from main</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># square that</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get average</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sqrt that</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>delay_cols <span class="op">=</span> clean_flights.select(cs.starts_with(<span class="st">&quot;minutes_delayed_&quot;</span>)).columns</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get mean</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> (clean_flights</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    pl.col(col).mean()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;mean_&quot;</span> <span class="op">+</span> col)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> delay_cols</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>means</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2889,26 +3197,26 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div id="f25ebcdd" class="cell" data-execution_count="6">
+<div id="aee5b814" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mean_cols <span class="op">=</span> means.select(cs.starts_with(<span class="st">&quot;mean_minutes_delayed_&quot;</span>)).columns</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>delay_cols <span class="op">=</span> clean_flights.select(cs.starts_with(<span class="st">&quot;minutes_delayed_&quot;</span>)).columns</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>all_cols <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(delay_cols, mean_cols))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract mean from main and square it</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>subs <span class="op">=</span> (means</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    ((pl.col(col) <span class="op">-</span> pl.col(mean)) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;sub_&quot;</span> <span class="op">+</span> col)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col, mean <span class="kw">in</span> all_cols</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>subs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mean_cols <span class="op">=</span> means.select(cs.starts_with(<span class="st">&quot;mean_minutes_delayed_&quot;</span>)).columns</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>delay_cols <span class="op">=</span> clean_flights.select(cs.starts_with(<span class="st">&quot;minutes_delayed_&quot;</span>)).columns</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>all_cols <span class="op">=</span> <span class="bu">list</span>(<span class="bu">zip</span>(delay_cols, mean_cols))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract mean from main and square it</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>subs <span class="op">=</span> (means</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ((pl.col(col) <span class="op">-</span> pl.col(mean)) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;sub_&quot;</span> <span class="op">+</span> col)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col, mean <span class="kw">in</span> all_cols</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>subs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -3329,25 +3637,25 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div id="0d26b1ce" class="cell" data-execution_count="7">
+<div id="479e36bb" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diff_cols <span class="op">=</span> subs.select(cs.starts_with(<span class="st">&quot;sub_minutes_delayed_&quot;</span>)).columns</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Variance - average those squared differences</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the square root of that</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>variance <span class="op">=</span> (subs</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    (np.sqrt(pl.col(col).mean()))</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;var_&quot;</span> <span class="op">+</span> col)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> diff_cols</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ])</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>variance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>diff_cols <span class="op">=</span> subs.select(cs.starts_with(<span class="st">&quot;sub_minutes_delayed_&quot;</span>)).columns</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Variance - average those squared differences</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the square root of that</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>variance <span class="op">=</span> (subs</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  .with_columns([</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    (np.sqrt(pl.col(col).mean()))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    .alias(<span class="st">&quot;var_&quot;</span> <span class="op">+</span> col)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> diff_cols</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>variance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="17">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -3846,15 +4154,15 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div id="b5b97713" class="cell" data-execution_count="8">
+<div id="b263d7b9" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the larger standard deviation (2 decimal places).</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming between minutes_delayed_carrier and minutes_delayed_nas?</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(variance.select(<span class="st">&quot;var_sub_minutes_delayed_carrier&quot;</span>, <span class="st">&quot;var_sub_minutes_delayed_nas&quot;</span>).head(<span class="dv">1</span>))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Largest is minutes_delayed_nas at 84662.95&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the larger standard deviation (2 decimal places).</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming between minutes_delayed_carrier and minutes_delayed_nas?</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(variance.select(<span class="st">&quot;var_sub_minutes_delayed_carrier&quot;</span>, <span class="st">&quot;var_sub_minutes_delayed_nas&quot;</span>).head(<span class="dv">1</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Largest is minutes_delayed_nas at 84662.95&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>shape: (1, 2)
